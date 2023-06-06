@@ -1,8 +1,10 @@
 use <filler.scad>;
 use <fan.scad>;
 
+$fn = 100;
+
 num_rows = 1;
-num_cols = 1;
+num_cols = 2;
 
 num_filters = num_rows * num_cols;
 depth = 5;
@@ -10,16 +12,20 @@ filter_x = 110;
 filter_z = 44;
 filter_y = 116;
 fan_radius = 70;
-top_z = 54.4;
+top_z = 60;
 screw_radius = 2.5;
-screw_radius_holder = 1.6;
+screw_radius_holder = 2.5;
 distance_to_middle_of_circle_x = 62;
 distance_to_middle_of_circle_y = 62;
 
 // Take the number of filters (rows and columns) into account
 back_x = filter_x * num_cols > fan_radius * 2 ? filter_x * num_cols + depth * 2 : fan_radius * 2 + depth * 2 + 1;
 
+echo(back_x);
+
 back_y = filter_y * num_rows > fan_radius * 2 ? filter_y * num_rows + depth * 2 : fan_radius * 2 + depth * 2 + 1;
+
+echo(back_y);
 
 
 // the back
@@ -58,4 +64,4 @@ translate([back_x - depth, 0, 0]) {
   cube([depth, back_y, top_z]);
 }
 
-// filler(num_rows, num_cols, back_x, depth, back_y, filter_x, filter_y, filter_z, top_z);
+// color([100, 0, 0]) filler(num_rows, num_cols, back_x, depth, back_y, filter_x, filter_y, filter_z, top_z);
