@@ -1,6 +1,7 @@
 use <main_no_side_holes.scad>
 use <screw_with_hex_nut.scad>
 use <side_holes.scad>
+use <top_screws_with_nuts.scad>
 
 side_offset = 0.75;
 depth = 5;
@@ -29,11 +30,17 @@ module holes_right_side() {
 
 module two_filter_right_side() {
   difference() {
-    main_no_side_holes(side_offset=side_offset);
+    difference() {
+      main_no_side_holes(side_offset=side_offset);
 
-    translate([fan_radius * 2 + depth + (depth - side_offset), fan_radius * 2 + depth * 2, 0]) {
-      rotate([0,0,180]) holes_right_side();
+      translate([fan_radius * 2 + depth + (depth - side_offset), fan_radius * 2 + depth * 2, 0]) {
+        rotate([0,0,180]) holes_right_side();
 
+      }
+    }
+
+    translate([-fan_radius * 2 + 4 * depth,130 + 1,65]) {
+      rotate([180, 0, 0]) top_screws_with_nuts();
     }
   }
 }
