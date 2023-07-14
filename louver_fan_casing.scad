@@ -1,5 +1,6 @@
 use <louvers.scad>
 use <screw.scad>
+use <two_filter_one_fan_main.scad>
 
 side_offset = 0.75;
 depth = 5;
@@ -20,27 +21,32 @@ diff_x = (fan_radius * 2 - filter_x) / 2;
 diff_y = (fan_radius * 2 - filter_y);
 
 
+module filter_casing_one_filter(filter_width=110, fan_radius=60) {
+  bottom_x = fan_radius * 2;
+  bottom_y = (fan_radius * 2 - filter_y);
 
+  width_per_left_right_side = diff_x;
 
-
-module filter_casing() {
-  // bottom
-  cube([fan_radius * 2, diff_y, z]);
   // left filter holder side
-  cube([diff_x, (fan_radius * 2), z]);
+  cube([width_per_left_right_side, (fan_radius * 2), z]);
+
+  x_offset = diff_x + filter_x;
 
   // right filter holder side
-  translate([diff_x + filter_x, 0, 0]) {
-    cube([diff_x, (fan_radius * 2), z]);
+  translate([x_offset, 0, 0]) {
+    cube([width_per_left_right_side, (fan_radius * 2), z]);
   }
 
-
+  // bottom
+  cube([bottom_x, bottom_y, z]);
 }
 
 
-module filter_casing_enclosure() {
+
+
+module filter_casing_enclosure_one_filter() {
   difference() {
-    filter_casing();
+    filter_casing_one_filter();
     // subtract louvers
     translate([0, depth + depth / 4, filter_z]) {
       louvers();
@@ -91,9 +97,19 @@ module holes() {
 
 module filter_casing_with_holes() {
   difference() {
-    filter_casing_enclosure();
+    filter_casing_enclosure_one_filter();
     holes();
   }
 }
 
-filter_casing_with_holes();
+
+// filter_casing_with_holes();
+// filter_casing_one_filter();
+// filter_casing_two_filter();
+// translate([x,y,z]) {
+
+
+filter_casing_enclosure_one_filter();
+    // translate([0,0,depth * 8 + depth / 2 + depth / 4]) {
+      // louvers(filter_x=110 * 2 - 2 * depth, casing_cylinder_length=110 * 2, depth=5, louver_separation=20, num_louvers=6);
+    // }

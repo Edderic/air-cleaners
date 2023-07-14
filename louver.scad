@@ -44,6 +44,7 @@ filter_x = 110;
 top_z = 60;
 
 
-louver(filter_x=filter_x, x_offset=depth, cylinder_radius=3, distance_between_cylinders=15, casing_cylinder_length=filter_x + depth * 2);
+// louver(filter_x=filter_x, x_offset=depth, cylinder_radius=3, distance_between_cylinders=15, casing_cylinder_length=filter_x + depth * 2);
 
+// louver(filter_x=filter_x * 2, x_offset=depth, cylinder_radius=3, distance_between_cylinders=15, casing_cylinder_length=filter_x * 2+ depth * 2);
 

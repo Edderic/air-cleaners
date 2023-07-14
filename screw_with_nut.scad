@@ -8,7 +8,9 @@ module screw_with_nut(hex_nut_height=2, screw_head_height=3, threaded_height=10,
     translate([0,0, screw_head_height + threaded_height - hex_nut_height]) {
       hex_nut(side_length=hex_nut_side_length, height=hex_nut_height);
     }
-  } else {
+  }
+
+  else if (nut_type == "square"){
     translate([
         -square_nut_side_length / 2,
         -square_nut_side_length / 2,
@@ -17,6 +19,7 @@ module screw_with_nut(hex_nut_height=2, screw_head_height=3, threaded_height=10,
       square_nut(side_length=square_nut_side_length, height=square_nut_height);
     }
   }
+
 }
 
 screw_with_nut(nut_type="square");

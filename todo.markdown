@@ -13,3 +13,4 @@
 
 
 62 / 140 * 120
+The activated carbon filter that comes with the Coway should remove some of the gasses, but I haven’t studied it enough to get a sense of what

@@ -2,7 +2,9 @@ use <screw_with_nut.scad>
 use <top_screws_with_nuts.scad>
 use <shoulder_strap_support_screws.scad>
 use <battery_door.scad>
+use <battery_door_with_switch.scad>
 use <noctua_speed_controller.scad>
+use <usbc_female.scad>
 
 $fn = 100;
 
@@ -24,8 +26,8 @@ module second_removables(battery_width=100, depth=5) {
   }
 
   // battery door right
-  translate([123,2, 0]) {
-    rotate([0, 0, 0]) battery_door();
+  translate([123,2, 0.5]) {
+    rotate([0, 0, 0]) battery_door_with_switch();
   }
 
   // battery door left
@@ -55,16 +57,6 @@ module removables(battery_width=100, depth=5) {
     rotate([90,0,0]) top_screws_with_nuts();
   }
 
-  // hex nuts at the top for c-clamp, right
-  translate([-43, 5, 179]) {
-    rotate([-90,0,0]) top_screws_with_nuts();
-  }
-
-  // hex nuts at the top for c-clamp, left
-  translate([-65, 5, 179]) {
-    rotate([-90,0,0]) top_screws_with_nuts();
-  }
-
   // screws for shoulder strap ring left
   translate([0,50,53]) {
     rotate([-90,0,0]) rotate([0,90,0]) shoulder_strap_support_screws();
@@ -76,7 +68,7 @@ module removables(battery_width=100, depth=5) {
   }
 
   // hole for noctua speed controller
-  translate([fan_radius - depth - 3 ,15,12]) {
+  translate([fan_radius - depth * 2 ,15,12]) {
     color([1,0,0]) rotate([90,0,0]) noctua_speed_controller();
   }
 
@@ -95,11 +87,24 @@ module removables(battery_width=100, depth=5) {
 
   // edge 4 to smooth
   translate([0, battery_width - depth / 2,0]) {
-    color([0,0,1]) cube([depth / 2, depth / 2, battery_height + depth * 2]);
+    color([0,0,1]) cube([0, depth / 2, battery_height + depth * 2]);
   }
+
+  // usbc hole
+  translate([fan_radius * 2 - depth * 3,battery_width - depth, battery_height / 2 + depth + depth / 2 - 1 / 2 ]) {
+    color([1,0,0]) rotate([0,90,0])
+      usbc_female();
+  }
+
+  // hole for battery meter
+  translate([fan_radius + depth / 4 + 5 , fan_radius ,battery_height + depth - 1]) {
+    color([1,0,0]) cylinder(h=5, r=10);
+  }
+
 }
 
 module edge_smoothers(fan_radius, battery_height, depth) {
+
 
   // edge 1 smoother
   translate([depth / 2, depth / 2, 0]) {
@@ -110,6 +115,7 @@ module edge_smoothers(fan_radius, battery_height, depth) {
   translate([fan_radius * 2 + depth + 3.5, depth / 2, 0]) {
     cylinder(h=battery_height + depth + 2, r=depth / 2);
   }
+
 
   // edge 3 smoother
   translate([fan_radius * 2 + depth + 3.5, battery_width - depth / 2, 0]) {
@@ -122,20 +128,28 @@ module edge_smoothers(fan_radius, battery_height, depth) {
   }
 }
 
+
 module one_filter_one_fan_battery_casing(battery_width=100, battery_height=30 + 5 * 2, depth=5, oset=1, fan_radius=60 ) {
   difference() {
-    union() {
-      difference() {
-        cube([(fan_radius * 2 + depth * 2+ oset), battery_width, battery_height + 2 * 3 + oset]);
-        removables();
+    intersection() {
+      union() {
+        difference() {
+          cube([(fan_radius * 2 + depth * 2+ oset), battery_width, battery_height + 2 * 3 + oset]);
+          removables();
+        }
+
+        edge_smoothers(fan_radius, battery_height, depth);
+
       }
-      edge_smoothers(fan_radius, battery_height, depth);
     }
+
     second_removables();
   }
 }
 
 one_filter_one_fan_battery_casing(battery_width, battery_height);
+
+          // edge_smoothers(fan_radius, battery_height, depth);
 
 // removables();
   // hex nuts at the bottom left

@@ -1,5 +1,5 @@
 $fn = 100;
-module noctua_speed_controller() {
+module noctua_speed_controller(led_height=14.5) {
   cube([40,25,14]);
   // speed dial
   translate([16,25 / 2,14]) {
@@ -8,13 +8,16 @@ module noctua_speed_controller() {
 
   // left LED
   translate([8, 3.5, 0]) {
-    cylinder(h=20, r=1.5);
+    cylinder(h=led_height, r=1.5);
   }
 
   // right LED
   translate([8, 25 - 3.5, 0]) {
-    cylinder(h=20, r=1.5);
+    cylinder(h=led_height, r=1.5);
   }
 }
 
 noctua_speed_controller();
+  // translate([8, 3.5, 0]) {
+    // cylinder(h=3, r=1.5);
+  // }

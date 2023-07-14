@@ -11,12 +11,11 @@ module main_no_side_holes(depth=5, filter_x=110, filter_y=116, fan_radius=60, to
   // Take the number of filters (rows and columns) into account
   depth_multiplier = num_fans == 2 ? 4 : 2;
 
-  back_x = num_fans * 2 * fan_radius + depth * depth_multiplier + 1;
-  back_y = num_rows * 2 * fan_radius + depth * depth_multiplier + 1;
-
-  if (louver_holder) {
-    // no back
-  }
+  larger_x = num_fans > num_cols ? num_fans : num_cols;
+  larger_y = num_fans > num_rows ? num_fans : num_rows;
+  multiplier = num_rows == 2 ? filter_x : fan_radius;
+  back_x = larger_x * 2 * fan_radius + depth * depth_multiplier + 1;
+  back_y =  2 * multiplier + depth * depth_multiplier + 1;
 
   if (!louver_holder) {
     if (num_fans == 1) {

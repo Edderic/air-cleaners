@@ -8,6 +8,11 @@ module remove() {
   translate([0, 0, -2]) {
     color([0,1,1]) cube([8, 2, 20]);
   }
+
+  // make it easier to open the battery door
+  translate([0, -3, 19]) {
+    color([0,0,1]) cube([4, 4.5, 9]);
+  }
 }
 
 module stuff(
@@ -17,8 +22,8 @@ module stuff(
     oset = 1,
 ) {
   // door knob
-  translate([0, -2, 19]) {
-    color([1,0,0]) cube([8, 4, 9]);
+  translate([0, -3, 19]) {
+    color([1,0,0]) cube([8, 9, 9]);
   }
 
   // door knob connection
@@ -63,12 +68,18 @@ module battery_door(
     fan_radius = 60,
     oset = 1,
 ) {
-  difference() {
-    stuff();
+  // union() {
+    difference() {
+      stuff();
 
-    remove();
-  }
+      remove();
+    }
+    // translate([4, -3, 19]) {
+      // color([0,1,0]) cylinder(h=9, r=4);
+    // }
+  // }
 }
 //
 battery_door();
 // remove();
+  // to smoothen

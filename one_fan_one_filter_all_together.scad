@@ -11,28 +11,34 @@ one_filter_one_fan_main();
 fan_radius = 60;
 depth = 5;
 
-translate([0,fan_radius * 2 + depth * 2,70]) {
-  rotate([-90,0,0]) one_filter_one_fan_battery_casing();
+module one_fan_one_filter_top(fan_radius=60, depth=5) {
+  // battery casing
+  translate([0,fan_radius * 2 + depth * 2,70]) {
+    rotate([-90,0,0]) one_filter_one_fan_battery_casing();
+  }
+
+  // right door
+  translate([fan_radius * 2 + depth / 2 ,fan_radius * 2 + depth * 2,68]) {
+    rotate([-90,0,0]) battery_door_with_switch();
+  }
+
+  // left door
+  translate([8, fan_radius * 2 + depth * 2 + 46.5,67.5]) {
+    rotate([-90,0,180]) battery_door();
+  }
+
+  // c_clamp_m
+  translate([47.5,fan_radius * 2 + depth * 2 + 46 + 6, 69.5]) {
+    rotate([0,180,180]) c_clamp_m();
+  }
 }
 
-// right door
-translate([fan_radius * 2 + depth / 2 ,fan_radius * 2 + depth * 2,68]) {
-  rotate([-90,0,0]) battery_door_with_switch();
-}
-
-// left door
-translate([8, fan_radius * 2 + depth * 2 + 46.5,67.5]) {
-  rotate([-90,0,180]) battery_door();
-}
-
-translate([47.5,fan_radius * 2 + depth * 2 + 46 + 6, 69.5]) {
-  rotate([0,180,180]) c_clamp_m();
-}
+one_fan_one_filter_top();
 
 // filter enclosure p1
-translate([depth,depth,depth * 3]) {
-  color([1,0,0]) filter_casing_with_holes();
-}
+// translate([depth,depth,depth * 3]) {
+  // color([1,0,0]) filter_casing_with_holes();
+// }
 
 translate([depth,depth,70]) {
   filter_casing_with_holes_p2();
