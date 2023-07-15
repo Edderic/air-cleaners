@@ -2,6 +2,7 @@ use <filler.scad>;
 use <fan.scad>;
 use <louver.scad>
 use <louvers.scad>
+use <smoothed_cube.scad>
 
 $fn = 100;
 
@@ -49,7 +50,8 @@ module main_no_side_holes(depth=5, filter_x=110, filter_y=116, fan_radius=60, to
     }
   }
 
-  cube([back_x, depth, top_z]);
+  smoothed_cube(x=back_x, y=depth, z=top_z, radius_1=depth);
+  // cube([back_x, depth, top_z]);
 
   // the bottom
   translate([0, back_y - depth, 0]) {
