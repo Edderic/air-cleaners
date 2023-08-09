@@ -27,10 +27,6 @@ module one_fan_one_filter_top(fan_radius=60, depth=5) {
     rotate([-90,0,180]) battery_door();
   }
 
-  // c_clamp_m
-  translate([47.5,fan_radius * 2 + depth * 2 + 46 + 6, 69.5]) {
-    rotate([0,180,180]) c_clamp_m();
-  }
 }
 
 one_fan_one_filter_top();

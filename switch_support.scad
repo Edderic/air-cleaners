@@ -23,17 +23,20 @@ module removables() {
 
 module subtract_from() {
   translate([-13,45,3]) {
-    color([1,0,0]) cube([18,5,40]);
+    color([1,0,0]) cube([18,5,39]);
   }
 
-  translate([-13,15,20]) {
+  translate([-13,14,20]) {
     cube([7, 67.5,5]);
   }
 
 }
 module switch_support() {
   difference() {
-    subtract_from();
+    translate([0,1.5,0]) {
+      subtract_from();
+
+    }
     removables();
   }
 }

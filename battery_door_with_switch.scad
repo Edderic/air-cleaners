@@ -7,15 +7,15 @@ $fn = 300;
 
 module removables() {
   // switch
-  translate([7.5,80,10]) {
+  translate([7.5,80,7]) {
     color([1, 0,0]) rotate([0,0,-90]) rotate([90,0,0]) switch();
   }
 
   battery_door_switch_screws();
 }
-module battery_door_with_switch() {
+module battery_door_with_switch(type="object") {
   difference() {
-    battery_door();
+    battery_door(type=type);
     removables();
   }
 }

@@ -38,3 +38,5 @@ module fan(radius, depth, distance_to_middle_of_circle_x, distance_to_middle_of_
     hex_nut(4);
   }
 }
+
+fan(radius=60, depth=5, distance_to_middle_of_circle_x=62/70 * 60, distance_to_middle_of_circle_y=62/70 * 60);

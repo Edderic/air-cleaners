@@ -5,23 +5,8 @@ $fn = 100;
 
 module removables(fan_radius, depth) {
   // spacing for wires
-  translate([depth,0,depth]) {
-    color([0,1,0]) cube([fan_radius * 2 + 1, depth, 30 - depth]);
-  }
-
-  // edge to be smoothened, left back side
-  translate([0,0,depth]) {
-    rotate([-90,0,0]) color([1,0,0]) cube([depth, depth, fan_radius * 2 + depth * 2 + 1]);
-  }
-
-  // edge to be smoothened, right back side
-  translate([fan_radius * 2 + depth + 1,0,depth]) {
-    rotate([-90,0,0]) color([0,1,0]) cube([depth, depth, fan_radius * 2 + depth * 2 + 1]);
-  }
-
-  // edge to be smoothened, right back side
-  translate([0,fan_radius * 2 + depth + 1,0]) {
-    color([0,1,0]) cube([fan_radius * 2 + depth * 2 + 1, depth, depth]);
+  translate([0,depth,depth]) {
+    color([0,1,0]) cube([depth, fan_radius * 2 + 1, 30 - depth]);
   }
 }
 
@@ -58,33 +43,23 @@ module grill(fan_radius=60, depth=5) {
 
 module back_cover(fan_radius=60, depth=5, num_cols=1, filter_x=110) {
   difference() {
-    main_no_side_holes(top_z=30, num_cols=num_cols);
-    if (num_cols == 1) {
-      removables(fan_radius=60, depth=5);
-    } else {
-      translate([depth * 2 + fan_radius * 2 + 1, 0, 0]) {
-        rotate([0,0,90]) removables(fan_radius=60, depth=5);
-      }
-    }
+    main_no_side_holes(
+        top_z=30,
+        num_cols=num_cols,
+        radius_3=depth,
+        radius_7=depth,
+        edge_3_7_radius=depth,
+        edge_2_3_radius=depth,
+        edge_6_7_radius=depth
+    );
+
+    removables(fan_radius=fan_radius, depth=depth);
   }
 
   factor = num_cols == 1 ? fan_radius : filter_x;
 
-  // if (num_cols == 1) {
-  // }
-
-  // smoothen edge left
-  // translate([2.5,0,2.5]) {
-    // rotate([-90,0,0]) color([1,0,0])  cylinder(h=factor * 2 + depth * 2 + 1, r=depth / 2);
-  // }
-
-  // smoothen edge right
-  // translate([fan_radius * 2 + depth + depth - 2 + 0.5,  0, depth / 2]) {
-    // rotate([-90,0,0]) color([1,0,0])  cylinder(h=factor * 2 + depth * 2 + 1, r=depth / 2);
-  // }
-//
   if (num_cols == 2) {
-    translate([fan_radius, 0, 0]) {
+    translate([fan_radius - depth - depth, depth/8, 0]) {
       grill();
     }
 
@@ -94,6 +69,7 @@ module back_cover(fan_radius=60, depth=5, num_cols=1, filter_x=110) {
 }
 
 back_cover();
+// removables(fan_radius=60, depth=5);
 
 
 fan_radius = 60;

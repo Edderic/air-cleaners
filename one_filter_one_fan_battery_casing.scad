@@ -5,6 +5,9 @@ use <battery_door.scad>
 use <battery_door_with_switch.scad>
 use <noctua_speed_controller.scad>
 use <usbc_female.scad>
+use <smoothed_cube.scad>
+use <speed_controller_support.scad>
+use <tcore_powerbank.scad>
 
 $fn = 100;
 
@@ -15,31 +18,21 @@ battery_height = 30 + 5 * 2 ;
 battery_width = 100;
 
 module second_removables(battery_width=100, depth=5) {
-  // space for the door handle, left
-  translate([-2, 0, 18]) {
-    cube([10, depth, 10]);
-  }
-
-  // space for the other door handle, right
-  translate([fan_radius * 2 + depth / 2, 0, 18.5]) {
-    cube([10, depth, 10]);
-  }
-
   // battery door right
-  translate([123,2, 0.5]) {
-    rotate([0, 0, 0]) battery_door_with_switch();
+  translate([123,1, 3]) {
+    rotate([0, 0, 0]) battery_door_with_switch(type="spacing");
   }
 
   // battery door left
-  translate([8,2, battery_height + depth + 1.5]) {
-    rotate([0, 180, 0]) battery_door();
+  translate([8,1, battery_height + depth -3]) {
+    rotate([0, 180, 0]) battery_door(type="spacing");
   }
 }
 
-module removables(battery_width=100, depth=5) {
+module removables(battery_width=100, depth=5, battery_height=29 + 5 * 2) {
   // space for battery
   translate([0, depth, 3]) {
-    color([1, 0, 0]) cube([(fan_radius * 2 + depth * 2 + oset), battery_width - depth * 2, battery_height + oset]);
+    color([1, 0, 0]) cube([(fan_radius * 2 + depth * 2 + oset), battery_width - depth * 2 - 0, battery_height]);
   }
 
   // hole for fan wiring
@@ -58,36 +51,15 @@ module removables(battery_width=100, depth=5) {
   }
 
   // screws for shoulder strap ring left
-  translate([0,50,53]) {
-    rotate([-90,0,0]) rotate([0,90,0]) shoulder_strap_support_screws();
-  }
 
   // screws for shoulder strap ring right
-  translate([fan_radius * 2 + 1,52,53]) {
-    rotate([-90,0,0]) rotate([0,90,0]) shoulder_strap_support_screws();
+  translate([fan_radius * 2 + 1 - depth * 3,55,53]) {
+    rotate([-90,0,0])  shoulder_strap_support_screws();
   }
 
   // hole for noctua speed controller
-  translate([fan_radius - depth * 2 ,15,12]) {
+  translate([fan_radius - depth * 2 ,15,10]) {
     color([1,0,0]) rotate([90,0,0]) noctua_speed_controller();
-  }
-
-  // edge 1 to smooth
-  color([0,0,1]) cube([depth / 2, depth / 2, battery_height + depth * 2]);
-
-  // edge 2 to smooth
-  translate([fan_radius * 2 + depth + 3.5,0,0]) {
-    color([0,0,1]) cube([depth / 2, depth / 2, battery_height + depth * 2]);
-  }
-
-  // edge 3 to smooth
-  translate([fan_radius * 2 + depth + 3.5, battery_width - depth / 2,0]) {
-    color([0,0,1]) cube([depth / 2, depth / 2, battery_height + depth * 2]);
-  }
-
-  // edge 4 to smooth
-  translate([0, battery_width - depth / 2,0]) {
-    color([0,0,1]) cube([0, depth / 2, battery_height + depth * 2]);
   }
 
   // usbc hole
@@ -97,61 +69,63 @@ module removables(battery_width=100, depth=5) {
   }
 
   // hole for battery meter
-  translate([fan_radius + depth / 4 + 5 , fan_radius ,battery_height + depth - 1]) {
-    color([1,0,0]) cylinder(h=5, r=10);
+  translate([fan_radius + depth / 4 + 5 , fan_radius ,battery_height]) {
+    color([1,0,0]) cylinder(h=10, r=10);
   }
 
 }
 
-module edge_smoothers(fan_radius, battery_height, depth) {
-
-
-  // edge 1 smoother
-  translate([depth / 2, depth / 2, 0]) {
-    cylinder(h=battery_height + depth + 2, r=depth / 2);
-  }
-
-  // edge 2 smoother
-  translate([fan_radius * 2 + depth + 3.5, depth / 2, 0]) {
-    cylinder(h=battery_height + depth + 2, r=depth / 2);
-  }
-
-
-  // edge 3 smoother
-  translate([fan_radius * 2 + depth + 3.5, battery_width - depth / 2, 0]) {
-    cylinder(h=battery_height + depth + 2, r=depth / 2);
-  }
-
-  // edge 4 smoother
-  translate([depth / 2, battery_width - depth / 2, 0]) {
-    cylinder(h=battery_height + depth + 2, r=depth / 2);
-  }
-}
 
 
 module one_filter_one_fan_battery_casing(battery_width=100, battery_height=30 + 5 * 2, depth=5, oset=1, fan_radius=60 ) {
   difference() {
-    intersection() {
-      union() {
-        difference() {
-          cube([(fan_radius * 2 + depth * 2+ oset), battery_width, battery_height + 2 * 3 + oset]);
-          removables();
-        }
+    difference() {
+      smoothed_cube(
+          x=fan_radius * 2 + depth * 2+ oset,
+          y=battery_width,
+          z=battery_height + 2 * 3 + oset,
+          radius_1=5,
+          radius_4=5,
+          radius_5=5,
+          radius_8=5,
+          edge_1_2_radius=5,
+          edge_3_4_radius=5,
+          edge_4_1_radius=5,
+          edge_1_5_radius=5,
+          edge_5_6_radius=5,
+          edge_7_8_radius=5,
+          edge_4_8_radius=5,
+          edge_8_5_radius=5
+          );
 
-        edge_smoothers(fan_radius, battery_height, depth);
-
-      }
+          // edge_smoothers(fan_radius, battery_height, depth);
+      removables();
     }
+
+
 
     second_removables();
   }
 }
 
 one_filter_one_fan_battery_casing(battery_width, battery_height);
+translate([+70,-1,0]) {
+//
+  speed_controller_support();
+}
 
-          // edge_smoothers(fan_radius, battery_height, depth);
-
+translate([10,25,12]) {
+  color([0,0,1])
+  tcore_powerbank();
+}
+  // battery door left
+  // translate([8,1, battery_height + depth -3]) {
+    // rotate([0, 180, 0]) battery_door(type="object");
+  // }
+// second_removables();
 // removables();
+
+
   // hex nuts at the bottom left
 
   // battery door left
@@ -160,3 +134,17 @@ one_filter_one_fan_battery_casing(battery_width, battery_height);
     // color([0,1,0]) cube([10, depth, 10]);
   // }
 
+  // battery door left
+  // translate([8,1, battery_height + depth ]) {
+    // rotate([0, 180, 0]) battery_door();
+  // }
+  // battery door right
+  // translate([123,1, 3]) {
+    // rotate([0, 0, 0]) battery_door_with_switch(type="object");
+  // }
+// text('AirGo');
+
+  // translate([fan_radius - depth * 2 ,15,10]) {
+    // color([1,0,0]) rotate([90,0,0]) noctua_speed_controller();
+  // }
+  // hole for battery meter
