@@ -150,7 +150,7 @@ module smoothed_cube(
         }
 
         // smooth edge from vertex 4 to 8
-        translate([x - edge_4_8_radius, 0, z - edge_4_8_radius]) {
+        translate([x - edge_4_8_radius, edge_4_8_radius, z - edge_4_8_radius]) {
           rotate([0,90,0])
             rotate([-90,0,0])
             smoothed_edge(radius=edge_4_8_radius, height=y - radius_4 - radius_8);
@@ -310,7 +310,7 @@ z=5;
 // smoothed_cube(edge_1_2_radius=5, radius_2=5, radius_1=5, edge_2_3_radius=5);
 // smoothed_cube(edge_1_2_radius=5, radius_2=5, radius_1=5, edge_2_3_radius=5, edge_3_4_radius=5, radius_3=5, radius_4=5, edge_4_1_radius=5, radius_5=5, edge_1_5_radius=5, edge_2_6_radius=5, radius_6=5, edge_3_7_radius=5, radius_7=5, edge_4_8_radius=5, radius_8 = 5, edge_5_6_radius=5, edge_7_8_radius=5, edge_8_5_radius=5, edge_6_7_radius=5);
   // smooth edge from vertex 6 to 7
-smoothed_cube(radius_1=5, radius_2=5, edge_1_2_radius=5, edge_2_3_radius=5, edge_4_1_radius=5, edge_1_5_radius=5, edge_2_6_radius=5);
+smoothed_cube(radius_1=5, radius_2=5, edge_1_2_radius=5, edge_2_3_radius=5, edge_4_1_radius=5, edge_1_5_radius=5, edge_2_6_radius=5, edge_4_8_radius=5, radius_4=5, radius_8=0);
 // smoothed_cube(radius_1=5, radius_2=5, radius_3=5);
  //smoothed_cube(radius_1=5, radius_2=5, radius_3=5, radius_4=5, radius_5=5, radius_6=5, radius_7=5, radius_8=5);
 

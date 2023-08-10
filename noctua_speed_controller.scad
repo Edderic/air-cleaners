@@ -1,5 +1,5 @@
 $fn = 100;
-module noctua_speed_controller(led_height=14.5) {
+module noctua_speed_controller(led_height=16.5) {
   cube([40,25,14]);
   // speed dial
   translate([16,25 / 2,14]) {

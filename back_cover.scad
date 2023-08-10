@@ -18,8 +18,10 @@ module grill(fan_radius=60, depth=5) {
         cylinder(h=depth, r=fan_radius - 5 * i);
       }
 
+      j = i == 1 ? 2 : 1;
+
       translate([fan_radius + 5, fan_radius + 5, 0]) {
-        color([1, 0, 0]) cylinder(h=depth, r=fan_radius - (5 * i) - 2.5);
+        color([1, 0, 0]) cylinder(h=depth, r=fan_radius - (5 * i * j) - 2.5);
       }
     }
   }
