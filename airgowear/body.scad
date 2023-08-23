@@ -26,7 +26,7 @@ depth = 5;
 sphere_radius = 500;
 
 module wear_switch() {
-  translate([filter_x / 2 + depth, 70 , -90]) {
+  translate([filter_x / 2 + depth, 71 , -90]) {
     rotate([-90,0,0])
     rotate([0,0,-90])
       rotate([90,0,0])
@@ -96,8 +96,40 @@ module front() {
   }
 }
 
+module fan_support_screw_container(screw_only=false, reverse_screw=false) {
+  if (screw_only && !reverse_screw) {
+    translate([0,3,-8]) {
+      color([1,1,1]) screw_with_nut(threaded_height=8);
+    }
+  } else if (screw_only && reverse_screw) {
+    translate([0,0,2.5]) {
+      rotate([180,0,0])
+        screw_with_nut(threaded_height=8);
+    }
+  } else if (!screw_only && !reverse_screw){
+    difference() {
+      color([1,0,0])
+        cube([8,15,depth], center=true);
+      translate([0,0,-8]) {
+        screw_with_nut(threaded_height=8);
+      }
+    }
+  } else {
+    difference() {
+      color([1,0,0])
+        cube([8,15,5], center=true);
+      translate([0,0,2.5]) {
+        rotate([180,0,0])
+          screw_with_nut(threaded_height=8);
+      }
+    }
+  }
+}
+
+
 module exterior(debug=false) {
   difference() {
+
     translate([-(filter_x + depth * 2) / 2, -depth, -2 * depth - fan_z]) {
       smoothed_cube(
           x=209 + depth * 2 ,
@@ -124,17 +156,19 @@ module exterior(debug=false) {
           edge_4_8_radius=depth,
           edge_8_5_radius=depth
       );
+
     }
+
     union() {
 //
       translate([-(filter_x ) / 2, 0, -depth - fan_z]) {
         color([1,0,0])
-        cube([filter_x,filter_y,fan_x]);
+        cube([filter_x,filter_y,fan_x * 2]);
       }
 //
-      translate([-filter_x / 2, 0, 0]) {
-        filter_spacing();
-      }
+      // translate([-filter_x / 2, 0, 0]) {
+        // filter_spacing();
+      // }
 
       translate([-fan_x / 2, filter_y - fan_y - 20,-fan_x - depth]) {
         color([0,0,1]) fan();
@@ -146,8 +180,18 @@ module exterior(debug=false) {
 
 
       speed_controller();
+
+      // screw hole for filter screw holder 2
+      translate([-65,38,-8]) {
+        rotate([180,0,0])
+          fan_support_screw_container(screw_only=true);
+      }
+
+      filter_base(screw_only=true);
     }
   }
+
+  fan_support();
 }
 
 // translate([0,100,0]) {
@@ -173,18 +217,6 @@ module intake_vent(debug=false) {
 // }
 
 
-// intake_vent();
-// exterior(debug=false);
-
-module fan_support_screw_container() {
-  difference() {
-    color([1,0,0])
-      cube([8,15,5], center=true);
-    translate([0,0,-8]) {
-      screw_with_nut(threaded_height=8);
-    }
-  }
-}
 
 module fan_support_screw_containers() {
   // back-left screw_container
@@ -208,6 +240,18 @@ module fan_support_screw_containers() {
   }
 }
 
+module fan_support() {
+  // support fan
+  difference() {
+    translate([-84, filter_y - fan_y - 23,-fan_x - depth]) {
+      color([0,1,1])
+        cube([160, 5, 120]);
+    }
+
+    fan_screw_nuts(x_offset=0, y_offset=2, z_offset=-2);
+  }
+}
+
 module support() {
   difference() {
     union() {
@@ -215,12 +259,6 @@ module support() {
       // support power bank
       translate([76,0,-80]) {
         cube([5,100,75]);
-      }
-
-      // support fan
-      translate([-84, filter_y - fan_y - 23,-fan_x - depth]) {
-        color([0,1,1])
-          cube([160, 5, 120]);
       }
 
       // switch support
@@ -236,7 +274,6 @@ module support() {
     }
 
     union() {
-      fan_screw_nuts(x_offset=0, y_offset=2, z_offset=-2);
       power_bank();
       wear_switch();
       speed_controller();
@@ -244,18 +281,75 @@ module support() {
   }
 }
 
+module filter_base_support(screw_only=false) {
+  // z-wise
+  translate([0,0,10]) {
+    rotate([-90,0,0])
+      fan_support_screw_container(screw_only=screw_only);
+
+  }
+
+  // y-wise
+  translate([0,10,0]) {
+    color([0,1,0])
+      fan_support_screw_container(screw_only=screw_only, reverse_screw=true);
+  }
+
+  if (!screw_only) {
+    cube([8,5,5], center=true);
+  }
+}
+
+module filter_base(screw_only=false) {
+  translate([0,0,-3]) {
+    translate([50,3,3]) {
+      filter_base_support(screw_only=screw_only);
+    }
+
+    translate([-50,3,3]) {
+      filter_base_support(screw_only=screw_only);
+    }
+
+    if (!screw_only) {
+      // base
+      translate([0,filter_y / 2,0]) {
+        color([1,0,1])
+          cube([filter_x - 1, filter_y - 1, 3], center=true);
+      }
+    }
+  }
+}
+
+
+
 
 support();
 power_bank();
 wear_switch();
 speed_controller();
-fan_support_screw_containers();
+// fan_support_screw_containers();
+
+// filter_screw_holder 1
+// translate([65,38,-8]) {
+  // rotate([180,0,0])
+    // fan_support_screw_container();
+// }
+
+// filter_screw_holder 2
+// translate([-65,38,-8]) {
+  // rotate([180,0,0])
+    // fan_support_screw_container();
+// }
+
+
 exterior(debug=false);
+
 // intake_vent();
 
 translate([-fan_x / 2, filter_y - fan_y - 20,-fan_x - depth]) {
   color([0,0,1]) fan();
 }
 
-// rotate([90,0,0]) grill();
+
+  // filter_base();
 

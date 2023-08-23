@@ -7,13 +7,13 @@ module noctua_speed_controller(led_height=16.5) {
   }
 
   // left LED
-  translate([8, 3.5, 0]) {
-    cylinder(h=led_height, r=1.5);
+  translate([8, 4, 0]) {
+    cylinder(h=led_height, r=2);
   }
 
   // right LED
-  translate([8, 25 - 3.5, 0]) {
-    cylinder(h=led_height, r=1.5);
+  translate([8, 25 - 4, 0]) {
+    cylinder(h=led_height, r=2);
   }
 }
 

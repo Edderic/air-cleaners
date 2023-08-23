@@ -1,0 +1,8 @@
+name: 3d-modelling
+
+dependencies:
+  - python=3.11
+  - numpy
+  - toolz
+  - matplotlib
+  - seaborn
