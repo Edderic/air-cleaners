@@ -73,6 +73,7 @@ module fan_screw_nuts(x_offset=0, y_offset=0, z_offset=0) {
 }
 
 module wear_fan(x_pos=-15) {
+
   translate([x_pos, filter_y - fan_y,-fan_x - depth]) {
     color([0,0,1]) fan();
   }
@@ -128,14 +129,13 @@ module fan_support_screw_container(screw_only=false, reverse_screw=false) {
       cube([8,15,5], center=true);
   }
 }
-module fan_hole(padding_radius=2.5) {
+module fan_hole(padding_radius=2.5, depth=5) {
   // fan hole
   translate([48,filter_y + depth,-65]) {
     color([0,1,1])
       rotate([90,0,0])
       cylinder(h=depth, r=40 + padding_radius);
   }
-
 }
 
 
