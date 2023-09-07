@@ -65,13 +65,13 @@ module half_ring_without_holes(r=25.4) {
   }
 }
 
-module shoulder_strap_half_ring(screws_only=false) {
+module shoulder_strap_half_ring(screws_only=false, threaded_height=8) {
   if (screws_only) {
-    shoulder_strap_support_screws(wideness=16);
+    shoulder_strap_support_screws(wideness=16, threaded_height=threaded_height);
   } else {
     difference() {
       half_ring_without_holes(r=12);
-      shoulder_strap_support_screws(wideness=16);
+      shoulder_strap_support_screws(wideness=16, threaded_height=threaded_height);
     }
   }
 }
