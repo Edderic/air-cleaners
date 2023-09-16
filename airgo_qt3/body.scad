@@ -63,15 +63,18 @@ module hollow_cube(x,y,z, radius=5) {
   }
 }
 
-module filter_enclosure(inside_x=119, inside_y=112, inside_z=44, radius=5, x=130, y=124, z=44) {
+module filter_enclosure(inside_x=119, inside_y=112, inside_z=44, radius=5, x=130, y=124, z=44, edge_1_2_radius="none", edge_3_4_radius="none") {
+  edge_1_2_radius_ = edge_1_2_radius == "none" ? radius : edge_1_2_radius;
+  edge_3_4_radius_ = edge_3_4_radius == "none" ? radius : edge_3_4_radius;
+
   difference() {
     translate([-65, 46,53]) {
       smoothed_cube(
           x=x,
           y=y,
           z=z,
-          edge_1_2_radius=radius,
-          edge_3_4_radius=radius,
+          edge_1_2_radius=edge_1_2_radius_,
+          edge_3_4_radius=edge_3_4_radius_,
           edge_5_6_radius=radius,
           edge_7_8_radius=radius
           );
@@ -81,36 +84,59 @@ module filter_enclosure(inside_x=119, inside_y=112, inside_z=44, radius=5, x=130
   }
 }
 
-module qt3_filter_adapter(num_iter=80, threaded_height=9) {
+module qt3_filter_adapter(num_iter=80, threaded_height=9, with_battery_enclosure_adapter=true, radius=5) {
   for (i=[0:1:num_iter]) {
-    translate([-65,46,13 + i / 2]) {
+    if (!with_battery_enclosure_adapter && i == 0) {
+      translate([-65,46,13 + i / 2]) {
+        color([1,0,0])
+        smoothed_cube(
+          x=118 + 12,
+          y=72,
+          z=5,
+          edge_1_2_radius=radius,
+          edge_3_4_radius=radius,
+          edge_5_6_radius=radius,
+          edge_7_8_radius=radius
+        );
+      }
+    } else {
       color([1,0,0])
+      translate([-65,46,13 + i / 2]) {
         hollow_cube(
             x=118 + 12,
             y=72 + i / num_iter * (112 + 10 - 70),
             z=1
             );
+      }
     }
   }
-  difference() {
-    union() {
-      battery_enclosure_to_adapter_right();
-      mirror([1,0,0]) battery_enclosure_to_adapter_right();
-    }
-    union() {
-      top_half_ring_right_side(screws_only=true, threaded_height=threaded_height);
-
-      mirror([1,0,0])
+  if (with_battery_enclosure_adapter) {
+    difference() {
+      union() {
+        battery_enclosure_to_adapter_right();
+        mirror([1,0,0]) battery_enclosure_to_adapter_right();
+      }
+      union() {
         top_half_ring_right_side(screws_only=true, threaded_height=threaded_height);
 
+        mirror([1,0,0])
+          top_half_ring_right_side(screws_only=true, threaded_height=threaded_height);
+
+      }
     }
   }
 }
 
 
-module top_half_ring_right_side(screws_only=false, threaded_height=8) {
-  translate([0,0,-110]) {
-    half_ring_right_side(screws_only=screws_only, threaded_height=threaded_height);
+module top_half_ring_right_side(
+  screws_only=false, threaded_height=8, nut_type="hex",
+  x_offset=0, y_offset=0, z_offset=-110
+) {
+  translate([x_offset, y_offset, z_offset]) {
+    half_ring_right_side(
+        screws_only=screws_only,
+        threaded_height=threaded_height,
+        nut_type="hex");
   }
 }
 
@@ -121,9 +147,37 @@ module battery_enclosure_to_adapter_right() {
   }
 }
 
-module qt3_filter_enclosure_and_adapter() {
-  qt3_filter_adapter();
-  filter_enclosure();
+module upper_chest_stabilizer(radius=5) {
+  num_iter = 83;
+
+  for (i=[0:1:num_iter]) {
+    translate([-65,-i / 2 + 46,i + 13]) {
+      color([0,1,0])
+      smoothed_cube(
+        x=118 + 12,
+        y=radius + i / num_iter * 39,
+        z=1,
+        edge_1_2_radius=radius,
+        edge_3_4_radius=radius,
+        edge_5_6_radius=0,
+        edge_7_8_radius=0
+      );
+    }
+  }
+
+}
+
+module qt3_filter_enclosure_and_adapter(
+  with_battery_enclosure_adapter=true,
+  edge_1_2_radius="none",
+  edge_3_4_radius="none"
+) {
+  qt3_filter_adapter(with_battery_enclosure_adapter=with_battery_enclosure_adapter);
+  filter_enclosure(
+      edge_1_2_radius=edge_1_2_radius,
+      edge_3_4_radius=edge_3_4_radius
+  );
+  upper_chest_stabilizer();
 }
 
 
@@ -450,5 +504,9 @@ module face_shield_screws() {
 // translate([-2,0,0]) {
   // air_expander();
 // }
-// battery_fan_enclosure();
+battery_fan_enclosure();
+// translate([0,120,0]) {
+  rotate([0,180,0])
+  local_fan();
+// }
 // qt3_filter_enclosure_and_adapter();
