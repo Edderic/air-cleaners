@@ -3,6 +3,7 @@ name: 3d-modelling
 dependencies:
   - python=3.11
   - numpy
+  - scipy
   - toolz
   - matplotlib
   - seaborn
