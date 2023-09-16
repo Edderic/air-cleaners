@@ -264,18 +264,26 @@ module logo() {
 }
 
 // left side
-module half_ring_left_side(screws_only=false, threaded_height=8) {
+module half_ring_left_side(screws_only=false, threaded_height=8, nut_type="hex") {
   translate([-70,82,110]) {
     rotate([0,0,-90])
-      shoulder_strap_half_ring(screws_only=screws_only, threaded_height=threaded_height);
+      shoulder_strap_half_ring(
+          screws_only=screws_only,
+          threaded_height=threaded_height,
+          nut_type=nut_type
+      );
   }
 }
 
 
-module half_ring_right_side(screws_only=false, threaded_height=8) {
+module half_ring_right_side(screws_only=false, threaded_height=8, nut_type="hex") {
   translate([70,82,110]) {
     rotate([0,0,90])
-      shoulder_strap_half_ring(screws_only=screws_only, threaded_height=threaded_height);
+      shoulder_strap_half_ring(
+          screws_only=screws_only,
+          threaded_height=threaded_height,
+          nut_type=nut_type
+      );
   }
 }
 
@@ -427,6 +435,6 @@ module powerbank_switch_holder() {
 
 
 // filter_enclosure_without_spacing();
-// battery_controls_casing();
+battery_controls_casing();
 // half_ring_left_side();
 // half_ring_right_side();
