@@ -42,8 +42,8 @@ module tube_connector(
 tube_connector(
     spiral_height=20,
     num_twists_given_height=3,
-    tube_radius_offset=2,
-    radius_offset=2,
-    tube_radius=25,
+    tube_radius_offset=4,
+    radius_offset=4,
+    tube_radius=27,
     twist_radius=3
 );
