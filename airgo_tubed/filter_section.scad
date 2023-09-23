@@ -1,3 +1,7 @@
+use <tubing.scad>
+use <cylindrical_diffuser.scad>
+use <../shoulder_strap_half_ring.scad>
+
 $fn=100;
 radius = 120;
 filter_z = 40;
@@ -53,21 +57,60 @@ module main() {
   }
 }
 
-difference() {
-  main();
+scaler = 0.98;
 
-  translate([0,0,0]) {
+module filter_section() {
+  difference() {
+    main();
 
-    scale([0.95, 0.95, 0.95]) {
-      difference() {
-        main();
-        translate([0,0,-filter_z / 2]) {
-          cube([240,150, filter_z], center=true);
+    union() {
+
+      translate([0,0,0]) {
+
+        scale([scaler, scaler, scaler]) {
+          difference() {
+            main();
+            translate([0,0,-filter_z / 2]) {
+              cube([240,150, filter_z], center=true);
+            }
+          }
         }
       }
+
+      translate([0,40,-90]) {
+        rotate([90,0,0])
+          tubing(hole=true);
+      }
+
+      half_ring_right(screws_only=true);
+      mirror([1,0,0]) half_ring_right(screws_only=true);
+    }
+  }
+
+  translate([0,45,-90]) {
+    rotate([90,0,0])
+      tubing(hole=false);
+  }
+
+  translate([0,0,-118]) {
+    cylindrical_diffuser();
+  }
+}
+
+filter_section();
+
+// translate([0,0,10]) {
+// half_ring_right(screws_only=true);
+// }
+
+module half_ring_right(screws_only=false, nut_type="square") {
+  translate([111,-49,-8]) {
+    rotate([0,0,65]) {
+      shoulder_strap_half_ring(screws_only=screws_only, nut_type=nut_type);
     }
   }
 }
+
 
 
 // smoothen_back();
