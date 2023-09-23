@@ -11,12 +11,16 @@ module screw_with_nut(hex_nut_height=2.5, screw_head_height=3, threaded_height=1
   }
 
   else if (nut_type == "square"){
+    rotate([0,0,-90])
     translate([
         -square_nut_side_length / 2,
         -square_nut_side_length / 2,
         screw_head_height + threaded_height - square_nut_height
     ]) {
-      square_nut(side_length=square_nut_side_length, height=square_nut_height);
+      square_nut(
+          side_length=square_nut_side_length,
+          height=square_nut_height,
+          _offset=5);
     }
   }
 
