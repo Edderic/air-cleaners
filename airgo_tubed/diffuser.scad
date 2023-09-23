@@ -6,6 +6,7 @@ use <top_diffuser_part_1.scad>
 use <top_diffuser_part_2.scad>
 use <clavicle_support.scad>
 use <small_diffuser_cover.scad>
+use <tubing.scad>
 
 // filter_enclosure();
 // rescale by 100 to get back to millimeters
@@ -36,20 +37,6 @@ module diffuser_wall(points_1, points_2) {
     polygon(points=concat(points_1, points_2));
 }
 
-module tubing(hole=false, y=-18) {
-  if (hole) {
-    translate([0,y,45]) {
-      rotate([90,0,0])
-        cylinder(h=height, r=18);
-    }
-
-  } else {
-    translate([0,y,45]) {
-      rotate([90,0,0])
-        tube_m();
-    }
-  }
-}
 
 module left_screw_front() {
   translate([-20,0,95]) {
