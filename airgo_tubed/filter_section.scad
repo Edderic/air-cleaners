@@ -14,7 +14,7 @@ module local_tubing(hole) {
 }
 
 module filter_box() {
-  translate([0,0,-filter_z / 2]) {
+  translate([0,-2,-filter_z / 2]) {
     cube([200,100,filter_z], center=true);
   }
 }
