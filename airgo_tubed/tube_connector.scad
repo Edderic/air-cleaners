@@ -37,6 +37,10 @@ module tube_connector(
     cylinder(h=spiral_height, r=tube_radius);
     cylinder(h=spiral_height, r=tube_radius - radius_offset);
   }
+
+  translate([0,0,spiral_height / 2]) {
+    rectangle_wheel();
+  }
 }
 
 tube_connector(
@@ -47,3 +51,19 @@ tube_connector(
     tube_radius=27,
     twist_radius=3
 );
+
+module rectangle_wheel(
+    num_sides=12,
+    tube_radius=27,
+    rect_x=5,
+    rect_y=15,
+    rect_z=20
+) {
+  for (x=[0:1:num_sides]) {
+    rotate([0,0,x * 360 / num_sides])
+      translate([tube_radius,0,0]) {
+        cube([rect_x, rect_y, rect_z], center=true);
+      }
+  }
+}
+
