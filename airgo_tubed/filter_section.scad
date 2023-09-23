@@ -34,7 +34,7 @@ module stuff() {
 
 
 module smoothen_back() {
-  translate([0,-110,-80]) {
+  translate([0,-110,-110]) {
     scale([2,0.5,1]) {
       sphere(120);
     }
