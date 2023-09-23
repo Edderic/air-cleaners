@@ -5,6 +5,14 @@ use <../shoulder_strap_half_ring.scad>
 $fn=100;
 radius = 120;
 filter_z = 40;
+
+module local_tubing(hole) {
+  translate([0,45,-90]) {
+    rotate([90,0,0])
+      tubing(hole=hole);
+  }
+}
+
 module filter_box() {
   translate([0,0,-filter_z / 2]) {
     cube([200,100,filter_z], center=true);
@@ -76,25 +84,18 @@ module filter_section() {
           }
         }
       }
-
-      translate([0,40,-90]) {
-        rotate([90,0,0])
-          tubing(hole=true);
-      }
+      local_tubing(hole=true);
 
       half_ring_right(screws_only=true);
       mirror([1,0,0]) half_ring_right(screws_only=true);
     }
   }
 
-  translate([0,45,-90]) {
-    rotate([90,0,0])
-      tubing(hole=false);
-  }
+  local_tubing(hole=false);
 
-  translate([0,0,-118]) {
-    cylindrical_diffuser();
-  }
+  // translate([0,0,-118]) {
+    // cylindrical_diffuser();
+  // }
 }
 
 filter_section();
