@@ -16,6 +16,6 @@ module hex_nut(side_length=3, height=2) {
     linear_extrude(height=height) hex(side_length);
 }
 
-module square_nut(side_length=5, height=2) {
-    cube([5,5,2]);
+module square_nut(side_length=5, height=2, _offset=0) {
+    cube([5 + _offset,5,2]);
 }
