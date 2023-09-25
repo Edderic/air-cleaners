@@ -1,13 +1,18 @@
 use <tubing.scad>
 use <cylindrical_diffuser.scad>
 use <../shoulder_strap_half_ring.scad>
+use <diffuser_screws.scad>
 
 $fn=100;
 radius = 120;
 filter_z = 40;
+cylindrical_diffuser_z_offset = -56;
+scaler = 0.98;
+z_scaler = 0.6;
+
 
 module local_tubing(hole) {
-  translate([0,45,-90]) {
+  translate([0,45,-40]) {
     rotate([90,0,0])
       tubing(hole=hole);
   }
@@ -42,30 +47,30 @@ module smoothen_back() {
 }
 
 module main() {
-  difference() {
-    intersection() {
+  scale([1,1,0.6]) {
+    difference() {
       intersection() {
-        translate([0,-38,0]) {
-          cube([300,200,300],center=true);
+        intersection() {
+          translate([0,-38,0]) {
+            cube([300,200,300],center=true);
+          }
+          stuff();
         }
-        stuff();
-      }
-      union() {
-        scale([2.9,1,2]) {
-          sphere(64);
-        }
+        union() {
+          scale([2.9,1,2]) {
+            sphere(64);
+          }
 
-        translate([0,-50,-50]) {
-          cube([300,150,150], center=true);
+          translate([0,-50,-50]) {
+            cube([300,150,150], center=true);
+          }
         }
       }
+      smoothen_back();
+
     }
-    smoothen_back();
-
   }
 }
-
-scaler = 0.98;
 
 module filter_section() {
   difference() {
@@ -73,14 +78,12 @@ module filter_section() {
 
     union() {
 
-      translate([0,0,0]) {
+      scale([scaler, scaler, scaler]) {
+        difference() {
+          main();
 
-        scale([scaler, scaler, scaler]) {
-          difference() {
-            main();
-            translate([0,0,-filter_z / 2]) {
-              cube([240,150, filter_z], center=true);
-            }
+          translate([0,0,-filter_z / 2 * z_scaler ]) {
+            cube([240,200, filter_z * z_scaler], center=true);
           }
         }
       }
@@ -88,29 +91,42 @@ module filter_section() {
 
       half_ring_right(screws_only=true);
       mirror([1,0,0]) half_ring_right(screws_only=true);
+
+      // half_ring_right(screws_only=false);
+      // mirror([1,0,0]) half_ring_right(screws_only=false);
     }
   }
 
-  local_tubing(hole=false);
+  difference() {
+    local_tubing(hole=false);
+    diffuser_screws(z_offset=cylindrical_diffuser_z_offset-5);
+  }
 
   // translate([0,0,-118]) {
     // cylindrical_diffuser();
   // }
 }
 
-filter_section();
-
-// translate([0,0,10]) {
-// half_ring_right(screws_only=true);
-// }
-
-module half_ring_right(screws_only=false, nut_type="square") {
-  translate([111,-49,-8]) {
+module half_ring_right(screws_only=false, nut_type="square", threaded_height=10) {
+  translate([114,-49,-10]) {
     rotate([0,0,65]) {
-      shoulder_strap_half_ring(screws_only=screws_only, nut_type=nut_type);
+      shoulder_strap_half_ring(
+          screws_only=screws_only,
+          threaded_height=threaded_height,
+          nut_type=nut_type);
     }
   }
 }
+
+
+filter_section();
+// difference() {
+  // local_tubing(hole=false);
+  // diffuser_screws(z_offset=cylindrical_diffuser_z_offset-5);
+// }
+
+
+// half_ring_right(screws_only=false);
 
 
 
