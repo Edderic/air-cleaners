@@ -1,5 +1,6 @@
 use <../shoulder_strap_half_ring.scad>
 use <diffuser_screws.scad>
+use <filter_section.scad>
 
 module ring(width_offset = 2, height=10, width=38.1) {
   difference() {
@@ -24,31 +25,43 @@ module cylindrical_diffuser(num_shells=14, step_size=3, width=55) {
     ring_with_flap(width - 3 * x, height=10 , width_offset=1);
   }
 
+  // base 1
   translate([0,0,5]) {
     cube([width,2,10], center=true);
   }
 
+  // base 2
   rotate([0,0,90])
   translate([0,0,5]) {
     cube([width,2,10], center=true);
   }
 
-  translate([0,0,-10]) {
-    color([1,0,0])
-    ring(width=width);
+  difference() {
+    translate([0,0,-10]) {
+      color([1,0,0])
+      ring(width=width, width_offset=7);
+    }
+
+    translate([0,0,55]) {
+      local_tubing(hole=false);
+
+    }
   }
 }
 
 module cylindrical_diffuser_with_diffuser_screws(cylindrical_diffuser_z_offset=-56) {
   difference() {
     translate([0,0,cylindrical_diffuser_z_offset]) {
-      cylindrical_diffuser();
+      cylindrical_diffuser(num_shells=15);
     }
 
     diffuser_screws(cylindrical_diffuser_z_offset-5);
   }
-
-
 }
-cylindrical_diffuser_with_diffuser_screws();
+
+cylindrical_diffuser(num_shells=15);
+// cylindrical_diffuser_with_diffuser_screws();
 // diffuser_screws(-56-5);
+// translate([-20,0,-60]) {
+  // cube([10,10,10], center=true);
+// }
