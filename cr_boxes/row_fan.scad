@@ -81,6 +81,7 @@ module top_with_fan_spacing_and_screws() {
 }
 
 module row_fan() {
+  rotate([180,0,0])
   difference() {
     union() {
       top_with_fan_spacing_and_screws();
