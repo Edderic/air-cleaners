@@ -2,6 +2,7 @@ use <../smoothed_cube.scad>
 use <../screw_with_nut.scad>
 use <../fan.scad>
 use <row_fan.scad>
+use <corner.scad>
 
 filter_x = 635;
 filter_z = 406;
@@ -17,6 +18,9 @@ function get_num_fans() = num_fans;
 function get_depth() = depth;
 function get_spacing_x() = (filter_x / get_num_fans() - get_fan_size() )/ 2;
 function get_spacing_y() = (filter_y / get_num_fans() - get_fan_size() )/ 2;
+function get_fan_holder_x() = get_spacing_x() * 2 + get_fan_size();
+function num_fans_to_fit(dim) = floor(dim / get_fan_holder_x());
+function get_corner_z() = (filter_z + 2 * depth - 2 * (get_spacing_x() * 2 + get_fan_size())) / 2;;
 
 module local_fan(size=140, z=27, _color=[1,1,1]) {
   translate([0,0, filter_z]) {
@@ -42,28 +46,6 @@ module filter(filter_x=635, filter_y=25, filter_z=406) {
   cube([filter_x, filter_y, filter_z]);
 }
 
-filter();
-translate([0,fan_size + filter_y,0]) {
-  filter();
-}
-
-module fans() {
-  gap = filter_x / num_fans - fan_size;
-
-  translate([gap / 2,0,0]) {
-    for (x=[0:1:num_fans-1]) {
-      echo("x:", x);
-      echo("x * filter_x / num_fans:", x * filter_x / num_fans);
-      translate([x * filter_x / num_fans,filter_y,-fan_z]) {
-          local_fan(_color=[x/5,0,0]);
-      }
-    }
-
-  }
-}
-
-// fans();
-
 module top_or_bottom_panel() {
   smoothed_cube(
       x=filter_x + 2 * depth,
@@ -80,11 +62,64 @@ module top_or_bottom_panel() {
       );
 }
 
-difference() {
-  translate([-depth,0,filter_z]) {
-    color([0,0,1]) top_or_bottom_panel();
+module fans() {
+  translate([get_spacing_x() + get_fan_size() / 2, 0,0]) {
+    for (x=[0:1:get_num_fans() - 1]) {
+      translate([(get_spacing_x() * 2 + get_fan_size()) * x,0,0]) {
+        row_fan();
+      }
+    }
   }
+}
+
+module vertical_wall() {
+  translate([- depth / 2,0, get_fan_holder_x() / 2]) {
+    rotate([0,-90,0]) {
+      for (x=[0:1: num_fans_to_fit(filter_z) - 1]) {
+        translate([(get_spacing_x() * 2 + get_fan_size()) * x,0,0]) {
+          row_fan(fan_hole=false);
+        }
+      }
+    }
+  }
+}
+
+module filters() {
+  filter();
+  translate([0,fan_size + filter_y,0]) {
+    filter();
+  }
+}
+
+
+translate([0,0,filter_z + 5 + depth]) {
   fans();
 }
 
-fan_with_connectors();
+// bottom fans
+translate([0,0,depth / 2]) {
+  mirror([0,0,1])
+   fans();
+}
+
+translate([0,-filter_y -get_fan_size() / 2, depth]) {
+  filters();
+}
+
+// echo("get_fan_holder_x()", get_fan_holder_x());
+// echo("num_fans_to_fit(filter_z)", num_fans_to_fit(filter_z));
+
+corner_z = get_corner_z();
+echo("corner_z:", corner_z);
+
+translate([-get_depth() / 2,0, corner_z / 2]) {
+  // corner();
+}
+
+translate([-get_depth() / 2, 0, corner_z + 2 * (get_spacing_x() * 2 + get_fan_size())]) {
+  corner();
+}
+
+translate([0,0,corner_z]) {
+  vertical_wall();
+}

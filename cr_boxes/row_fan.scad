@@ -68,23 +68,25 @@ module cylinder_cube_screw(cyl=true, screw=true, cube_support=true, cylinder_off
 
 // rotate([0,0,180]) one_side();
 
-module top_with_fan_spacing_and_screws() {
+module top_spaced(fan_hole=true) {
 
   translate([-spacing_x - get_fan_size() / 2,-spacing_y - get_fan_size() / 2, -get_depth() / 2]) {
     difference() {
       color([1,0,0])
       top(x=width, y = get_fan_size() + spacing_y * 2, z=get_depth(), depth=get_depth());
 
-      some_fan();
+      if (fan_hole) {
+        some_fan();
+      }
     }
   }
 }
 
-module row_fan() {
+module row_fan(fan_hole=true) {
   rotate([180,0,0])
   difference() {
     union() {
-      top_with_fan_spacing_and_screws();
+      top_spaced(fan_hole=fan_hole);
       cylinder_cube_screw(cube_support=true, screw=false, cyl=false);
 
       translate([-spacing_x,-get_fan_size(),0]) {
@@ -117,7 +119,9 @@ module row_fan() {
     }
   }
 
-  finger_guard();
+  if (fan_hole) {
+    finger_guard();
+  }
 }
 
 
@@ -138,5 +142,5 @@ module finger_guard() {
   }
 }
 
-// top_with_fan_spacing_and_screws();
-row_fan();
+// top_spaced();
+row_fan(fan_hole=false);
