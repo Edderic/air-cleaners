@@ -3,6 +3,7 @@ use <../screw_with_nut.scad>
 use <../fan.scad>
 use <row_fan.scad>
 use <corner.scad>
+use <handle.scad>
 
 filter_x = 635;
 filter_z = 406;
@@ -72,13 +73,32 @@ module fans() {
   }
 }
 
-module vertical_wall() {
-  translate([- depth / 2,0, get_fan_holder_x() / 2]) {
-    rotate([0,-90,0]) {
-      for (x=[0:1: num_fans_to_fit(filter_z) - 1]) {
-        translate([(get_spacing_x() * 2 + get_fan_size()) * x,0,0]) {
-          row_fan(fan_hole=false);
+module vertical_wall(with_handle=false, row_wall_index=0) {
+
+  if (!with_handle) {
+    translate([- depth / 2,0, get_fan_holder_x() / 2]) {
+      rotate([0,-90,0]) {
+        for (x=[0:1: num_fans_to_fit(filter_z) - 1]) {
+          translate([(get_spacing_x() * 2 + get_fan_size()) * x,0,0]) {
+            row_fan(fan_hole=false);
+          }
         }
+      }
+    }
+  } else {
+    difference() {
+      translate([- depth / 2,0, get_fan_holder_x() / 2]) {
+        rotate([0,-90,0]) {
+          translate([(get_spacing_x() * 2 + get_fan_size()) * row_wall_index,0,0]) {
+            row_fan(fan_hole=false);
+          }
+        }
+      }
+
+      translate([-get_x_handle() - 15,0,get_spacing_x() * 2 + get_fan_size()]) {
+        color([0,0,1])
+          rotate([0,0,180])
+          handle(screws_only=true);
       }
     }
   }
