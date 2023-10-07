@@ -1,7 +1,17 @@
 use <screw.scad>
 use <nut.scad>
 
-module screw_with_nut(hex_nut_height=2.5, screw_head_height=3, threaded_height=10, threaded_radius=1.5, screw_head_radius=3, hex_nut_side_length=3.6, square_nut_height=2, square_nut_side_length=5, nut_type="hex") {
+module screw_with_nut(
+  hex_nut_height=2.5,
+  screw_head_height=3,
+  threaded_height=10,
+  threaded_radius=1.5,
+  screw_head_radius=3,
+  hex_nut_side_length=3.6,
+  square_nut_height=2,
+  square_nut_side_length=5,
+  nut_type="hex"
+) {
   screw(screw_head_radius=screw_head_radius, screw_head_height=screw_head_height, threaded_radius=threaded_radius, threaded_height=threaded_height);
 
   if (nut_type == "hex") {
