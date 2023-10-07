@@ -1,40 +1,50 @@
 use <hex_nut.scad>
+$fn = 100;
 
-module fan(radius, depth, distance_to_middle_of_circle_x, distance_to_middle_of_circle_y, screw_radius) {
+module fan(
+    radius,
+    depth,
+    screw_radius,
+    distance_to_middle_of_circle_x = "None",
+    distance_to_middle_of_circle_y = "None"
+) {
+  _distance_to_middle_of_circle_x = (distance_to_middle_of_circle_x == "None" || distance_to_middle_of_circle_y == "None") ? 62 / 70 * radius : distance_to_middle_of_circle_x;
+  _distance_to_middle_of_circle_y = (distance_to_middle_of_circle_x == "None" || distance_to_middle_of_circle_y == "None") ? 62 / 70 * radius : distance_to_middle_of_circle_y;
+
   linear_extrude(height=depth) circle(radius);
-  translate([distance_to_middle_of_circle_x, distance_to_middle_of_circle_y, 0]) {
+  translate([_distance_to_middle_of_circle_x, _distance_to_middle_of_circle_y, 0]) {
     linear_extrude(height=depth) circle(screw_radius);
   }
 
-  translate([-distance_to_middle_of_circle_x, -distance_to_middle_of_circle_y, 0]) {
+  translate([-_distance_to_middle_of_circle_x, -_distance_to_middle_of_circle_y, 0]) {
     linear_extrude(height=depth) circle(screw_radius);
   }
 
-  translate([distance_to_middle_of_circle_x, -distance_to_middle_of_circle_y, 0]) {
+  translate([_distance_to_middle_of_circle_x, -_distance_to_middle_of_circle_y, 0]) {
     linear_extrude(height=depth) circle(screw_radius);
   }
 
-  translate([-distance_to_middle_of_circle_x, distance_to_middle_of_circle_y, 0]) {
+  translate([-_distance_to_middle_of_circle_x, _distance_to_middle_of_circle_y, 0]) {
     linear_extrude(height=depth) circle(screw_radius);
   }
 
   // hex nut 1
-  translate([distance_to_middle_of_circle_x, distance_to_middle_of_circle_y, depth - 2]) {
+  translate([_distance_to_middle_of_circle_x, _distance_to_middle_of_circle_y, depth - 2]) {
     hex_nut(4);
   }
 
   // hex nut 2
-  translate([-distance_to_middle_of_circle_x, -distance_to_middle_of_circle_y, depth - 2]) {
+  translate([-_distance_to_middle_of_circle_x, -_distance_to_middle_of_circle_y, depth - 2]) {
     hex_nut(4);
   }
 
   // hex nut 3
-  translate([distance_to_middle_of_circle_x, -distance_to_middle_of_circle_y, depth - 2]) {
+  translate([_distance_to_middle_of_circle_x, -_distance_to_middle_of_circle_y, depth - 2]) {
     hex_nut(4);
   }
 
   // hex nut 4
-  translate([-distance_to_middle_of_circle_x, distance_to_middle_of_circle_y, depth - 2]) {
+  translate([-_distance_to_middle_of_circle_x, _distance_to_middle_of_circle_y, depth - 2]) {
     hex_nut(4);
   }
 }
