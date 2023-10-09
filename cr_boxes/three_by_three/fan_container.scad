@@ -1,8 +1,9 @@
 use <../row_fan.scad>
+use <../../screw_with_nut.scad>
 // Lennox Model HCF14-13
 // Replaces Filter Parn No. 19L14
 
-grid_z = 25.4;
+grid_z = 1 * 25.4;
 depth = 5;
 num_fan_rows = 3;
 num_fan_cols = 3;
@@ -14,40 +15,81 @@ width = (depth * 2 + filter_x) / num_fan_rows;
 length = (depth * 2 + filter_y) / num_fan_cols;
 x_spacing = (width - fan_diameter) / 2;
 y_spacing = (length - fan_diameter) / 2;
+threaded_height = 7;
 
-module vertical_grid_wall() {
-  cube([depth, length, grid_z], center=true);
+module vertical_grid_wall(long=false) {
+  z = long ? grid_z + filter_z : grid_z;
+  cube([depth, length, z], center=true);
 }
 
-top_spaced(
-  depth=depth,
-  width=width,
-  length=length,
-  x_spacing=x_spacing,
-  y_spacing=y_spacing
-);
+function z_offset(long=false) = long ? -(grid_z + filter_z) / 2 - depth / 2 : -grid_z / 2 - depth / 2;
 
-module left_wall() {
-  translate([-width / 2 + depth / 2,0, - grid_z / 2 + depth / 2 - depth]) {
-    vertical_grid_wall();
+module left_wall(long=false) {
+  translate([-width / 2 + depth / 2,0, z_offset(long=long)]) {
+    vertical_grid_wall(long=long);
   }
 }
 
-module top_wall() {
-  translate([0, length / 2 - depth / 2, -grid_z / 2 - depth / 2]) {
-    cube([width, depth, grid_z], center=true);
+module top_wall(long=false) {
+  z = long ? grid_z + filter_z : grid_z;
+  translate([0, length / 2 - depth / 2, z_offset(long=long)]) {
+    cube([width, depth, z], center=true);
   }
 }
 
-// left side
+module fan_container(
+  left_wall_long=false,
+  right_wall_long=false,
+  top_wall_long=false,
+  bottom_wall_long=false
+) {
 
-left_wall();
+  difference() {
+    union() {
 
-mirror([1,0,0])
-left_wall();
+      left_wall(long=left_wall_long);
+
+      mirror([1,0,0])
+        left_wall(long=right_wall_long);
 
 
-top_wall();
 
-mirror([0,1,0])
-top_wall();
+      top_wall(long=top_wall_long);
+
+      mirror([0,1,0])
+        top_wall(long=bottom_wall_long);
+
+      top_spaced(
+          depth=depth,
+          width=width,
+          length=length,
+          x_spacing=x_spacing,
+          y_spacing=y_spacing
+          );
+    }
+    union() {
+      top_screw_and_nut(length=length);
+      bottom_screw_and_nut(length=length);
+    }
+  }
+}
+
+fan_container();
+
+module top_screw_and_nut(length) {
+  screw_height = length / 2 + threaded_height - 2 ;
+  translate([0, screw_height, -grid_z + 5]) {
+    rotate([90,0,0])
+      color([0,0,1])
+      screw_with_nut(threaded_height=threaded_height);
+  }
+}
+
+module bottom_screw_and_nut(length) {
+  translate([0,-length,0]) {
+    top_screw_and_nut(length=length);
+  }
+}
+
+top_screw_and_nut(length=length);
+bottom_screw_and_nut(length=length);
