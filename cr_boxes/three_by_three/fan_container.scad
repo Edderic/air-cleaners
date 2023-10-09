@@ -45,7 +45,19 @@ module fan_container(
   top_screw_hole=false,
   bottom_screw_hole=false,
   left_screw_hole=false,
-  right_screw_hole=false
+  right_screw_hole=false,
+  edge_fan_top_smoothed=false,
+  edge_fan_bottom_smoothed=false,
+  edge_fan_left_smoothed=false,
+  edge_fan_right_smoothed=false,
+  edge_top_left_smoothed=false,
+  edge_top_right_smoothed=false,
+  edge_bottom_left_smoothed=false,
+  edge_bottom_right_smoothed=false,
+  top_left_corner_smoothed=false,
+  top_right_corner_smoothed=false,
+  bottom_left_corner_smoothed=false,
+  bottom_right_corner_smoothed=false
 ) {
 
   difference() {
@@ -53,13 +65,13 @@ module fan_container(
 
       left_wall(long=left_wall_long);
 
+      // right wall
       mirror([1,0,0])
         left_wall(long=right_wall_long);
 
-
-
       top_wall(long=top_wall_long);
 
+      // bottom wall
       mirror([0,1,0])
         top_wall(long=bottom_wall_long);
 
@@ -68,7 +80,19 @@ module fan_container(
           width=width,
           length=length,
           x_spacing=x_spacing,
-          y_spacing=y_spacing
+          y_spacing=y_spacing,
+          edge_fan_top_smoothed=edge_fan_top_smoothed,
+          edge_fan_bottom_smoothed=edge_fan_bottom_smoothed,
+          edge_fan_left_smoothed=edge_fan_left_smoothed,
+          edge_fan_right_smoothed=edge_fan_right_smoothed,
+          edge_top_left_smoothed=edge_top_left_smoothed,
+          edge_top_right_smoothed=edge_top_right_smoothed,
+          edge_bottom_left_smoothed=edge_bottom_left_smoothed,
+          edge_bottom_right_smoothed=edge_bottom_right_smoothed,
+          top_left_corner_smoothed=top_left_corner_smoothed,
+          top_right_corner_smoothed=top_right_corner_smoothed,
+          bottom_left_corner_smoothed=bottom_left_corner_smoothed,
+          bottom_right_corner_smoothed=bottom_right_corner_smoothed
           );
     }
     union() {
@@ -133,5 +157,15 @@ module right_screw_and_nut(length, width, grid_z, threaded_height) {
   }
 }
 
-fan_container();
+fan_container(
+  top_left_corner_smoothed=true,
+  bottom_left_corner_smoothed=true,
+  bottom_right_corner_smoothed=true,
+  top_right_corner_smoothed=true,
+  edge_fan_top_smoothed=true,
+  edge_fan_bottom_smoothed=true,
+  edge_fan_right_smoothed=true,
+  edge_fan_left_smoothed=true,
+  top_screw_hole=true
+);
 
