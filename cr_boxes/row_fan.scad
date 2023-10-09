@@ -13,6 +13,8 @@ spacing_x = get_spacing_x();
 spacing_y = filter_y;
 
 module top(x, y, z, depth, corners_smoothed=false, x_edges_smoothed=false,
+    x_spacing=10,
+    y_spacing=10,
     edge_fan_top_smoothed=false,
     edge_fan_bottom_smoothed=false,
     edge_fan_left_smoothed=false,
@@ -39,19 +41,27 @@ module top(x, y, z, depth, corners_smoothed=false, x_edges_smoothed=false,
   top_right_corner_radius = top_right_corner_smoothed ? depth : 0;
   bottom_right_corner_radius = bottom_right_corner_smoothed ? depth : 0;
 
-  smoothed_cube(
-      x=x,
-      y=y,
-      z=z,
-      radius_1=bottom_left_corner_radius,
-      radius_4=bottom_right_corner_radius,
-      radius_5=top_left_corner_radius,
-      radius_8=top_right_corner_radius,
-      edge_8_5_radius=top_edge_radius,
-      edge_4_1_radius=bottom_edge_radius,
-      edge_1_5_radius=left_edge_radius,
-      edge_4_8_radius=right_edge_radius
-      );
+
+  difference() {
+    smoothed_cube(
+        x=x,
+        y=y,
+        z=z,
+        radius_1=bottom_left_corner_radius,
+        radius_4=bottom_right_corner_radius,
+        radius_5=top_left_corner_radius,
+        radius_8=top_right_corner_radius,
+        edge_8_5_radius=top_edge_radius,
+        edge_4_1_radius=bottom_edge_radius,
+        edge_1_5_radius=left_edge_radius,
+        edge_4_8_radius=right_edge_radius
+        );
+    translate([depth, depth,0]) {
+      cube([x - 2 * depth , y - 2 * depth , z - depth]);
+    }
+  }
+}
+
 }
 
 module some_fan(x_spacing="None", y_spacing="None", z_spacing="None") {
@@ -102,6 +112,7 @@ module top_spaced(
     depth="None",
     trans_x="None",
     trans_y="None",
+    z="None",
     x_spacing="None",
     y_spacing="None",
     z_spacing="None",
@@ -124,11 +135,14 @@ module top_spaced(
   _trans_x = trans_x == "None" ? -width / 2 : trans_x;
   _trans_y = trans_y == "None" ? -length / 2 : trans_y;
   _length = length == "None" ? get_fan_size() + y_spacing * 2 : length;
+  _z = z == "None" ? _depth : z;
 
   translate([_trans_x,_trans_y, -_depth / 2]) {
     difference() {
       color([1,0,0])
-        top(x=width, y = _length, z=_depth, depth=_depth,
+        top(x=width, y = _length, z=_z, depth=_depth,
+            x_spacing=x_spacing,
+            y_spacing=y_spacing,
             edge_fan_top_smoothed=edge_fan_top_smoothed,
             edge_fan_bottom_smoothed=edge_fan_bottom_smoothed,
             edge_fan_left_smoothed=edge_fan_left_smoothed,

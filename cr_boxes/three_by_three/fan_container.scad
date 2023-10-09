@@ -38,6 +38,7 @@ module top_wall(long=false) {
 }
 
 module fan_container(
+  z,
   left_wall_long=false,
   right_wall_long=false,
   top_wall_long=false,
@@ -76,6 +77,7 @@ module fan_container(
         top_wall(long=bottom_wall_long);
 
       top_spaced(
+          z=z,
           depth=depth,
           width=width,
           length=length,
@@ -158,6 +160,7 @@ module right_screw_and_nut(length, width, grid_z, threaded_height) {
 }
 
 fan_container(
+  z=grid_z,
   top_left_corner_smoothed=true,
   bottom_left_corner_smoothed=true,
   bottom_right_corner_smoothed=true,
