@@ -1,4 +1,5 @@
 use <../row_fan.scad>
+use <../builder.scad>
 use <../../screw_with_nut.scad>
 // Lennox Model HCF14-13
 // Replaces Filter Parn No. 19L14
@@ -39,6 +40,7 @@ module top_wall(long=false) {
 
 module fan_container(
   z,
+  z_spacing=-13,
   left_wall_long=false,
   right_wall_long=false,
   top_wall_long=false,
@@ -83,6 +85,7 @@ module fan_container(
           length=length,
           x_spacing=x_spacing,
           y_spacing=y_spacing,
+          z_spacing=z_spacing,
           edge_fan_top_smoothed=edge_fan_top_smoothed,
           edge_fan_bottom_smoothed=edge_fan_bottom_smoothed,
           edge_fan_left_smoothed=edge_fan_left_smoothed,
@@ -171,4 +174,3 @@ fan_container(
   edge_fan_left_smoothed=true,
   top_screw_hole=true
 );
-

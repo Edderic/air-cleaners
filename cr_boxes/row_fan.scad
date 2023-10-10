@@ -15,6 +15,7 @@ spacing_y = filter_y;
 module top(x, y, z, depth, corners_smoothed=false, x_edges_smoothed=false,
     x_spacing=10,
     y_spacing=10,
+    z_spacing=10,
     edge_fan_top_smoothed=false,
     edge_fan_bottom_smoothed=false,
     edge_fan_left_smoothed=false,
@@ -62,7 +63,6 @@ module top(x, y, z, depth, corners_smoothed=false, x_edges_smoothed=false,
   }
 }
 
-}
 
 module some_fan(x_spacing="None", y_spacing="None", z_spacing="None") {
   _x_spacing = x_spacing == "None" ? spacing_x : x_spacing;
@@ -128,45 +128,45 @@ module top_spaced(
     top_right_corner_smoothed=false,
     bottom_left_corner_smoothed=false,
     bottom_right_corner_smoothed=false
-) {
-  // x_spacing: the space in the x direction between the edge of a fan and edge
-  // the container
-  _depth = depth == "None" ? get_depth() : depth;
-  _trans_x = trans_x == "None" ? -width / 2 : trans_x;
-  _trans_y = trans_y == "None" ? -length / 2 : trans_y;
-  _length = length == "None" ? get_fan_size() + y_spacing * 2 : length;
-  _z = z == "None" ? _depth : z;
+    ) {
+      // x_spacing: the space in the x direction between the edge of a fan and edge
+      // the container
+      _depth = depth == "None" ? get_depth() : depth;
+      _trans_x = trans_x == "None" ? -width / 2 : trans_x;
+      _trans_y = trans_y == "None" ? -length / 2 : trans_y;
+      _length = length == "None" ? get_fan_size() + y_spacing * 2 : length;
+      _z = z == "None" ? _depth : z;
 
-  translate([_trans_x,_trans_y, -_depth / 2]) {
-    difference() {
-      color([1,0,0])
-        top(x=width, y = _length, z=_z, depth=_depth,
-            x_spacing=x_spacing,
-            y_spacing=y_spacing,
-            edge_fan_top_smoothed=edge_fan_top_smoothed,
-            edge_fan_bottom_smoothed=edge_fan_bottom_smoothed,
-            edge_fan_left_smoothed=edge_fan_left_smoothed,
-            edge_fan_right_smoothed=edge_fan_right_smoothed,
-            edge_top_left_smoothed=edge_top_left_smoothed,
-            edge_top_right_smoothed=edge_top_right_smoothed,
-            edge_bottom_left_smoothed=edge_bottom_left_smoothed,
-            edge_bottom_right_smoothed=edge_bottom_right_smoothed,
-            top_left_corner_smoothed=top_left_corner_smoothed,
-            top_right_corner_smoothed=top_right_corner_smoothed,
-            bottom_left_corner_smoothed=bottom_left_corner_smoothed,
-            bottom_right_corner_smoothed=bottom_right_corner_smoothed
-           );
+      difference() {
+        translate([_trans_x,_trans_y, -_depth / 2]) {
+          color([1,0,0])
+            top(x=width, y = _length, z=_z, depth=_depth,
+                x_spacing=x_spacing,
+                y_spacing=y_spacing,
+                edge_fan_top_smoothed=edge_fan_top_smoothed,
+                edge_fan_bottom_smoothed=edge_fan_bottom_smoothed,
+                edge_fan_left_smoothed=edge_fan_left_smoothed,
+                edge_fan_right_smoothed=edge_fan_right_smoothed,
+                edge_top_left_smoothed=edge_top_left_smoothed,
+                edge_top_right_smoothed=edge_top_right_smoothed,
+                edge_bottom_left_smoothed=edge_bottom_left_smoothed,
+                edge_bottom_right_smoothed=edge_bottom_right_smoothed,
+                top_left_corner_smoothed=top_left_corner_smoothed,
+                top_right_corner_smoothed=top_right_corner_smoothed,
+                bottom_left_corner_smoothed=bottom_left_corner_smoothed,
+                bottom_right_corner_smoothed=bottom_right_corner_smoothed
+               );
 
-      if (fan_hole) {
-        some_fan(
-          x_spacing=x_spacing,
-          y_spacing=y_spacing,
-          z_spacing=z_spacing
-        );
+        }
+        if (fan_hole) {
+          translate([x_spacing-width / 2, y_spacing-length / 2,z_spacing]) {
+            local_fan(
+              z_offset=0
+            );
+          }
+        }
       }
     }
-  }
-}
 
 module row_fan(fan_hole=true) {
   rotate([180,0,0])
