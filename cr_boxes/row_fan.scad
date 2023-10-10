@@ -176,6 +176,12 @@ module top_spaced(
           }
         }
       }
+
+          translate([x_spacing-width / 2, y_spacing-length / 2,z_spacing]) {
+            local_fan(
+              z_offset=0
+            );
+          }
     }
 
 module row_fan(fan_hole=true) {
