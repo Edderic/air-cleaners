@@ -37,8 +37,20 @@ module top_wall(long=false) {
     cube([width, depth, z], center=true);
   }
 }
+module wall_remover(long_wall, width, length, filter_z, z) {
+  x_offset = long_wall == "top-left" || long_wall == "bottom-left" || long_wall == "left" ? depth : ((long_wall == "top" || long_wall == "bottom" || long_wall == "None") ? 0 : -depth);
+
+  y_offset = long_wall == "top-left" || long_wall == "top" || long_wall == "top-right" ? -depth : (long_wall == "bottom-left" || long_wall == "bottom" || long_wall == "bottom-right" ? depth : 0);
+
+  translate([x_offset,y_offset,z]) {
+    cube([width, length,filter_z], center=true);
+  }
+
+
+}
 
 module fan_container(
+  long_wall,
   filter_z,
   z,
   z_spacing=filter_z,
@@ -125,13 +137,14 @@ module fan_container(
             );
 
       }
+      wall_remover(long_wall, width, length, filter_z, z);
     }
   }
 }
 
 module top_screw_and_nut(length) {
   screw_height = length / 2 + threaded_height - 2 ;
-  translate([0, screw_height, -grid_z + 5]) {
+  translate([0, screw_height, -grid_z + 5 + filter_z]) {
     rotate([90,0,0])
       color([0,0,1])
       screw_with_nut(threaded_height=threaded_height);
@@ -145,7 +158,7 @@ module bottom_screw_and_nut(length) {
 }
 
 module left_screw_and_nut(length, width, grid_z, threaded_height) {
-  translate([-width / 2 - threaded_height + 2,0,-grid_z + 5]) {
+  translate([-width / 2 - threaded_height + 2,0,-grid_z + 5 + filter_z]) {
     rotate([0,90,0])
     color([0,1,0])
     screw_with_nut(threaded_height=threaded_height);
@@ -179,5 +192,9 @@ fan_container(
   edge_bottom_left_smoothed=true,
   edge_bottom_right_smoothed=true,
   top_screw_hole=true,
-  left_wall_long=true
+  left_screw_hole=true,
+  bottom_screw_hole=true,
+  right_screw_hole=true,
+  left_wall_long=true,
+  long_wall="top-left"
 );
