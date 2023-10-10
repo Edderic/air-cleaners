@@ -172,5 +172,9 @@ fan_container(
   edge_fan_bottom_smoothed=true,
   edge_fan_right_smoothed=true,
   edge_fan_left_smoothed=true,
+  edge_top_left_smoothed=true,
+  edge_top_right_smoothed=true,
+  edge_bottom_left_smoothed=true,
+  edge_bottom_right_smoothed=true,
   top_screw_hole=true
 );

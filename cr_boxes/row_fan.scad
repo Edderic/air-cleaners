@@ -37,6 +37,11 @@ module top(x, y, z, depth, corners_smoothed=false, x_edges_smoothed=false,
   left_edge_radius = edge_fan_left_smoothed ? depth : 0;
   right_edge_radius = edge_fan_right_smoothed ? depth : 0;
 
+  top_left_edge_radius = edge_top_left_smoothed ? depth : 0;
+  top_right_edge_radius = edge_top_right_smoothed ? depth : 0;
+  bottom_right_edge_radius = edge_bottom_right_smoothed ? depth : 0;
+  bottom_left_edge_radius = edge_bottom_left_smoothed ? depth : 0;
+
   top_left_corner_radius = top_left_corner_smoothed ? depth : 0;
   bottom_left_corner_radius = bottom_left_corner_smoothed ? depth : 0;
   top_right_corner_radius = top_right_corner_smoothed ? depth : 0;
@@ -55,7 +60,12 @@ module top(x, y, z, depth, corners_smoothed=false, x_edges_smoothed=false,
         edge_8_5_radius=top_edge_radius,
         edge_4_1_radius=bottom_edge_radius,
         edge_1_5_radius=left_edge_radius,
-        edge_4_8_radius=right_edge_radius
+        edge_4_8_radius=right_edge_radius,
+        edge_5_6_radius=top_left_edge_radius,
+        edge_7_8_radius=top_right_edge_radius,
+        edge_3_4_radius=bottom_right_edge_radius,
+        edge_1_2_radius=bottom_left_edge_radius
+
         );
     translate([depth, depth,0]) {
       cube([x - 2 * depth , y - 2 * depth , z - depth]);
