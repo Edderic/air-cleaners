@@ -8,7 +8,7 @@ z = 5;
 h = 127;
 
 function get_x_handle() = x;
-threaded_height = 20;
+threaded_height = 8;
 
 
 module top() {
@@ -17,7 +17,7 @@ module top() {
   }
 }
 
-module screw_holder(x=10, y=y, z=y, radius=5) {
+module screw_holder(x=5, y=y, z=y, radius=5) {
   translate([-x / 2 ,-y / 2,-z / 2]) {
     smoothed_cube(
       x=x, y = y, z=z,
@@ -70,11 +70,11 @@ module screws_for_handle() {
     screw_handle();
 }
 
-module screw_handle() {
-  translate([-x + threaded_height - 12,0,h / 2 + y /2  -2]) {
+module screw_handle(screw_offset=5) {
+  translate([-x + threaded_height - screw_offset,0,h / 2 + y /2  -2]) {
     color([1,0,0])
       rotate([0,-90,0])
-      screw_with_nut(threaded_radius=2.5, hex_nut_side_length=4.5, threaded_height=threaded_height);
+      screw_with_nut(threaded_height=threaded_height);
   }
 }
 

@@ -16,29 +16,16 @@ width = (depth * 2 + filter_x) / num_fan_rows;
 length = (depth * 2 + filter_y) / num_fan_cols;
 x_spacing = (width - fan_diameter) / 2;
 y_spacing = (length - fan_diameter) / 2;
-threaded_height = 7;
+threaded_height = 8;
 
-module vertical_grid_wall(long=false) {
-  z = long ? grid_z + filter_z : grid_z;
-  cube([depth, length, z], center=true);
-}
+function get_filter_dim() = [filter_x, filter_y, filter_z];
+function get_grid_z() = grid_z;
+function get_length() = length;
 
 function z_offset(long=false) = long ? -(grid_z + filter_z) / 2 - depth / 2 : -grid_z / 2 - depth / 2;
 
-module left_wall(long=false) {
-  translate([-width / 2 + depth / 2,0, z_offset(long=long)]) {
-    vertical_grid_wall(long=long);
-  }
-}
-
-module top_wall(long=false) {
-  z = long ? grid_z + filter_z : grid_z;
-  translate([0, length / 2 - depth / 2, z_offset(long=long)]) {
-    cube([width, depth, z], center=true);
-  }
-}
 module wall_remover(long_wall, width, length, filter_z, z) {
-  x_offset = long_wall == "top-left" || long_wall == "bottom-left" || long_wall == "left" ? depth : ((long_wall == "top" || long_wall == "bottom" || long_wall == "None") ? 0 : -depth);
+  x_offset = long_wall == "center" ? 0 : long_wall == "top-left" || long_wall == "bottom-left" || long_wall == "left" ? depth : ((long_wall == "top" || long_wall == "bottom" || long_wall == "None") ? 0 : -depth);
 
   y_offset = long_wall == "top-left" || long_wall == "top" || long_wall == "top-right" ? -depth : (long_wall == "bottom-left" || long_wall == "bottom" || long_wall == "bottom-right" ? depth : 0);
 
@@ -79,18 +66,6 @@ module fan_container(
   difference() {
     union() {
 
-      // left_wall(long=left_wall_long);
-
-      // right wall
-      // mirror([1,0,0])
-        // left_wall(long=right_wall_long);
-
-      // top_wall(long=top_wall_long);
-
-      // bottom wall
-      // mirror([0,1,0])
-        // top_wall(long=bottom_wall_long);
-
         top_spaced(
             z=z + filter_z,
             depth=depth,
@@ -112,6 +87,10 @@ module fan_container(
             bottom_left_corner_smoothed=bottom_left_corner_smoothed,
             bottom_right_corner_smoothed=bottom_right_corner_smoothed
             );
+
+        translate([0,0,filter_z + z - depth - depth / 2]) {
+          finger_guard();
+        }
     }
     union() {
       if (top_screw_hole) {
@@ -143,7 +122,7 @@ module fan_container(
 }
 
 module top_screw_and_nut(length) {
-  screw_height = length / 2 + threaded_height - 2 ;
+  screw_height = length / 2 + threaded_height -2.1;
   translate([0, screw_height, -grid_z + 5 + filter_z]) {
     rotate([90,0,0])
       color([0,0,1])
@@ -166,7 +145,7 @@ module left_screw_and_nut(length, width, grid_z, threaded_height) {
 }
 
 module right_screw_and_nut(length, width, grid_z, threaded_height) {
-  translate([width,0,0]) {
+  translate([width - 0.1,0,0]) {
     left_screw_and_nut(
         length=length,
         width=width,
@@ -198,3 +177,4 @@ fan_container(
   left_wall_long=true,
   long_wall="top-left"
 );
+
