@@ -1,15 +1,24 @@
 use <hex_nut.scad>
 $fn = 100;
 
+// | 70
+// |
+// |
+// |
+// |        62.5
+// -------------
+
 module fan(
     radius,
     depth,
     screw_radius,
     distance_to_middle_of_circle_x = "None",
-    distance_to_middle_of_circle_y = "None"
+    distance_to_middle_of_circle_y = "None",
+    multiplier = 70 - 7.5
 ) {
-  _distance_to_middle_of_circle_x = (distance_to_middle_of_circle_x == "None" || distance_to_middle_of_circle_y == "None") ? 62 / 70 * radius : distance_to_middle_of_circle_x;
-  _distance_to_middle_of_circle_y = (distance_to_middle_of_circle_x == "None" || distance_to_middle_of_circle_y == "None") ? 62 / 70 * radius : distance_to_middle_of_circle_y;
+
+  _distance_to_middle_of_circle_x = (distance_to_middle_of_circle_x == "None" || distance_to_middle_of_circle_y == "None") ? multiplier / 70 * radius : distance_to_middle_of_circle_x;
+  _distance_to_middle_of_circle_y = (distance_to_middle_of_circle_x == "None" || distance_to_middle_of_circle_y == "None") ? multiplier / 70 * radius : distance_to_middle_of_circle_y;
 
   linear_extrude(height=depth) circle(radius);
   translate([_distance_to_middle_of_circle_x, _distance_to_middle_of_circle_y, 0]) {
