@@ -2,7 +2,7 @@ use <../smoothed_cube.scad>
 use <../screw_with_nut.scad>
 
 $fn = 100;
-x = 50.2;
+x = 40.2;
 y = 25.4;
 z = 5;
 h = 127;
