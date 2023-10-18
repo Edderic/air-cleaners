@@ -57,8 +57,6 @@ module remove() {
   cube([width,length + 10,width], center=true);
 }
 
-head_support();
-
 module sps30_holder() {
   difference() {
     scale([1.1,1.5,1]) {
@@ -100,12 +98,15 @@ module sps30_holder_with_wedge() {
 
 }
 
-sps30_holder_with_wedge();
 
 module screw_hole() {
-  translate([0,-length / 2 + 1.5,-2]) {
+  translate([0,-length / 2 + 1.5,-1]) {
     rotate([90,0,0])
     screw_with_nut(threaded_height=6, nut_type="square");
 
   }
 }
+
+head_support();
+
+// sps30_holder_with_wedge();
