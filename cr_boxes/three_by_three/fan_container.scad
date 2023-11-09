@@ -12,15 +12,21 @@ filter_x = 508;
 filter_y = 501.65;
 filter_z = 111.125;
 fan_diameter = 140;
-width = (depth * 2 + filter_x) / num_fan_rows;
-length = (depth * 2 + filter_y) / num_fan_cols;
-x_spacing = (width - fan_diameter) / 2;
-y_spacing = (length - fan_diameter) / 2;
+function get_width(filter_x, depth, num_fan_rows) = ((depth * 2 + filter_x) / num_fan_rows);
+function get_length(filter_y, depth, num_fan_cols) = ((depth * 2 + filter_y) / num_fan_cols);
+
+function get_x_spacing(width, fan_diameter) = (width - fan_diameter) / 2;
+function get_y_spacing(length, fan_diameter) = (length - fan_diameter) / 2;
+
+width = get_width(filter_x, depth, num_fan_rows);
+length = get_length(filter_y, depth, num_fan_cols);
+
+x_spacing = get_x_spacing(width, fan_diameter);
+y_spacing = get_y_spacing(length, fan_diameter);
 threaded_height = 8;
 
 function get_filter_dim() = [filter_x, filter_y, filter_z];
 function get_grid_z() = grid_z;
-function get_length() = length;
 
 function z_offset(long=false) = long ? -(grid_z + filter_z) / 2 - depth / 2 : -grid_z / 2 - depth / 2;
 
@@ -40,6 +46,8 @@ module fan_container(
   long_wall,
   filter_z,
   z,
+  x_spacing=x_spacing,
+  y_spacing=y_spacing,
   z_spacing=filter_z,
   left_wall_long=false,
   right_wall_long=false,
@@ -60,7 +68,9 @@ module fan_container(
   top_left_corner_smoothed=false,
   top_right_corner_smoothed=false,
   bottom_left_corner_smoothed=false,
-  bottom_right_corner_smoothed=false
+  bottom_right_corner_smoothed=false,
+  width=width,
+  length=length
 ) {
 
   difference() {
