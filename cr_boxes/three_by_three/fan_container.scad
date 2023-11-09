@@ -99,7 +99,7 @@ module fan_container(
             bottom_right_corner_smoothed=bottom_right_corner_smoothed
             );
 
-        translate([0,0,filter_z + z - depth - depth / 2]) {
+        translate([0,0,filter_z + z - depth ]) {
           finger_guard();
         }
     }

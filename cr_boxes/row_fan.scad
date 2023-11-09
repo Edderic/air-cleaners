@@ -148,11 +148,12 @@ module top_spaced(
       _z = z == "None" ? _depth : z;
 
       difference() {
-        translate([_trans_x,_trans_y, -_depth / 2]) {
+        translate([_trans_x,_trans_y, 0]) {
           color([1,0,0])
             top(x=width, y = _length, z=_z, depth=_depth,
                 x_spacing=x_spacing,
                 y_spacing=y_spacing,
+                z_spacing=z_spacing,
                 edge_fan_top_smoothed=edge_fan_top_smoothed,
                 edge_fan_bottom_smoothed=edge_fan_bottom_smoothed,
                 edge_fan_left_smoothed=edge_fan_left_smoothed,
