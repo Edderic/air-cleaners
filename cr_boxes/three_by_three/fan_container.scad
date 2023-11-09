@@ -35,7 +35,8 @@ module wall_remover(long_wall, width, length, filter_z, z) {
 
   y_offset = long_wall == "top-left" || long_wall == "top" || long_wall == "top-right" ? -depth : (long_wall == "bottom-left" || long_wall == "bottom" || long_wall == "bottom-right" ? depth : 0);
 
-  translate([x_offset,y_offset,z]) {
+
+  translate([x_offset,y_offset,filter_z/2]) {
     cube([width, length,filter_z], center=true);
   }
 
@@ -83,7 +84,7 @@ module fan_container(
             length=length,
             x_spacing=x_spacing,
             y_spacing=y_spacing,
-            z_spacing=z_spacing - 14,
+            z_spacing=z_spacing,
             edge_fan_top_smoothed=edge_fan_top_smoothed,
             edge_fan_bottom_smoothed=edge_fan_bottom_smoothed,
             edge_fan_left_smoothed=edge_fan_left_smoothed,
@@ -104,17 +105,18 @@ module fan_container(
     }
     union() {
       if (top_screw_hole) {
-        top_screw_and_nut(length=length);
+        top_screw_and_nut(length=length, filter_z=z + filter_z);
       }
       if (bottom_screw_hole) {
-        bottom_screw_and_nut(length=length);
+        bottom_screw_and_nut(length=length, filter_z=z + filter_z);
       }
       if (left_screw_hole) {
         left_screw_and_nut(
             length=length,
             width=width,
             grid_z=grid_z,
-            threaded_height=threaded_height
+            threaded_height=threaded_height,
+            filter_z=z + filter_z
             );
       }
       if (right_screw_hole) {
@@ -122,16 +124,19 @@ module fan_container(
             length=length,
             width=width,
             grid_z=grid_z,
-            threaded_height=threaded_height
+            threaded_height=threaded_height,
+            filter_z=z + filter_z
             );
 
       }
       wall_remover(long_wall, width, length, filter_z, z);
     }
   }
+
+  // wall_remover(long_wall, width, length, filter_z, z);
 }
 
-module top_screw_and_nut(length) {
+module top_screw_and_nut(length, filter_z) {
   screw_height = length / 2 + threaded_height -2.1;
   translate([0, screw_height, -grid_z + 5 + filter_z]) {
     rotate([90,0,0])
@@ -140,13 +145,13 @@ module top_screw_and_nut(length) {
   }
 }
 
-module bottom_screw_and_nut(length) {
+module bottom_screw_and_nut(length, filter_z=filter_z) {
   translate([0,-length,0]) {
-    top_screw_and_nut(length=length);
+    top_screw_and_nut(length=length, filter_z=filter_z);
   }
 }
 
-module left_screw_and_nut(length, width, grid_z, threaded_height) {
+module left_screw_and_nut(length, width, grid_z, threaded_height, filter_z) {
   translate([-width / 2 - threaded_height + 2,0,-grid_z + 5 + filter_z]) {
     rotate([0,90,0])
     color([0,1,0])
@@ -154,13 +159,14 @@ module left_screw_and_nut(length, width, grid_z, threaded_height) {
   }
 }
 
-module right_screw_and_nut(length, width, grid_z, threaded_height) {
+module right_screw_and_nut(length, width, grid_z, threaded_height, filter_z) {
   translate([width - 0.1,0,0]) {
     left_screw_and_nut(
         length=length,
         width=width,
         grid_z=grid_z,
-        threaded_height=threaded_height
+        threaded_height=threaded_height,
+        filter_z=filter_z
         );
   }
 }
