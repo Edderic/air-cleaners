@@ -1,11 +1,16 @@
 use <../cr_boxes/three_by_three/fan_container.scad>
 use <../shoulder_strap_half_ring.scad>
 use <top_right.scad>
+use <top_left.scad>
+use <bottom_right.scad>
 use <../screw_with_nut.scad>
+use <../tcore_powerbank.scad>
+use <../smoothed_cube.scad>
+use <shoulder_strap_half_ring_left.scad>
 
 
-// filter_x = 366; // millimeters
 depth = 5;
+// filter_x = 366; // millimeters
 // filter_y = 286 + depth * 2; // millimeters
 // filter_z = 37; // millimeters
 
@@ -49,37 +54,6 @@ module screw_bottom_right() {
   }
 }
 
-module top_left() {
-  translate([-width / 2, length / 2,0]) {
-    fan_container(
-      fan_size=120,
-      filter_z=filter_z,
-      z=grid_z,
-      x_spacing=x_spacing,
-      y_spacing=y_spacing,
-      z_spacing=z_spacing,
-      top_left_corner_smoothed=true,
-      bottom_left_corner_smoothed=false,
-      bottom_right_corner_smoothed=false,
-      top_right_corner_smoothed=false,
-      edge_fan_top_smoothed=true,
-      edge_fan_bottom_smoothed=false,
-      edge_fan_right_smoothed=false,
-      edge_fan_left_smoothed=true,
-      edge_top_left_smoothed=true,
-      edge_top_right_smoothed=false,
-      edge_bottom_left_smoothed=false,
-      edge_bottom_right_smoothed=false,
-      top_screw_hole=false,
-      left_screw_hole=false,
-      bottom_screw_hole=true,
-      right_screw_hole=true,
-      long_wall="top-left",
-      width=width,
-      length=length
-    );
-  }
-}
 
 // top-right piece
 
@@ -96,16 +70,16 @@ module bottom_left() {
         filter_z=filter_z,
         z=grid_z,
         top_left_corner_smoothed=false,
-        bottom_left_corner_smoothed=true,
+        bottom_left_corner_smoothed=false,
         bottom_right_corner_smoothed=false,
         top_right_corner_smoothed=false,
         edge_fan_top_smoothed=false,
         edge_fan_bottom_smoothed=true,
         edge_fan_right_smoothed=false,
-        edge_fan_left_smoothed=true,
+        edge_fan_left_smoothed=false,
         edge_top_left_smoothed=false,
         edge_top_right_smoothed=false,
-        edge_bottom_left_smoothed=true,
+        edge_bottom_left_smoothed=false,
         edge_bottom_right_smoothed=false,
         top_screw_hole=true,
         left_screw_hole=false,
@@ -117,43 +91,6 @@ module bottom_left() {
 }
 
 // bottom-right
-module bottom_right() {
-  difference() {
-    translate([width / 2, -length / 2,0]) {
-      fan_container(
-          fan_size=120,
-          x_spacing=x_spacing,
-          y_spacing=y_spacing,
-          z_spacing=z_spacing,
-          width=width,
-          length=length,
-          filter_z=filter_z,
-          z=grid_z,
-          top_left_corner_smoothed=false,
-          bottom_left_corner_smoothed=false,
-          bottom_right_corner_smoothed=true,
-          top_right_corner_smoothed=false,
-          edge_fan_top_smoothed=false,
-          edge_fan_bottom_smoothed=true,
-          edge_fan_right_smoothed=true,
-          edge_fan_left_smoothed=false,
-          edge_top_left_smoothed=false,
-          edge_top_right_smoothed=false,
-          edge_bottom_left_smoothed=false,
-          edge_bottom_right_smoothed=true,
-          top_screw_hole=true,
-          left_screw_hole=true,
-          bottom_screw_hole=false,
-          right_screw_hole=false,
-          long_wall="bottom-right"
-            );
-    }
-    union() {
-      screw_right();
-      screw_bottom_right();
-    }
-  }
-}
 
 // top_left();
 top_right(
@@ -168,8 +105,20 @@ top_right(
   z_spacing,
   fan_diameter
 );
-// bottom_left();
-bottom_right();
+
+bottom_left();
+bottom_right(
+  width,
+  length,
+  filter_x,
+  filter_y,
+  filter_z,
+  grid_z,
+  x_spacing,
+  y_spacing,
+  z_spacing,
+  fan_diameter
+);
 
 module filter_offset() {
   difference() {
@@ -184,9 +133,31 @@ module filter_offset() {
   }
 }
 
-filter_offset();
+// filter_offset();
 
-top_left();
+top_left(
+  width,
+  length,
+  filter_x,
+  filter_y,
+  filter_z,
+  grid_z,
+  x_spacing,
+  y_spacing,
+  z_spacing,
+  fan_diameter
+);
+translate([-filter_x / 2 - depth * 2,-60,depth * 1.5]) {
+  rotate([0,-90,0])
+  rotate([0,0,-90])
+  tcore_powerbank();
+}
+
+smoothed_cube(
+  x=depth*2 + 30,
+  y=filter_y / 2 + depth,
+  z=filter_z + grid_z
+);
 
 // screw_right();
 // translate([0, 140 / 2 + depth + depth / 2,0]) {
