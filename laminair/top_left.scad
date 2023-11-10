@@ -35,7 +35,7 @@ module top_left(
           edge_bottom_left_smoothed=false,
           edge_bottom_right_smoothed=false,
           top_screw_hole=false,
-          left_screw_hole=true,
+          left_screw_hole=false,
           bottom_screw_hole=true,
           right_screw_hole=true,
           long_wall="top-left",
@@ -50,7 +50,6 @@ module top_left(
           filter_z,
           grid_z
           );
-
 
   }
 }
