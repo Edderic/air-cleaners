@@ -1,19 +1,29 @@
 use <../cr_boxes/three_by_three/fan_container.scad>
 use <../shoulder_strap_half_ring.scad>
+use <shoulder_strap_half_ring_left.scad>
 
-filter_x = 366; // millimeters
+
+
 depth = 5;
-filter_y = 286 + depth * 2; // millimeters
-filter_z = 37; // millimeters
+// filter_x = 366; // millimeters
+// filter_y = 286 + depth * 2; // millimeters
+// filter_z = 37; // millimeters
+
+// SmartAir S
+filter_x = 10.5 * 25.4; // millimeters
+filter_y = 10.5 * 25.4 ; // millimeters
+filter_z = 2 * 25.4; // millimeters
 grid_z=27 * 1.25;
 num_fan_rows = 2;
 num_fan_cols = 2;
 width = get_width(filter_x, depth, num_fan_rows);
 length = get_length(filter_y, depth, num_fan_cols);
-fan_diameter = 140;
+fan_diameter = 120;
+
 x_spacing = get_x_spacing(width, fan_diameter);
 y_spacing = get_y_spacing(length, fan_diameter);
-z_spacing = grid_z;
+z_spacing = grid_z + 14;
+
 
 module top_right(
   width,
@@ -59,11 +69,7 @@ module top_right(
             );
     }
 
-    translate([filter_x / 2 + 10, filter_y / 2, (filter_z + grid_z) / 2]) {
-      rotate([0,0,90])
-        rotate([0,-90,0])
-        shoulder_strap_half_ring(screws_only=true);
-    }
+    shoulder_strap_half_ring_left(filter_x, filter_y, filter_z, grid_z);
   }
 
 }
@@ -77,5 +83,6 @@ top_right(
   grid_z,
   x_spacing,
   y_spacing,
-  z_spacing
+  z_spacing,
+  fan_size=120
 );
