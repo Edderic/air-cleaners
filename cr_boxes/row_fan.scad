@@ -137,7 +137,8 @@ module top_spaced(
     top_left_corner_smoothed=false,
     top_right_corner_smoothed=false,
     bottom_left_corner_smoothed=false,
-    bottom_right_corner_smoothed=false
+    bottom_right_corner_smoothed=false,
+    fan_diameter=140
     ) {
       // x_spacing: the space in the x direction between the edge of a fan and edge
       // the container
@@ -170,9 +171,10 @@ module top_spaced(
 
         }
         if (fan_hole) {
-          translate([x_spacing-width / 2, y_spacing-length / 2,z_spacing]) {
+          translate([-width / 2, -length / 2,z_spacing]) {
             local_fan(
-              z_offset=0
+              z_offset=0,
+              size=fan_diameter
             );
           }
         }
@@ -222,9 +224,10 @@ module row_fan(fan_hole=true) {
 }
 
 
-module finger_guard() {
+module finger_guard(fan_size=140) {
+
   translate([0,0,0]) {
-    for (x=[get_fan_size() / 2:-12:0]) {
+    for (x=[fan_size / 2:-12:0]) {
       difference() {
         cylinder(h=get_depth() / 2, r=x);
         cylinder(h=get_depth() / 2, r=x - 3);
@@ -233,9 +236,9 @@ module finger_guard() {
   }
 
   translate([0,0,2.5]) {
-    cube([get_fan_size(), 3, get_depth() / 2], center=true);
+    cube([fan_size, 3, get_depth() / 2], center=true);
     rotate([0,0,90])
-      cube([get_fan_size(), 3, get_depth() / 2], center=true);
+      cube([fan_size, 3, get_depth() / 2], center=true);
   }
 }
 

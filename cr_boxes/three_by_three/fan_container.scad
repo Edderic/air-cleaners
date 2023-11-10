@@ -71,7 +71,8 @@ module fan_container(
   bottom_left_corner_smoothed=false,
   bottom_right_corner_smoothed=false,
   width=width,
-  length=length
+  length=length,
+  fan_size=140,
 ) {
 
   difference() {
@@ -96,11 +97,13 @@ module fan_container(
             top_left_corner_smoothed=top_left_corner_smoothed,
             top_right_corner_smoothed=top_right_corner_smoothed,
             bottom_left_corner_smoothed=bottom_left_corner_smoothed,
-            bottom_right_corner_smoothed=bottom_right_corner_smoothed
+            bottom_right_corner_smoothed=bottom_right_corner_smoothed,
+            fan_diameter=fan_size
             );
 
         translate([0,0,filter_z + z - depth ]) {
-          finger_guard();
+          // Add 2 to make sure there is awkward spacing
+          finger_guard(fan_size=fan_size+2);
         }
     }
     union() {

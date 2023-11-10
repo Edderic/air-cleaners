@@ -1,6 +1,20 @@
 use <../cr_boxes/three_by_three/fan_container.scad>
 use <../shoulder_strap_half_ring.scad>
 
+filter_x = 366; // millimeters
+depth = 5;
+filter_y = 286 + depth * 2; // millimeters
+filter_z = 37; // millimeters
+grid_z=27 * 1.25;
+num_fan_rows = 2;
+num_fan_cols = 2;
+width = get_width(filter_x, depth, num_fan_rows);
+length = get_length(filter_y, depth, num_fan_cols);
+fan_diameter = 140;
+x_spacing = get_x_spacing(width, fan_diameter);
+y_spacing = get_y_spacing(length, fan_diameter);
+z_spacing = grid_z;
+
 module top_right(
   width,
   length,
@@ -10,11 +24,14 @@ module top_right(
   grid_z,
   x_spacing,
   y_spacing,
-  z_spacing
+  z_spacing,
+  fan_size
+
 ) {
   difference() {
     translate([width / 2, length / 2,0]) {
       fan_container(
+          fan_size=fan_size,
           filter_z=filter_z,
           z=grid_z,
           x_spacing=x_spacing,
@@ -51,3 +68,14 @@ module top_right(
 
 }
 
+top_right(
+  width,
+  length,
+  filter_x,
+  filter_y,
+  filter_z,
+  grid_z,
+  x_spacing,
+  y_spacing,
+  z_spacing
+);
