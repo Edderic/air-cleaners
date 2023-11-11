@@ -90,36 +90,6 @@ module bottom_left() {
   }
 }
 
-// bottom-right
-
-// top_left();
-top_right(
-  width,
-  length,
-  filter_x,
-  filter_y,
-  filter_z,
-  grid_z,
-  x_spacing,
-  y_spacing,
-  z_spacing,
-  fan_diameter
-);
-
-bottom_left();
-bottom_right(
-  width,
-  length,
-  filter_x,
-  filter_y,
-  filter_z,
-  grid_z,
-  x_spacing,
-  y_spacing,
-  z_spacing,
-  fan_diameter
-);
-
 module filter_offset() {
   difference() {
     translate([filter_x / 4, +depth-filter_y / 2, depth]) {
@@ -135,6 +105,99 @@ module filter_offset() {
 
 // filter_offset();
 
+module power_switch() {
+  power_switch_screw_top(screw=false);
+
+  translate([0,4,0]) {
+    mirror([0,1,0]) power_switch_screw_top(screw=false);
+  }
+
+  difference() {
+    translate([-depth - 30 - filter_x / 2, -filter_y / 4,0]) {
+      color([0,0,1])
+        smoothed_cube(
+            x=30,
+            y=filter_y / 2 + depth,
+            z=filter_z + grid_z - depth,
+            radius_1=5,
+            edge_1_2_radius=5,
+            edge_4_1_radius=5,
+            edge_1_5_radius=5,
+            radius_5=5,
+            edge_5_6_radius=5,
+            edge_8_5_radius=5
+            );
+    }
+    union() {
+
+      translate([-filter_x / 2 - depth,depth * 2,depth]) {
+        rotate([0,-90,0])
+          rotate([0,0,-90])
+          tcore_powerbank();
+      }
+    }
+  }
+}
+
+module battery_attachment(screw) {
+  translate([-filter_x / 2 - 2 * depth,filter_y / 4 +9 , filter_z - 2 * depth]) {
+    screwable_and_screw(threaded_height=7, screw=screw, screwable=!screw);
+  }
+
+}
+
+module power_switch_screw_top(screw=true) {
+  difference() {
+    battery_attachment(screw=false);
+    battery_attachment(screw=true);
+  }
+}
+
+
+module screwable_and_screw(screw=true, screwable=true, threaded_height=8) {
+  if (screw) {
+    rotate([0,90,0])
+    color([0,1,0])
+    screw_with_nut(threaded_height=threaded_height);
+  }
+
+  if (screwable) {
+    translate([0,6,-5]) {
+      rotate([0,0,-90])
+        screwable();
+    }
+  }
+}
+
+// bottom-right
+
+// top_right(
+  // width,
+  // length,
+  // filter_x,
+  // filter_y,
+  // filter_z,
+  // grid_z,
+  // x_spacing,
+  // y_spacing,
+  // z_spacing,
+  // fan_diameter
+// );
+
+bottom_left();
+// bottom_right(
+  // width,
+  // length,
+  // filter_x,
+  // filter_y,
+  // filter_z,
+  // grid_z,
+  // x_spacing,
+  // y_spacing,
+  // z_spacing,
+  // fan_diameter
+// );
+
 top_left(
   width,
   length,
@@ -147,17 +210,13 @@ top_left(
   z_spacing,
   fan_diameter
 );
-translate([-filter_x / 2 - depth * 2,-60,depth * 1.5]) {
-  rotate([0,-90,0])
-  rotate([0,0,-90])
-  tcore_powerbank();
-}
 
-smoothed_cube(
-  x=depth*2 + 30,
-  y=filter_y / 2 + depth,
-  z=filter_z + grid_z
-);
+power_switch();
+// }
+// translate([0,-52,-2]) {
+  // mirror([1,0,0])
+  // shoulder_strap_half_ring_left(filter_x, filter_y, filter_z, grid_z, screws_only=false);
+// }
 
 // screw_right();
 // translate([0, 140 / 2 + depth + depth / 2,0]) {
