@@ -4,11 +4,11 @@ use <shoulder_strap_half_ring_left.scad>
 
 
 
-depth = 5;
 // filter_x = 366; // millimeters
 // filter_y = 286 + depth * 2; // millimeters
 // filter_z = 37; // millimeters
 
+depth = 5;
 // SmartAir S
 filter_x = 10.5 * 25.4; // millimeters
 filter_y = 10.5 * 25.4 ; // millimeters
