@@ -1,5 +1,23 @@
 use <../cr_boxes/three_by_three/fan_container.scad>
 use <shoulder_strap_half_ring_left.scad>
+use <fan_filter.scad>
+
+depth = 5;
+// SmartAir S
+filter_x = 10.5 * 25.4; // millimeters
+filter_y = 10.5 * 25.4 ; // millimeters
+filter_z = 2 * 25.4; // millimeters
+grid_z=27 * 1.25;
+num_fan_rows = 2;
+num_fan_cols = 2;
+width = get_width(filter_x, depth, num_fan_rows);
+length = get_length(filter_y, depth, num_fan_cols);
+fan_diameter = 120;
+
+x_spacing = get_x_spacing(width, fan_diameter);
+y_spacing = get_y_spacing(length, fan_diameter);
+z_spacing = grid_z + 14;
+
 
 module top_left(
   width,
@@ -43,14 +61,30 @@ module top_left(
           length=length
             );
     }
-    mirror([1,0,0])
-      shoulder_strap_half_ring_left(
-          filter_x,
-          filter_y,
-          filter_z,
-          grid_z
-          );
+    union() {
+      mirror([1,0,0])
+        shoulder_strap_half_ring_left(
+            filter_x,
+            filter_y,
+            filter_z,
+            grid_z
+            );
+      battery_attachment(screw=true);
+    }
 
   }
 }
 
+
+top_left(
+  width,
+  length,
+  filter_x,
+  filter_y,
+  filter_z,
+  grid_z,
+  x_spacing,
+  y_spacing,
+  z_spacing,
+  fan_diameter
+);
