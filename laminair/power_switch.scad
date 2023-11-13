@@ -25,7 +25,7 @@ fan_diameter = 120;
 x_spacing = get_x_spacing(width, fan_diameter);
 y_spacing = get_y_spacing(length, fan_diameter);
 z_spacing = grid_z + 14;
-power_switch_width = 25.4 + 30;
+power_switch_width = get_tcore_powerbank_z() + 3;
 
 module power_switch(
   depth,
@@ -58,12 +58,6 @@ module power_switch(
     union() {
 
       translate([-filter_x / 2 - depth,depth * 2,depth]) {
-        rotate([0,-90,0])
-          rotate([0,0,-90])
-          tcore_powerbank();
-      }
-
-      translate([-filter_x / 2  - get_tcore_powerbank_z(),depth * 2,depth]) {
         rotate([0,-90,0])
           rotate([0,0,-90])
           tcore_powerbank();
