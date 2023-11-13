@@ -37,22 +37,24 @@ module to_remove(r) {
 }
 
 
-module half_ring_without_holes(r=25.4) {
-  difference() {
-    // translate([0,2,5]) {
+module half_ring_without_holes(r=25.4, half_ring=true) {
+  if (half_ring) {
+    difference() {
+      // translate([0,2,5]) {
       // rotate([180,0,0])
-        // rotate_extrude(convexity = 10, angle=180)
-        // translate([10, 0, 0])
-        // circle(r = 2, $fn = 100);
+      // rotate_extrude(convexity = 10, angle=180)
+      // translate([10, 0, 0])
+      // circle(r = 2, $fn = 100);
 
-    // }
-    translate([0,1,2]) {
-      cylinder(h=6, r=r);
+      // }
+      translate([0,1,2]) {
+        cylinder(h=6, r=r);
+      }
+      to_remove(r);
+
     }
-    to_remove(r);
 
   }
-
   // left side support
   translate([8,0,0]) {
     screwable();
