@@ -9,12 +9,15 @@ module switch_hole() {
   }
 }
 
+function get_switch_x() = 62.5;
+function get_switch_y() = 27;
+
 module switch() {
   // make the front curvy
   intersection() {
     // remove a cylinder from the back to add a curve
     difference() {
-      cube([62.5,27,18]);
+      cube([get_switch_x(),get_switch_y(),18]);
 
       translate([30,27,345]) {
         rotate([90,0,0])
