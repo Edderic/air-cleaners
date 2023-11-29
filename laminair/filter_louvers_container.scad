@@ -10,6 +10,10 @@ filter_z = get_filter_dim()[2];
 filter_effective_offset = 25.4 / 2;
 filter_x_effective = filter_x - filter_effective_offset;
 filter_y_effective = filter_y - filter_effective_offset;
+function get_filter_effective_dim() = [
+  filter_x_effective,
+  filter_y_effective
+];
 
 filter_wall_depth = 2;
 horizontal_wall_depth = filter_x;
