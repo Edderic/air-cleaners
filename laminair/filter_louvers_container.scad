@@ -21,6 +21,7 @@ filter_z_offset = 25.4 / 2;
 front_cover_z = 15;
 
 louver_radius = 1.5;
+function get_louver_radius() = louver_radius;
 louver_z = 7;
 louver_z_start = 3;
 
