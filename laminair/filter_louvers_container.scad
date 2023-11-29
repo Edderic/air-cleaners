@@ -39,13 +39,13 @@ module louver_cylinder_back(front_cover_z, filter_x_effective, height, radius = 
 }
 
 
-module louver(radius) {
+module louver(radius, height_offset=4) {
   translate([0,0,louver_z_start]) {
     louver_cylinder_back(front_cover_z, filter_x_effective, height = filter_x_effective - 4, radius=radius);
   }
 
   translate([0,0,louver_z_start + louver_z]) {
-    louver_cylinder_back(front_cover_z, filter_x_effective, height=filter_x_effective + 4, radius=radius);
+    louver_cylinder_back(front_cover_z, filter_x_effective, height=filter_x_effective + height_offset, radius=radius);
   }
 
   // louver body
