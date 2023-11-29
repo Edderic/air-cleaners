@@ -6,7 +6,7 @@ use <../switch.scad>
 use <shoulder_strap_half_ring_left.scad>
 use <methods.scad>
 
-depth = 5;
+depth = get_wall_depth();
 // filter_x = 366; // millimeters
 // filter_y = 286 + depth * 2; // millimeters
 // filter_z = 37; // millimeters
