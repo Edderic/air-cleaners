@@ -11,7 +11,7 @@ module right_deletion_block() {
   }
 }
 
-module bottom_left_filter_p1() {
+module bottom_left_filter_p1(z_offset=-5) {
   difference() {
     filter_louvers_container();
     union() {
@@ -19,7 +19,7 @@ module bottom_left_filter_p1() {
 
       rotate([0,0,90]) right_deletion_block();
 
-      mirror([1,0,0]) translate([0,0,-5]) {
+      mirror([1,0,0]) translate([0,0,z_offset]) {
         right_deletion_block();
       }
     }
