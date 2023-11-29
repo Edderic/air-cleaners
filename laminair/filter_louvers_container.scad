@@ -117,6 +117,7 @@ module filter_louvers_container() {
       }
 
       louvers(radius=louver_radius + 0.25);
+      rotate([0,0,90]) louvers(radius=louver_radius + 0.25);
 
       for (x=[0:1:3]) {
         rotate([0,0,90 * x])
