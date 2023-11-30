@@ -73,6 +73,7 @@ module fan_container(
   width=width,
   length=length,
   fan_size=140,
+  grid_z=25.4
 ) {
 
   difference() {
