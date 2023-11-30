@@ -1,22 +1,24 @@
 use <../cr_boxes/three_by_three/fan_container.scad>
 use <shoulder_strap_half_ring_left.scad>
 use <fan_filter.scad>
+use <methods.scad>
 
-depth = 5;
+depth = get_wall_depth();
+
 // SmartAir S
-filter_x = 10.5 * 25.4; // millimeters
-filter_y = 10.5 * 25.4 ; // millimeters
-filter_z = 2 * 25.4; // millimeters
-grid_z=27 * 1.25;
-num_fan_rows = 2;
-num_fan_cols = 2;
-width = get_width(filter_x, depth, num_fan_rows);
-length = get_length(filter_y, depth, num_fan_cols);
-fan_diameter = 120;
+filter_x = get_filter_dim()[0];
+filter_y = get_filter_dim()[1];
+filter_z = get_filter_dim()[2];
+grid_z=get_grid_z();
+num_fan_rows = get_num_fan_enclosure_dim()[0];
+num_fan_cols = get_num_fan_enclosure_dim()[1];
+width = get_fan_enclosure_width();
+length = get_fan_enclosure_length();
+fan_diameter = get_fan_diameter();
 
-x_spacing = get_x_spacing(width, fan_diameter);
-y_spacing = get_y_spacing(length, fan_diameter);
-z_spacing = grid_z + 14;
+x_spacing = get_fan_to_wall_spacing_dim()[0];
+y_spacing = get_fan_to_wall_spacing_dim()[1];
+z_spacing = get_fan_to_wall_spacing_dim()[2];
 
 
 module top_left(
@@ -37,6 +39,7 @@ module top_left(
           fan_size=120,
           filter_z=filter_z,
           z=grid_z,
+          grid_z=grid_z,
           x_spacing=x_spacing,
           y_spacing=y_spacing,
           z_spacing=z_spacing,
