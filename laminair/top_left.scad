@@ -43,6 +43,7 @@ module top_left(
           x_spacing=x_spacing,
           y_spacing=y_spacing,
           z_spacing=z_spacing,
+          z_offset=20,
           top_left_corner_smoothed=true,
           bottom_left_corner_smoothed=false,
           bottom_right_corner_smoothed=false,
