@@ -2,7 +2,7 @@ use <../cr_boxes/three_by_three/fan_container.scad>
 
 // SmartAir S filter dimensions
 // in millimeters
-function get_filter_dim() = [10.5 * 25.4, 10.5 * 25.4, 2 * 25.4];
+function get_filter_dim() = [10.5 * 25.4, 10.5 * 25.4, 2 * 25.4 + 12];
 
 // Number of rows and number columns
 function get_num_fan_enclosure_dim() = [2,2];
