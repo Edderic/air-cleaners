@@ -4,9 +4,9 @@ use <shoulder_strap_support_screws.scad>
 
 $fn = 200;
 
-module screwable() {
+module screwable(x=15) {
     smoothed_cube(
-      x=13,
+      x=x,
       y=5,
       z=10,
 
@@ -26,8 +26,8 @@ module screwable() {
     );
 }
 
-module to_remove(r) {
-  cylinder(h=10, r=r-4);
+module to_remove(r, remove_radius=4) {
+  cylinder(h=10, r=r-remove_radius);
   translate([-8,0,0]) {
     cube([16, 100, 100]);
   }
@@ -50,20 +50,22 @@ module half_ring_without_holes(r=25.4, half_ring=true) {
       translate([0,1,2]) {
         cylinder(h=6, r=r);
       }
-      to_remove(r);
+      to_remove(r, remove_radius=6);
 
     }
 
   }
+  x = 17;
+  x_offset = 13;
   // left side support
-  translate([8,0,0]) {
-    screwable();
+  translate([x - x_offset,0,0]) {
+    screwable(x=x);
   }
 
   // right side support
-  translate([-8,0,10]) {
+  translate([-(x - x_offset),0,10]) {
     rotate([0,180,0])
-    screwable();
+    screwable(x=x);
   }
 }
 
