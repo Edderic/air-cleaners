@@ -23,7 +23,7 @@ function get_fan_enclosure_length() = get_length(
 
 // How tall the walls need to be. The higher the value, the more separation
 // there is between the fans and the filter.
-function get_grid_z() = 27 * 1.25;
+function get_grid_z() = 15;
 
 function get_fan_diameter() = 120;
 
