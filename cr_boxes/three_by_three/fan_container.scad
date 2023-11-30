@@ -109,10 +109,10 @@ module fan_container(
     }
     union() {
       if (top_screw_hole) {
-        top_screw_and_nut(length=length, filter_z=z + filter_z);
+        top_screw_and_nut(length=length, filter_z=filter_z + 5);
       }
       if (bottom_screw_hole) {
-        bottom_screw_and_nut(length=length, filter_z=z + filter_z);
+        bottom_screw_and_nut(length=length, filter_z=filter_z + 5);
       }
       if (left_screw_hole) {
         left_screw_and_nut(
@@ -137,12 +137,20 @@ module fan_container(
     }
   }
 
+  bottom_screw_and_nut(length=length, filter_z=filter_z + 5);
+        right_screw_and_nut(
+            length=length,
+            width=width,
+            grid_z=grid_z,
+            threaded_height=threaded_height,
+            filter_z=z + filter_z
+            );
   // wall_remover(long_wall, width, length, filter_z, z);
 }
 
 module top_screw_and_nut(length, filter_z) {
   screw_height = length / 2 + threaded_height -2.1;
-  translate([0, screw_height, -grid_z + 5 + filter_z]) {
+  translate([0, screw_height,  filter_z]) {
     rotate([90,0,0])
       color([0,0,1])
       screw_with_nut(threaded_height=threaded_height);
