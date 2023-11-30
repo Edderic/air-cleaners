@@ -84,7 +84,7 @@ module power_switch_screw_bottom() {
 
 
 module battery_attachment(screw) {
-  translate([-filter_x / 2 - 2 * depth,filter_y / 4 +9 , filter_z - 2 * depth]) {
+  translate([-filter_x / 2 - 2 * depth,filter_y / 4 +9 , filter_z / 2 + depth]) {
     screwable_and_screw(threaded_height=7, screw=screw, screwable=!screw);
   }
 
