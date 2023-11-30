@@ -126,6 +126,7 @@ module top_spaced(
     x_spacing="None",
     y_spacing="None",
     z_spacing="None",
+    z_offset=15,
     edge_fan_top_smoothed=false,
     edge_fan_bottom_smoothed=false,
     edge_fan_left_smoothed=false,
@@ -173,8 +174,9 @@ module top_spaced(
         if (fan_hole) {
           translate([-width / 2, -length / 2,z_spacing]) {
             local_fan(
-              z_offset=0,
-              size=fan_diameter
+              z_offset=z_offset,
+              size=fan_diameter,
+              depth = _depth + 5
             );
           }
         }
