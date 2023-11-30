@@ -32,3 +32,4 @@ function get_fan_to_wall_spacing_dim() = [
   get_y_spacing(get_fan_enclosure_width(), get_fan_diameter()),
   get_grid_z() + 14
 ];
+function z_outerwall_offset() = 27 * 1.25;
