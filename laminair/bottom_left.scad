@@ -2,10 +2,7 @@ use <../cr_boxes/three_by_three/fan_container.scad>
 use <fan_filter.scad>
 use <methods.scad>
 
-depth = 5;
-// filter_x = 366; // millimeters
-// filter_y = 286 + depth * 2; // millimeters
-// filter_z = 37; // millimeters
+depth = get_wall_depth();
 
 // SmartAir S
 filter_x = get_filter_dim()[0];
@@ -45,7 +42,7 @@ module bottom_left(
           width=width,
           length=length,
           filter_z=filter_z,
-          z=grid_z,
+          z=z_outerwall_offset(),
           top_left_corner_smoothed=false,
           bottom_left_corner_smoothed=true,
           bottom_right_corner_smoothed=false,
