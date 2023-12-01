@@ -42,8 +42,6 @@ module bottom_left(
           y_spacing=y_spacing,
           z_spacing=z_spacing,
           z_offset=20,
-          width=width,
-          length=length,
           top_left_corner_smoothed=false,
           bottom_left_corner_smoothed=true,
           bottom_right_corner_smoothed=false,
@@ -60,7 +58,9 @@ module bottom_left(
           left_screw_hole=false,
           bottom_screw_hole=false,
           right_screw_hole=true,
-          long_wall="bottom-left"
+          long_wall="bottom-left",
+          width=width,
+          length=length
             );
     }
     union() {
