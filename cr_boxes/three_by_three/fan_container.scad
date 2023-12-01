@@ -1,6 +1,7 @@
 use <../row_fan.scad>
 use <../builder.scad>
 use <../../screw_with_nut.scad>
+use <../../usbc_female.scad>
 // Lennox Model HCF14-13
 // Replaces Filter Parn No. 19L14
 
@@ -43,6 +44,30 @@ module wall_remover(long_wall, width, length, filter_z, z) {
 
 }
 
+module top_left_zip_tie_hole(filter_x, filter_y, filter_z, depth) {
+  translate([filter_x / 10,filter_y / 8 - depth,filter_z + 4.5]) {
+    usbc_female();
+  }
+}
+
+module top_right_zip_tie_hole(filter_x, filter_y, filter_z, depth) {
+  translate([-filter_x / 10,filter_y / 8 - depth,filter_z + 4.5]) {
+    usbc_female();
+  }
+}
+
+module bottom_right_zip_tie_hole(filter_x, filter_y, filter_z, depth) {
+  translate([-filter_x / 10,-filter_y / 8 - depth,filter_z + 4.5]) {
+    usbc_female();
+  }
+}
+
+module bottom_left_zip_tie_hole(filter_x, filter_y, filter_z, depth) {
+  translate([filter_x / 10,-filter_y / 8 - depth,filter_z + 4.5]) {
+    usbc_female();
+  }
+}
+
 module fan_container(
   long_wall,
   filter_z,
@@ -71,10 +96,15 @@ module fan_container(
   top_right_corner_smoothed=false,
   bottom_left_corner_smoothed=false,
   bottom_right_corner_smoothed=false,
+  bottom_right_zip_tie_hole=false,
+  bottom_left_zip_tie_hole=false,
+  top_right_zip_tie_hole=false,
+  top_left_zip_tie_hole=false,
   width=width,
   length=length,
   fan_size=140,
-  grid_z=25.4
+  grid_z=25.4,
+  depth=5
 ) {
 
   difference() {
@@ -110,6 +140,22 @@ module fan_container(
         }
     }
     union() {
+      if (bottom_right_zip_tie_hole) {
+        bottom_right_zip_tie_hole(filter_x, filter_y, filter_z, depth);
+      }
+
+      if (bottom_left_zip_tie_hole) {
+        bottom_left_zip_tie_hole(filter_x, filter_y, filter_z, depth);
+      }
+
+      if (top_right_zip_tie_hole) {
+        top_right_zip_tie_hole(filter_x, filter_y, filter_z, depth);
+      }
+
+      if (top_left_zip_tie_hole) {
+        top_left_zip_tie_hole(filter_x, filter_y, filter_z, depth);
+      }
+
       if (top_screw_hole) {
         top_screw_and_nut(length=length, filter_z=filter_z + 5);
       }
@@ -139,14 +185,16 @@ module fan_container(
     }
   }
 
-  bottom_screw_and_nut(length=length, filter_z=filter_z + 5);
-        right_screw_and_nut(
-            length=length,
-            width=width,
-            grid_z=grid_z,
-            threaded_height=threaded_height,
-            filter_z=z + filter_z
-            );
+        // bottom_right_zip_tie_hole(filter_x, filter_y, filter_z, depth);
+        // top_right_zip_tie_hole(filter_x, filter_y, filter_z, depth);
+  // bottom_screw_and_nut(length=length, filter_z=filter_z + 5);
+        // right_screw_and_nut(
+            // length=length,
+            // width=width,
+            // grid_z=grid_z,
+            // threaded_height=threaded_height,
+            // filter_z=filter_z
+            // );
   // wall_remover(long_wall, width, length, filter_z, z);
 }
 
