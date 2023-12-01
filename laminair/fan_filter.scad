@@ -126,18 +126,18 @@ module screwable_and_screw(screw=true, screwable=true, threaded_height=8) {
   // fan_diameter
 // );
 
-// bottom_left(
-  // width,
-  // length,
-  // filter_x,
-  // filter_y,
-  // filter_z,
-  // grid_z,
-  // x_spacing,
-  // y_spacing,
-  // z_spacing,
-  // fan_size=fan_diameter
-// );
+bottom_left(
+  width,
+  length,
+  filter_x,
+  filter_y,
+  filter_z,
+  grid_z,
+  x_spacing,
+  y_spacing,
+  z_spacing,
+  fan_size=fan_diameter
+);
 // bottom_right(
   // width,
   // length,
@@ -171,6 +171,7 @@ power_switch(
   filter_z,
   grid_z
 );
+
 // }
 // translate([0,-52,-2]) {
   // mirror([1,0,0])
