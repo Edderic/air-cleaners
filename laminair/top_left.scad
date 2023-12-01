@@ -56,6 +56,8 @@ module top_left(
           edge_top_right_smoothed=false,
           edge_bottom_left_smoothed=false,
           edge_bottom_right_smoothed=false,
+          bottom_right_zip_tie_hole=true,
+          bottom_left_zip_tie_hole=true,
           top_screw_hole=false,
           left_screw_hole=false,
           bottom_screw_hole=true,
