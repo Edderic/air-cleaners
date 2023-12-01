@@ -75,10 +75,14 @@ module top_left(
             filter_z,
             grid_z
             );
-      battery_attachment(screw=true);
+      translate([0,-filter_y / 5,0]) {
+        battery_attachment(screw=true);
+      }
     }
-
   }
+      // translate([0,-filter_y / 5,0]) {
+        // battery_attachment(screw=true);
+      // }
 }
 
 
