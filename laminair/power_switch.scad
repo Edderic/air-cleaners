@@ -34,47 +34,48 @@ module power_switch(
   filter_z,
   grid_z
 ) {
-  power_switch_screw_top(screw=false);
+  translate([0,-filter_y / 5,0]) {
+    power_switch_screw_top(screw=false);
+    power_switch_screw_bottom();
 
-  power_switch_screw_bottom();
 
+    difference() {
+      translate([-depth - power_switch_width - filter_x / 2, -filter_y / 4,0]) {
+        color([0,0,1])
+          smoothed_cube(
+              x=power_switch_width,
+              y=filter_y / 2 + depth,
+              z=filter_z + grid_z - depth,
+              radius_1=5,
+              edge_1_2_radius=5,
+              edge_4_1_radius=5,
+              edge_1_5_radius=5,
+              radius_5=5,
+              edge_5_6_radius=5,
+              edge_8_5_radius=5
+              );
+      }
+      union() {
 
-  difference() {
-    translate([-depth - power_switch_width - filter_x / 2, -filter_y / 4,0]) {
-      color([0,0,1])
-        smoothed_cube(
-            x=power_switch_width,
-            y=filter_y / 2 + depth,
-            z=filter_z + grid_z - depth,
-            radius_1=5,
-            edge_1_2_radius=5,
-            edge_4_1_radius=5,
-            edge_1_5_radius=5,
-            radius_5=5,
-            edge_5_6_radius=5,
-            edge_8_5_radius=5
-            );
+        translate([-filter_x / 2 - depth,depth * 2,depth]) {
+          rotate([0,-90,0])
+            rotate([0,0,-90])
+            tcore_powerbank();
+        }
+
+        // make some space for wires
+        translate([-filter_x / 2 - power_switch_width - 1,0,depth - 2]) {
+          cube([power_switch_width - 4,68,74]);
+        }
+        // usbc hole
+        translate([-filter_x / 2 - 17 ,filter_y / 4, filter_z + grid_z - depth * 9.5]) {
+          rotate([0,-90,0])
+            usbc_female();
+        }
+      }
+
+      local_switch();
     }
-    union() {
-
-      translate([-filter_x / 2 - depth,depth * 2,depth]) {
-        rotate([0,-90,0])
-          rotate([0,0,-90])
-          tcore_powerbank();
-      }
-
-      // make some space for wires
-      translate([-filter_x / 2 - power_switch_width - 1,0,depth - 2]) {
-        cube([power_switch_width - 4,68,74]);
-      }
-    // usbc hole
-      translate([-filter_x / 2 - 17 ,filter_y / 4, filter_z + grid_z - depth * 9.5]) {
-        rotate([0,-90,0])
-          usbc_female();
-      }
-    }
-
-    local_switch();
   }
 }
 
