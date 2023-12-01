@@ -181,6 +181,13 @@ module top_spaced(
           }
         }
       }
+      // translate([-width / 2, -length / 2,z_spacing]) {
+        // local_fan(
+          // z_offset=z_offset,
+          // size=fan_diameter,
+          // depth = _depth + 5
+        // );
+      // }
     }
 
 module row_fan(fan_hole=true) {
