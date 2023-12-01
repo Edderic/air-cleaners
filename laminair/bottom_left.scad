@@ -36,13 +36,14 @@ module bottom_left(
     translate([-width / 2, -length / 2,0]) {
       fan_container(
           fan_size=fan_size,
+          filter_z=filter_z,
+          z=grid_z,
           x_spacing=x_spacing,
           y_spacing=y_spacing,
           z_spacing=z_spacing,
+          z_offset=20,
           width=width,
           length=length,
-          filter_z=filter_z,
-          z=z_outerwall_offset(),
           top_left_corner_smoothed=false,
           bottom_left_corner_smoothed=true,
           bottom_right_corner_smoothed=false,
