@@ -4,6 +4,7 @@ use <../smoothed_cube.scad>
 use <fan_filter.scad>
 use <../switch.scad>
 use <shoulder_strap_half_ring_left.scad>
+use <../shoulder_strap_half_ring.scad>
 use <methods.scad>
 
 depth = get_wall_depth();
@@ -27,19 +28,35 @@ y_spacing = get_fan_to_wall_spacing_dim()[1];
 z_spacing = get_fan_to_wall_spacing_dim()[2];
 
 power_switch_width = get_tcore_powerbank_z() + 3;
+ps_width = power_switch_width(filter_z, grid_z, depth, side_length);
+switch_length = power_switch_length(filter_y, depth);
+function power_switch_length(filter_y, depth) = filter_y / 2 + depth;
 
-module power_switch_screw_bottom() {
-  translate([0,4,0]) {
-    mirror([0,1,0]) power_switch_screw_top(screw=false);
+module power_switch_screw_bottom(screw=false) {
+  translate([0,16 - switch_length, (screwable_width() + 2) / 2 + ps_width / 2 + depth - 1.6]) {
+    mirror([0,1,0])
+    translate([0,-72,0]) {
+      battery_attachment_compound(screw=screw);
+    }
+  }
+}
+
+module battery_attachment_compound(screw) {
+  if (screw) {
+    battery_attachment(screw=true);
+  } else {
+    difference() {
+      battery_attachment(screw=false);
+      battery_attachment(screw=true);
+    }
   }
 }
 
 module power_switch_screw_top(screw=true) {
-  z_offset = 8;
-  translate([0, 2.5, z_offset + power_switch_width(filter_z, grid_z, depth, side_length) / 2]) {
-    difference() {
-      battery_attachment(screw=false);
-      battery_attachment(screw=true);
+  translate([0,-filter_y / 5,0]) {
+    z_offset = 8;
+    translate([0, 2.5, z_offset + power_switch_width(filter_z, grid_z, depth, side_length) / 2]) {
+      battery_attachment_compound(screw);
     }
   }
 }
@@ -56,16 +73,16 @@ module power_switch(
 ) {
   z = power_switch_width(filter_z, grid_z, depth, side_length);
 
+  power_switch_screw_top(screw=false);
+  power_switch_screw_bottom();
   translate([0,-filter_y / 5,0]) {
-    power_switch_screw_top(screw=false);
-    power_switch_screw_bottom();
 
     difference() {
       translate([-depth - power_switch_width - filter_x / 2, -filter_y / 4, side_length]) {
         color([1,0,0])
           smoothed_cube(
               x=power_switch_width,
-              y=filter_y / 2 + depth,
+              y=switch_length,
               z=z,
               radius_1=5,
               edge_1_2_radius=5,
