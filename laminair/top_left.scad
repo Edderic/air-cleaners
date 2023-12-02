@@ -66,8 +66,10 @@ module top_left(
           right_screw_hole=true,
           long_wall="top-left",
           width=width,
-          length=length
-            );
+          length=length,
+          top_left_x_stabilizer="p1",
+          bottom_right_x_stabilizer="p2"
+        );
     }
     union() {
       mirror([1,0,0])
@@ -79,10 +81,6 @@ module top_left(
             );
       power_switch_screw_top();
     }
-  }
-
-  translate([0,0,-15]) {
-    top_screw_join(part="p1");
   }
 
   rotate([0,0,90])
