@@ -2,6 +2,7 @@ use <../row_fan.scad>
 use <../builder.scad>
 use <../../screw_with_nut.scad>
 use <../../usbc_female.scad>
+use <../../laminair/filter_louvers_container.scad>
 // Lennox Model HCF14-13
 // Replaces Filter Parn No. 19L14
 
