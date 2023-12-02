@@ -1,6 +1,7 @@
 use <../cr_boxes/three_by_three/fan_container.scad>
 use <../shoulder_strap_half_ring.scad>
 use <shoulder_strap_half_ring_left.scad>
+use <methods.scad>
 
 
 
@@ -8,21 +9,22 @@ use <shoulder_strap_half_ring_left.scad>
 // filter_y = 286 + depth * 2; // millimeters
 // filter_z = 37; // millimeters
 
-depth = 5;
-// SmartAir S
-filter_x = 10.5 * 25.4; // millimeters
-filter_y = 10.5 * 25.4 ; // millimeters
-filter_z = 2 * 25.4; // millimeters
-grid_z=27 * 1.25;
-num_fan_rows = 2;
-num_fan_cols = 2;
-width = get_width(filter_x, depth, num_fan_rows);
-length = get_length(filter_y, depth, num_fan_cols);
-fan_diameter = 120;
+depth = get_wall_depth();
 
-x_spacing = get_x_spacing(width, fan_diameter);
-y_spacing = get_y_spacing(length, fan_diameter);
-z_spacing = grid_z + 14;
+// SmartAir S
+filter_x = get_filter_dim()[0];
+filter_y = get_filter_dim()[1];
+filter_z = get_filter_dim()[2];
+grid_z=get_grid_z();
+num_fan_rows = get_num_fan_enclosure_dim()[0];
+num_fan_cols = get_num_fan_enclosure_dim()[1];
+width = get_fan_enclosure_width();
+length = get_fan_enclosure_length();
+fan_diameter = get_fan_diameter();
+
+x_spacing = get_fan_to_wall_spacing_dim()[0];
+y_spacing = get_fan_to_wall_spacing_dim()[1];
+z_spacing = get_fan_to_wall_spacing_dim()[2];
 
 
 module top_right(
@@ -47,8 +49,7 @@ module top_right(
           x_spacing=x_spacing,
           y_spacing=y_spacing,
           z_spacing=z_spacing,
-          width=width,
-          length=length,
+          z_offset=20,
           top_left_corner_smoothed=false,
           bottom_left_corner_smoothed=false,
           bottom_right_corner_smoothed=false,
@@ -61,11 +62,17 @@ module top_right(
           edge_top_right_smoothed=true,
           edge_bottom_left_smoothed=false,
           edge_bottom_right_smoothed=false,
+          bottom_right_zip_tie_hole=true,
+          bottom_left_zip_tie_hole=true,
           top_screw_hole=false,
           left_screw_hole=true,
           bottom_screw_hole=true,
           right_screw_hole=false,
-          long_wall="top-right"
+          long_wall="top-right",
+          width=width,
+          length=length,
+          top_right_x_stabilizer="p2",
+          bottom_left_x_stabilizer="p1"
             );
     }
 
