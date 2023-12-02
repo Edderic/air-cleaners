@@ -1,7 +1,9 @@
 use <../cr_boxes/three_by_three/fan_container.scad>
 use <shoulder_strap_half_ring_left.scad>
 use <fan_filter.scad>
+use <filter_louvers_container.scad>
 use <methods.scad>
+use <power_switch.scad>
 
 depth = get_wall_depth();
 
@@ -75,14 +77,18 @@ module top_left(
             filter_z,
             grid_z
             );
-      translate([0,-filter_y / 5,0]) {
-        battery_attachment(screw=true);
-      }
+      power_switch_screw_top();
     }
   }
-      // translate([0,-filter_y / 5,0]) {
-        // battery_attachment(screw=true);
-      // }
+
+  translate([0,0,-15]) {
+    top_screw_join(part="p1");
+  }
+
+  rotate([0,0,90])
+  translate([0,0,-15]) {
+    top_screw_join(part="p2");
+  }
 }
 
 
