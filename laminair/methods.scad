@@ -33,3 +33,6 @@ function get_fan_to_wall_spacing_dim() = [
   get_grid_z() + 25
 ];
 function z_outerwall_offset() = 27 * 1.25;
+
+function get_square_side_length() = 8;
+

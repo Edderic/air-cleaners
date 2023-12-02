@@ -27,25 +27,29 @@ z_spacing = get_fan_to_wall_spacing_dim()[2];
 
 power_switch_width = get_tcore_powerbank_z() + 3;
 
+function power_switch_width(filter_z, grid_z, depth, side_length) = filter_z + grid_z - depth - side_length;
+
 module power_switch(
   depth,
   filter_x,
   filter_y,
   filter_z,
-  grid_z
+  grid_z,
+  side_length=8
 ) {
+  z = power_switch_width(filter_z, grid_z, depth, side_length);
+
   translate([0,-filter_y / 5,0]) {
     power_switch_screw_top(screw=false);
     power_switch_screw_bottom();
 
-
     difference() {
-      translate([-depth - power_switch_width - filter_x / 2, -filter_y / 4,0]) {
+      translate([-depth - power_switch_width - filter_x / 2, -filter_y / 4, side_length]) {
         color([0,0,1])
           smoothed_cube(
               x=power_switch_width,
               y=filter_y / 2 + depth,
-              z=filter_z + grid_z - depth,
+              z=z,
               radius_1=5,
               edge_1_2_radius=5,
               edge_4_1_radius=5,
@@ -57,14 +61,14 @@ module power_switch(
       }
       union() {
 
-        translate([-filter_x / 2 - depth,depth * 2,depth]) {
+        translate([-filter_x / 2 - depth,depth * 2, get_square_side_length() + (z  - get_tcore_powerbank_x()) / 2]) {
           rotate([0,-90,0])
             rotate([0,0,-90])
             tcore_powerbank();
         }
 
         // make some space for wires
-        translate([-filter_x / 2 - power_switch_width - 1,0,depth - 2]) {
+        translate([-filter_x / 2 - power_switch_width - 1,0,get_square_side_length() + (z - 74) / 2]) {
           cube([power_switch_width - 4,68,74]);
         }
         // usbc hole
@@ -74,13 +78,21 @@ module power_switch(
         }
       }
 
-      local_switch();
+      local_switch(filter_x, power_switch_width=z);
     }
+    local_switch(filter_x, power_switch_width=z);
   }
 }
 
-module local_switch() {
-  translate([-filter_x / 2 - get_switch_y() -  power_switch_width + 24, 30,get_switch_x() + 1.75 *  depth]) {
+module local_switch(
+  filter_x,
+  power_switch_width,
+) {
+  translate([
+      -filter_x / 2 - get_switch_y() -8,
+      30,
+      get_switch_x() + get_square_side_length() + (power_switch_width - get_switch_x()) / 2
+  ]) {
     rotate([0,90,0])
     switch();
   }
