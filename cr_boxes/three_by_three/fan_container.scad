@@ -58,13 +58,13 @@ module top_right_zip_tie_hole(filter_x, filter_y, filter_z, depth) {
 }
 
 module bottom_right_zip_tie_hole(filter_x, filter_y, filter_z, depth) {
-  translate([-filter_x / 10,-filter_y / 8 - depth,filter_z + 4.5]) {
+  translate([-filter_x / 10,-filter_y / 8 - 2 * depth,filter_z + 4.5]) {
     usbc_female();
   }
 }
 
 module bottom_left_zip_tie_hole(filter_x, filter_y, filter_z, depth) {
-  translate([filter_x / 10,-filter_y / 8 - depth,filter_z + 4.5]) {
+  translate([filter_x / 10,-filter_y / 8 - 2* depth,filter_z + 4.5]) {
     usbc_female();
   }
 }
