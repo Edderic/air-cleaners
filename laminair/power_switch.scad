@@ -20,12 +20,29 @@ num_fan_cols = get_num_fan_enclosure_dim()[1];
 width = get_fan_enclosure_width();
 length = get_fan_enclosure_length();
 fan_diameter = get_fan_diameter();
+side_length = get_square_side_length();
 
 x_spacing = get_fan_to_wall_spacing_dim()[0];
 y_spacing = get_fan_to_wall_spacing_dim()[1];
 z_spacing = get_fan_to_wall_spacing_dim()[2];
 
 power_switch_width = get_tcore_powerbank_z() + 3;
+
+module power_switch_screw_bottom() {
+  translate([0,4,0]) {
+    mirror([0,1,0]) power_switch_screw_top(screw=false);
+  }
+}
+
+module power_switch_screw_top(screw=true) {
+  z_offset = 8;
+  translate([0, 2.5, z_offset + power_switch_width(filter_z, grid_z, depth, side_length) / 2]) {
+    difference() {
+      battery_attachment(screw=false);
+      battery_attachment(screw=true);
+    }
+  }
+}
 
 function power_switch_width(filter_z, grid_z, depth, side_length) = filter_z + grid_z - depth - side_length;
 
@@ -45,7 +62,7 @@ module power_switch(
 
     difference() {
       translate([-depth - power_switch_width - filter_x / 2, -filter_y / 4, side_length]) {
-        color([0,0,1])
+        color([1,0,0])
           smoothed_cube(
               x=power_switch_width,
               y=filter_y / 2 + depth,
@@ -53,10 +70,16 @@ module power_switch(
               radius_1=5,
               edge_1_2_radius=5,
               edge_4_1_radius=5,
+              radius_2=5,
+              edge_2_3_radius=5,
+              edge_2_6_radius=5,
               edge_1_5_radius=5,
               radius_5=5,
               edge_5_6_radius=5,
-              edge_8_5_radius=5
+              edge_6_7_radius=5,
+              edge_8_5_radius=5,
+              radius_6=5
+
               );
       }
       union() {
@@ -72,7 +95,7 @@ module power_switch(
           cube([power_switch_width - 4,68,74]);
         }
         // usbc hole
-        translate([-filter_x / 2 - 17 ,filter_y / 4, filter_z + grid_z - depth * 9.5]) {
+        translate([-filter_x / 2 - 17 ,filter_y / 4, 5 + z / 2]) {
           rotate([0,-90,0])
             usbc_female();
         }
@@ -80,7 +103,7 @@ module power_switch(
 
       local_switch(filter_x, power_switch_width=z);
     }
-    local_switch(filter_x, power_switch_width=z);
+    // local_switch(filter_x, power_switch_width=z);
   }
 }
 
