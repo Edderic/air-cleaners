@@ -4,10 +4,12 @@ use <shoulder_strap_support_screws.scad>
 
 $fn = 200;
 
+function screwable_width() = 5;
+
 module screwable(x=15) {
     smoothed_cube(
       x=x,
-      y=5,
+      y=screwable_width(),
       z=10,
 
       radius_1=2,

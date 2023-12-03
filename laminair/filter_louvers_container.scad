@@ -25,9 +25,8 @@ function get_louver_radius() = louver_radius;
 louver_z = 7;
 louver_z_start = 3;
 
-threaded_height = 10;
+threaded_height = 8;
 square_side = 8;
-function get_square_side_length() = 8;
 
 // louver cylinder back
 module louver_cylinder_back(front_cover_z, filter_x_effective, height, radius = 1.5) {
@@ -135,10 +134,10 @@ module filter_louvers_container() {
 }
 
 // screw
-module screw() {
+module screw(threaded_height=8) {
     rotate([0,180,0])
       color([0,1,0])
-    screw_with_nut(threaded_height=threaded_height, nut_type="None");
+    screw_with_nut(threaded_height=threaded_height, nut_type="hex");
 }
 module right_screw() {
   translate([filter_x / 2 - 2.5,0,filter_z - filter_z_offset - threaded_height]) {
@@ -168,35 +167,85 @@ module top_right_screw() {
 // mirror([1,1,0]) top_right_screw();
 
 
-module screw_join() {
-  translate([0,0,0]) {
-    rotate([-90,0,0])
-      rotate([0,-90,0])
-      rotate([0,0,90])
+module screw_join_p1(side=10, threaded_height=10, screw_head_height = 0) {
+  height = threaded_height + screw_head_height;
+
+  // difference() {
       difference() {
-        translate([-square_side / 2,-square_side / 2,-threaded_height - 2]) {
+        translate([-side / 2,-side / 2,-height / 2]) {
           smoothed_cube(
-              x=square_side,
-              y=square_side,
-              z=threaded_height + 2,
-              edge_1_2_radius=square_side / 2
+              x=side,
+              y=side,
+              z=height,
+              edge_1_2_radius=side / 2
               );
         }
-        screw();
+        union() {
+          translate([0,0,6]) {
+            screw();
+          }
+          translate([-side / 2,-side / 2,-height]) {
+            color([0,1,0])
+              smoothed_cube(
+                  x=side,
+                  y=side,
+                  z=height,
+                  edge_1_2_radius=side / 2
+                  );
+          }
+        }
       }
+}
 
+module screw_join_p2(side=10, threaded_height=10, screw_head_height = 0) {
+  height = threaded_height + screw_head_height;
+
+  // difference() {
+      difference() {
+        translate([-side / 2,-side / 2,-height / 2]) {
+          smoothed_cube(
+              x=side,
+              y=side,
+              z=height,
+              edge_1_2_radius=side / 2
+              );
+        }
+        union() {
+          translate([0,0,6]) {
+            screw();
+          }
+          translate([-side / 2,-side / 2,0]) {
+            color([0,1,0])
+              smoothed_cube(
+                  x=side,
+                  y=side,
+                  z=height,
+                  edge_1_2_radius=side / 2
+                  );
+          }
+        }
+      }
+}
+
+
+module screw_join(side=10, part="p1") {
+  if (part=="p1") {
+    screw_join_p1(side);
+  } else {
+    screw_join_p2(side);
   }
 }
 
-module top_screw_join() {
+
+module top_screw_join(z_offset = 1, x_offset=-2, part="p1") {
   translate(
     [
-      (-threaded_height-2) / 2,
+      (-threaded_height) / 2 + x_offset,
       filter_y / 2 + square_side,
-      front_cover_z + square_side / 2
+      front_cover_z + square_side / 2 + z_offset
     ]
   ) {
-    screw_join();
+    screw_join(part=part);
   }
 
 }

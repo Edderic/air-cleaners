@@ -39,9 +39,12 @@ module bottom_right(
           x_spacing=x_spacing,
           y_spacing=y_spacing,
           z_spacing=z_spacing,
+          z_offset=20,
           width=width,
           length=length,
           filter_z=filter_z,
+          filter_x=filter_x,
+          filter_y=filter_y,
           z=grid_z,
           top_left_corner_smoothed=false,
           bottom_left_corner_smoothed=false,
@@ -59,7 +62,11 @@ module bottom_right(
           left_screw_hole=true,
           bottom_screw_hole=false,
           right_screw_hole=false,
-          long_wall="bottom-right"
+          long_wall="bottom-right",
+          bottom_right_stabilizer="p1",
+          bottom_right_stabilizer_axis="horizontal",
+          top_left_stabilizer="p2",
+          top_left_stabilizer_axis="vertical"
             );
     }
   }

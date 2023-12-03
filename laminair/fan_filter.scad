@@ -74,29 +74,18 @@ module filter_offset() {
   }
 }
 
-// filter_offset();
-
-module power_switch_screw_bottom() {
-  translate([0,4,0]) {
-    mirror([0,1,0]) power_switch_screw_top(screw=false);
+module battery_attachment(
+    screw,
+    filter_x=filter_x,
+    filter_y=filter_y,
+    filter_z=filter_z,
+    depth=depth,
+    threaded_height=7
+) {
+  translate([-filter_x / 2 - 2 * depth,filter_y / 4 +9, 0]) {
+    screwable_and_screw(threaded_height=threaded_height, screw=screw, screwable=!screw);
   }
 }
-
-
-module battery_attachment(screw) {
-  translate([-filter_x / 2 - 2 * depth,filter_y / 4 +9 , filter_z / 2 + depth]) {
-    screwable_and_screw(threaded_height=7, screw=screw, screwable=!screw);
-  }
-
-}
-
-module power_switch_screw_top(screw=true) {
-  difference() {
-    battery_attachment(screw=false);
-    battery_attachment(screw=true);
-  }
-}
-
 
 module screwable_and_screw(screw=true, screwable=true, threaded_height=8) {
   if (screw) {
@@ -126,19 +115,7 @@ module screwable_and_screw(screw=true, screwable=true, threaded_height=8) {
   // fan_diameter
 // );
 
-bottom_left(
-  width,
-  length,
-  filter_x,
-  filter_y,
-  filter_z,
-  grid_z,
-  x_spacing,
-  y_spacing,
-  z_spacing,
-  fan_size=fan_diameter
-);
-// bottom_right(
+// bottom_left(
   // width,
   // length,
   // filter_x,
@@ -148,10 +125,9 @@ bottom_left(
   // x_spacing,
   // y_spacing,
   // z_spacing,
-  // fan_diameter
+  // fan_size=fan_diameter
 // );
-
-top_left(
+bottom_right(
   width,
   length,
   filter_x,
@@ -164,13 +140,26 @@ top_left(
   fan_diameter
 );
 
-power_switch(
-  depth,
-  filter_x,
-  filter_y,
-  filter_z,
-  grid_z
-);
+// top_left(
+  // width,
+  // length,
+  // filter_x,
+  // filter_y,
+  // filter_z,
+  // grid_z,
+  // x_spacing,
+  // y_spacing,
+  // z_spacing,
+  // fan_diameter
+// );
+
+// power_switch(
+  // depth,
+  // filter_x,
+  // filter_y,
+  // filter_z,
+  // grid_z
+// );
 
 // }
 // translate([0,-52,-2]) {
