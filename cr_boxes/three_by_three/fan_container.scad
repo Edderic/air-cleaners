@@ -26,6 +26,7 @@ length = get_length(filter_y, depth, num_fan_cols);
 x_spacing = get_x_spacing(width, fan_diameter);
 y_spacing = get_y_spacing(length, fan_diameter);
 threaded_height = 8;
+cone_top_radius = 8;
 
 function get_filter_dim() = [filter_x, filter_y, filter_z];
 function get_grid_z() = grid_z;
@@ -115,10 +116,26 @@ module fan_container(
   bottom_right_stabilizer_axis="horizontal",
   bottom_left_stabilizer_axis="horizontal",
   top_left_stabilizer_axis="vertical",
-  top_right_stabilizer_axis="vertical"
+  top_right_stabilizer_axis="vertical",
+  northeast_foot=false,
+  southeast_foot=false,
+  northwest_foot=false,
+  southwest_foot=false
 ) {
 
-  foot();
+  if (northeast_foot) {
+    northeast_foot(z=filter_z, fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw);
+  }
+  if (northwest_foot) {
+    northwest_foot(z=filter_z, fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw);
+  }
+  if (southeast_foot) {
+    southeast_foot(fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw);
+  }
+  if (southwest_foot) {
+    southwest_foot(fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw);
+  }
+
   difference() {
     union() {
 
@@ -279,24 +296,44 @@ module right_screw_and_nut(length, width, grid_z, threaded_height, filter_z) {
   }
 }
 
-module cone(width=5, height=10) {
+module cone(width=5, height=10, cone_top_radius=cone_top_radius) {
   rotate_extrude(convexity=10, angle=360)
-    polygon([[0,0], [width,0], [width + 3, height], [0,height]]);
+    polygon([[0,0], [width,0], [cone_top_radius, height], [0,height]]);
 
 }
 
-module foot(fan_size=120) {
-    rotate([-90,0,0])
-    difference() {
+module foot(fan_size=120, screw=false) {
+  if (screw) {
+    rotate([-90,0,0]) screw_with_nut(nut_type="none", threaded_height=10);
+  } else {
+    rotate([-90,0,0]) difference() {
       cone();
       screw_with_nut(nut_type="none", threaded_height=10);
     }
   }
 }
 
-module northeast_foot(fan_size=fan_size, y_spacing=y_spacing) {
-  translate([-fan_size / 2,-fan_size / 2 - y_spacing - 4,  5]) {
-    foot(fan_size);
+module southeast_foot(fan_size=120, y_spacing=y_spacing, height=10, cone_top_radius=8, screw=false) {
+  translate([-fan_size / 2 + depth / 2,-fan_size / 2 - y_spacing - (height - 6), cone_top_radius]) {
+    foot(fan_size, screw=screw);
+  }
+}
+
+module southwest_foot(fan_size=120, y_spacing=y_spacing, height=10, cone_top_radius=8, screw=false) {
+  translate([fan_size - depth,0,0]) {
+    southeast_foot(fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw);
+  }
+}
+
+module northeast_foot(z, fan_size=120, y_spacing=y_spacing, height=10, cone_top_radius=8, screw=false, depth=5) {
+  translate([0,0,z - depth]) {
+    southeast_foot(fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw);
+  }
+}
+
+module northwest_foot(z, fan_size=120, x_spacing=x_spacing, y_spacing=y_spacing, height=10, cone_top_radius=8, screw=false, depth=5) {
+  translate([fan_size - depth,0,0]) {
+    northeast_foot(z, fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw, depth=depth);
   }
 }
 
