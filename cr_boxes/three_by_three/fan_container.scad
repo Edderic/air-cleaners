@@ -118,6 +118,7 @@ module fan_container(
   top_right_stabilizer_axis="vertical"
 ) {
 
+  foot();
   difference() {
     union() {
 
@@ -232,8 +233,14 @@ module fan_container(
 
     }
   }
-  // if (bottom_left_stabilizer != "none" && bottom_left_stabilizer_axis == "vertical") {
-  // }
+
+  if (bottom_left_stabilizer != "none" && bottom_left_stabilizer_axis == "vertical") {
+    translate([fan_size / 2 + x_spacing + depth ,-fan_size/2 - y_spacing , side / 2]) {
+      rotate([0,0,90])
+      rotate([0,90,0])
+          screw_join_p1();
+    }
+  }
 
 }
 
