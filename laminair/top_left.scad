@@ -67,7 +67,7 @@ module top_left(
           long_wall="top-left",
           width=width,
           length=length,
-          top_left_x_stabilizer="p1"
+          top_left_stabilizer="p1"
         );
     }
     union() {

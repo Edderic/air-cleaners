@@ -71,8 +71,10 @@ module top_right(
           long_wall="top-right",
           width=width,
           length=length,
-          top_right_x_stabilizer="p2",
-          bottom_left_x_stabilizer="p1"
+          top_right_stabilizer="p1",
+          top_right_stabilizer_axis="horizontal",
+          bottom_left_stabilizer="p1",
+          bottom_left_stabilizer_axis="vertical"
             );
     }
 
