@@ -120,21 +120,11 @@ module fan_container(
   northeast_foot=false,
   southeast_foot=false,
   northwest_foot=false,
-  southwest_foot=false
-) {
+  southwest_foot=false,
+  cone_top_radius=10
 
-  if (northeast_foot) {
-    northeast_foot(z=filter_z, fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw);
-  }
-  if (northwest_foot) {
-    northwest_foot(z=filter_z, fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw);
-  }
-  if (southeast_foot) {
-    southeast_foot(fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw);
-  }
-  if (southwest_foot) {
-    southwest_foot(fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw);
-  }
+) {
+  height = 10;
 
   difference() {
     union() {
@@ -212,6 +202,20 @@ module fan_container(
             );
 
       }
+
+      if (northeast_foot) {
+        northeast_foot(z=filter_z, fan_size=fan_size, y_spacing=y_spacing, cone_top_radius=cone_top_radius, screw=true, height=height);
+      }
+      if (northwest_foot) {
+        northwest_foot(z=filter_z, fan_size=fan_size, y_spacing=y_spacing, cone_top_radius=cone_top_radius, screw=true, height=height);
+      }
+      if (southeast_foot) {
+        southeast_foot(fan_size=fan_size, y_spacing=y_spacing, cone_top_radius=cone_top_radius, screw=true, height=height);
+      }
+      if (southwest_foot) {
+        southwest_foot(fan_size=fan_size, y_spacing=y_spacing, cone_top_radius=cone_top_radius, screw=true, height=height);
+      }
+
       wall_remover(long_wall, width, length, filter_z, z);
     }
   }
@@ -302,20 +306,20 @@ module cone(width=5, height=10, cone_top_radius=cone_top_radius) {
 
 }
 
-module foot(fan_size=120, screw=false) {
+module foot(fan_size=120, screw=false, height=10) {
   if (screw) {
     rotate([-90,0,0]) screw_with_nut(nut_type="none", threaded_height=10);
   } else {
     rotate([-90,0,0]) difference() {
-      cone();
+      cone(height=height);
       screw_with_nut(nut_type="none", threaded_height=10);
     }
   }
 }
 
 module southeast_foot(fan_size=120, y_spacing=y_spacing, height=10, cone_top_radius=8, screw=false) {
-  translate([-fan_size / 2 + depth / 2,-fan_size / 2 - y_spacing - (height - 6), cone_top_radius]) {
-    foot(fan_size, screw=screw);
+  translate([-fan_size / 2 + depth / 2,-fan_size / 2 - y_spacing - (height), cone_top_radius]) {
+    foot(fan_size, screw=screw, height=height);
   }
 }
 

@@ -66,8 +66,10 @@ module bottom_right(
           bottom_right_stabilizer="p1",
           bottom_right_stabilizer_axis="horizontal",
           top_left_stabilizer="p2",
-          top_left_stabilizer_axis="vertical"
-            );
+          top_left_stabilizer_axis="vertical",
+          northwest_foot=true,
+          southwest_foot=true
+        );
     }
   }
 }
