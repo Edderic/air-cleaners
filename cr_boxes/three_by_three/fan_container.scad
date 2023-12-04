@@ -279,6 +279,29 @@ module right_screw_and_nut(length, width, grid_z, threaded_height, filter_z) {
   }
 }
 
+module cone(width=5, height=10) {
+  rotate_extrude(convexity=10, angle=360)
+    polygon([[0,0], [width,0], [width + 3, height], [0,height]]);
+
+}
+
+module foot(fan_size=120) {
+    rotate([-90,0,0])
+    difference() {
+      cone();
+      screw_with_nut(nut_type="none", threaded_height=10);
+    }
+  }
+}
+
+module northeast_foot(fan_size=fan_size, y_spacing=y_spacing) {
+  translate([-fan_size / 2,-fan_size / 2 - y_spacing - 4,  5]) {
+    foot(fan_size);
+  }
+}
+
+
+
 fan_container(
   filter_z=filter_z,
   z=grid_z,
