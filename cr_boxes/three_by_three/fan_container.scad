@@ -46,28 +46,26 @@ module wall_remover(long_wall, width, length, filter_z, z) {
 
 }
 
-module top_left_zip_tie_hole(filter_x, filter_y, filter_z, depth) {
-  translate([filter_x / 10,filter_y / 8 - depth,filter_z + 4.5]) {
+module top_left_zip_tie_hole(z_offset, depth, fan_size) {
+  translate([fan_size / 2 - 2 * depth, fan_size / 2 - depth, z_offset + 5]) {
     usbc_female();
   }
 }
 
-module top_right_zip_tie_hole(filter_x, filter_y, filter_z, depth) {
-  translate([-filter_x / 10,filter_y / 8 - depth,filter_z + 4.5]) {
-    usbc_female();
-  }
+module top_right_zip_tie_hole(z_offset, depth, fan_size) {
+  mirror([1,0,0])
+    top_left_zip_tie_hole(z_offset, depth, fan_size);
 }
 
-module bottom_right_zip_tie_hole(filter_x, filter_y, filter_z, depth) {
-  translate([-filter_x / 10,-filter_y / 8 - 2 * depth,filter_z + 4.5]) {
-    usbc_female();
-  }
+module bottom_right_zip_tie_hole(z_offset, fan_size, depth) {
+  mirror([1,0,0])
+  mirror([0,1,0])
+  top_left_zip_tie_hole(z_offset, depth, fan_size);
 }
 
-module bottom_left_zip_tie_hole(filter_x, filter_y, filter_z, depth) {
-  translate([filter_x / 10,-filter_y / 8 - 2* depth,filter_z + 4.5]) {
-    usbc_female();
-  }
+module bottom_left_zip_tie_hole(z_offset, fan_size, depth) {
+  mirror([0,1,0])
+  top_left_zip_tie_hole(z_offset, depth, fan_size);
 }
 
 module fan_container(
@@ -125,6 +123,10 @@ module fan_container(
 
 ) {
   height = 10;
+  side = 10;
+  threaded_height = 8;
+  stabilizer_height = threaded_height + 2;
+
 
   difference() {
     union() {
@@ -159,20 +161,21 @@ module fan_container(
         }
     }
     union() {
+      top_left_zip_tie_hole(fan_size=fan_size, z_offset=z_offset, depth=depth);
+      if (top_left_zip_tie_hole) {
+        top_left_zip_tie_hole(fan_size=fan_size, z_offset=z_offset, depth=depth);
+      }
+
       if (bottom_right_zip_tie_hole) {
-        bottom_right_zip_tie_hole(filter_x, filter_y, filter_z, depth);
+        bottom_right_zip_tie_hole(fan_size=fan_size, z_offset=filter_z, depth=depth);
       }
 
       if (bottom_left_zip_tie_hole) {
-        bottom_left_zip_tie_hole(filter_x, filter_y, filter_z, depth);
+        bottom_left_zip_tie_hole(fan_size=fan_size, z_offset=filter_z, depth=depth);
       }
 
       if (top_right_zip_tie_hole) {
-        top_right_zip_tie_hole(filter_x, filter_y, filter_z, depth);
-      }
-
-      if (top_left_zip_tie_hole) {
-        top_left_zip_tie_hole(filter_x, filter_y, filter_z, depth);
+        top_right_zip_tie_hole(fan_size=fan_size, z_offset=filter_z, depth=depth);
       }
 
       if (top_screw_hole) {
@@ -219,15 +222,14 @@ module fan_container(
       wall_remover(long_wall, width, length, filter_z, z);
     }
   }
-
-  side = 10;
-  threaded_height = 8;
-  stabilizer_height = threaded_height + 2;
+  // top_left_zip_tie_hole(fan_size=fan_size, z_offset=filter_z, depth=depth);
+  // top_right_zip_tie_hole(fan_size=fan_size, z_offset=filter_z, depth=depth);
+  // bottom_left_zip_tie_hole(fan_size=fan_size, z_offset=filter_z, depth=depth);
+  // bottom_right_zip_tie_hole(fan_size=fan_size, z_offset=filter_z, depth=depth);
 
   if (bottom_right_stabilizer != "none" && bottom_right_stabilizer_axis == "horizontal") {
     translate([-fan_size / 2 - x_spacing,-fan_size / 2 - depth - y_spacing, side / 2]) {
       if (bottom_right_stabilizer == "p1") {
-
         rotate([0,90,0])
           screw_join_p1();
       } else {
@@ -236,15 +238,30 @@ module fan_container(
     }
    }
 
+  if (bottom_right_stabilizer != "none" && bottom_right_stabilizer_axis == "vertical") {
+    translate([-fan_size / 2 - x_spacing - side/2,-fan_size / 2 - y_spacing, side / 2]) {
+
+        rotate([90,0,0])
+        rotate([0,0,-90])
+          screw_join_p2();
+    }
+   }
   if (top_left_stabilizer != "none" && top_left_stabilizer_axis == "vertical") {
-
     translate([fan_size / 2 + x_spacing + side / 2 ,fan_size / 2 + stabilizer_height / 2- depth + y_spacing,side / 2]) {
-
       rotate([0,0,90])
       rotate([0,90,0])
           screw_join_p2();
     }
   }
+
+  if (top_left_stabilizer != "none" && top_left_stabilizer_axis == "horizontal") {
+    translate([fan_size / 2 + x_spacing,fan_size / 2 + y_spacing + side / 2,side / 2]) {
+      rotate([180,0,0])
+      rotate([0,-90,0])
+          screw_join_p1();
+    }
+  }
+
 
   if (top_right_stabilizer != "none" && top_right_stabilizer_axis == "horizontal") {
     translate([-(fan_size + side) / 2 - depth + 1,(fan_size + side) / 2 + y_spacing, side / 2]) {
@@ -262,7 +279,12 @@ module fan_container(
           screw_join_p1();
     }
   }
-
+  if (bottom_left_stabilizer != "none" && bottom_left_stabilizer_axis == "horizontal") {
+    translate([-fan_size / 2 - x_spacing - side /2 , fan_size / 2 + y_spacing, side / 2]) {
+      rotate([-90,0,0])
+          screw_join_p2();
+    }
+  }
 }
 
 module top_screw_and_nut(length, filter_z) {
