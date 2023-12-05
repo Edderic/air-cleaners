@@ -68,7 +68,9 @@ module bottom_right(
           top_left_stabilizer="p2",
           top_left_stabilizer_axis="vertical",
           northwest_foot=true,
-          southwest_foot=true
+          southwest_foot=true,
+          top_left_zip_tie_hole=true,
+          top_right_zip_tie_hole=true
         );
     }
   }

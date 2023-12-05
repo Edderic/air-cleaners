@@ -1,6 +1,9 @@
 use <../cr_boxes/three_by_three/fan_container.scad>
 use <fan_filter.scad>
 use <methods.scad>
+use <power_switch.scad>
+
+$fn = 100;
 
 depth = get_wall_depth();
 
@@ -62,7 +65,13 @@ module bottom_left(
           right_screw_hole=true,
           long_wall="bottom-left",
           width=width,
-          length=length
+          length=length,
+          top_right_stabilizer="p2",
+          top_right_stabilizer_axis="vertical",
+          bottom_left_stabilizer="p2",
+          bottom_left_stabilizer_axis="horizontal",
+          northeast_foot=true,
+          southeast_foot=true
             );
     }
     union() {
@@ -70,13 +79,14 @@ module bottom_left(
       // hole for wiring
       translate([-filter_x/2,-2, (filter_z + grid_z) / 2]) {
         rotate([0,-90,0])
-          cylinder(h=depth, r=2);
+          cylinder(h=depth * 2, r=2.5, center=true);
       }
 
 
-      translate([0,4,0]) {
-        mirror([0,1,0]) battery_attachment(screw=true);
-      }
+      power_switch_screw_bottom(screw=true);
+      // translate([0,4,0]) {
+        // mirror([0,1,0]) battery_attachment(screw=true);
+      // }
     }
   }
 }
