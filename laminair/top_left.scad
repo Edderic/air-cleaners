@@ -67,7 +67,10 @@ module top_left(
           long_wall="top-left",
           width=width,
           length=length,
-          top_left_stabilizer="p1"
+          top_left_stabilizer="p1",
+          top_left_stabilizer_axis="horizontal",
+          bottom_right_stabilizer="p2",
+          bottom_right_stabilizer_axis="vertical"
         );
     }
     union() {
@@ -80,11 +83,6 @@ module top_left(
             );
       power_switch_screw_top();
     }
-  }
-
-  rotate([0,0,90])
-  translate([0,0,-15]) {
-    top_screw_join(part="p2");
   }
 }
 
