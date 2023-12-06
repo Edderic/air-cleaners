@@ -11,6 +11,7 @@ use <../smoothed_cube.scad>
 use <../switch.scad>
 use <../usbc_female.scad>
 use <shoulder_strap_half_ring_left.scad>
+use <filter_louvers_container.scad>
 use <methods.scad>
 
 
@@ -152,8 +153,10 @@ bottom_right(
   // z_spacing,
   // fan_diameter
 // );
-//
 
+rotate([0,180,0]) {
+  filter_louvers_container();
+}
 // power_switch(
   // depth,
   // filter_x,
