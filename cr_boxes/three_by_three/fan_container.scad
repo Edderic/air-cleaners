@@ -3,6 +3,7 @@ use <../builder.scad>
 use <../../screw_with_nut.scad>
 use <../../usbc_female.scad>
 use <../../laminair/filter_louvers_container.scad>
+use <foot.scad>
 // Lennox Model HCF14-13
 // Replaces Filter Parn No. 19L14
 
@@ -66,6 +67,94 @@ module bottom_right_zip_tie_hole(z_offset, fan_size, depth) {
 module bottom_left_zip_tie_hole(z_offset, fan_size, depth) {
   mirror([0,1,0])
   top_left_zip_tie_hole(z_offset, depth, fan_size);
+}
+
+module screw_joins(
+    bottom_right_stabilizer,
+    bottom_right_stabilizer_axis,
+    top_right_stabilizer,
+    top_right_stabilizer_axis,
+    bottom_left_stabilizer,
+    bottom_left_stabilizer_axis,
+    top_left_stabilizer,
+    top_left_stabilizer_axis,
+    depth,
+    x_spacing,
+    y_spacing,
+    side,
+    fan_size
+) {
+  if (bottom_right_stabilizer != "none" && bottom_right_stabilizer_axis == "horizontal") {
+    translate([-fan_size / 2 - x_spacing,-fan_size / 2 - depth - y_spacing, side / 2]) {
+      if (bottom_right_stabilizer == "p1") {
+        rotate([0,90,0])
+          screw_join_p1();
+      } else {
+        screw_join_p2();
+      }
+    }
+   }
+
+  if (bottom_right_stabilizer != "none" && bottom_right_stabilizer_axis == "vertical") {
+    translate([-fan_size / 2 - x_spacing - side/2,-fan_size / 2 - y_spacing, side / 2]) {
+
+        rotate([90,0,0])
+        rotate([0,0,-90])
+          screw_join_p2();
+    }
+   }
+  if (top_left_stabilizer != "none" && top_left_stabilizer_axis == "vertical") {
+    translate([fan_size / 2 + x_spacing + side / 2 ,fan_size / 2 + side / 2- depth + y_spacing,side / 2]) {
+      rotate([0,0,90])
+      rotate([0,90,0])
+          screw_join_p2();
+    }
+  }
+
+  if (top_left_stabilizer != "none" && top_left_stabilizer_axis == "horizontal") {
+    translate([fan_size / 2 + x_spacing,fan_size / 2 + y_spacing + side / 2,side / 2]) {
+      rotate([180,0,0])
+      rotate([0,-90,0])
+          screw_join_p1();
+    }
+  }
+
+
+  if (top_right_stabilizer != "none" && top_right_stabilizer_axis == "horizontal") {
+    translate([-(fan_size + side) / 2 - depth + 1,(fan_size + side) / 2 + y_spacing, side / 2]) {
+      rotate([180,0,0])
+      rotate([0,-90,0])
+        screw_join_p2();
+
+    }
+  }
+
+  if (top_right_stabilizer != "none" && top_right_stabilizer_axis == "vertical") {
+    // translate([-fan_size / 2 - x_spacing - side /2 , fan_size / 2 + y_spacing, side / 2]) {
+    translate([-fan_size / 2 - x_spacing - side / 2, fan_size / 2 + y_spacing,side / 2]) {
+      rotate([-90,0,0])
+      rotate([0,0,-90])
+      rotate([0,180,0])
+            screw_join_p1();
+    }
+    // }
+  }
+
+  if (bottom_left_stabilizer != "none" && bottom_left_stabilizer_axis == "vertical") {
+    translate([fan_size / 2 + x_spacing + depth ,-fan_size/2 - y_spacing , side / 2]) {
+      rotate([0,0,90])
+      rotate([0,90,0])
+          screw_join_p1();
+    }
+  }
+
+  if (bottom_left_stabilizer != "none" && bottom_left_stabilizer_axis == "horizontal") {
+    translate([fan_size / 2 + x_spacing,-fan_size /2 - y_spacing - side / 2, side / 2]) {
+      rotate([0,90,0])
+          screw_join_p2();
+    }
+  }
+
 }
 
 module fan_container(
@@ -226,76 +315,23 @@ module fan_container(
   // bottom_left_zip_tie_hole(fan_size=fan_size, z_offset=filter_z, depth=depth);
   // bottom_right_zip_tie_hole(fan_size=fan_size, z_offset=filter_z, depth=depth);
 
-  if (bottom_right_stabilizer != "none" && bottom_right_stabilizer_axis == "horizontal") {
-    translate([-fan_size / 2 - x_spacing,-fan_size / 2 - depth - y_spacing, side / 2]) {
-      if (bottom_right_stabilizer == "p1") {
-        rotate([0,90,0])
-          screw_join_p1();
-      } else {
-        screw_join_p2();
-      }
-    }
-   }
+  screw_joins(
+    bottom_right_stabilizer=bottom_right_stabilizer,
+    bottom_right_stabilizer_axis=bottom_right_stabilizer_axis,
+    top_right_stabilizer=top_right_stabilizer,
+    top_right_stabilizer_axis=top_right_stabilizer_axis,
+    bottom_left_stabilizer=bottom_left_stabilizer,
+    bottom_left_stabilizer_axis=bottom_left_stabilizer_axis,
+    top_left_stabilizer=top_left_stabilizer,
+    top_left_stabilizer_axis=top_left_stabilizer_axis,
+    depth=depth,
+    x_spacing=x_spacing,
+    y_spacing=y_spacing,
+    side=side,
+    fan_size=fan_size
 
-  if (bottom_right_stabilizer != "none" && bottom_right_stabilizer_axis == "vertical") {
-    translate([-fan_size / 2 - x_spacing - side/2,-fan_size / 2 - y_spacing, side / 2]) {
+  );
 
-        rotate([90,0,0])
-        rotate([0,0,-90])
-          screw_join_p2();
-    }
-   }
-  if (top_left_stabilizer != "none" && top_left_stabilizer_axis == "vertical") {
-    translate([fan_size / 2 + x_spacing + side / 2 ,fan_size / 2 + stabilizer_height / 2- depth + y_spacing,side / 2]) {
-      rotate([0,0,90])
-      rotate([0,90,0])
-          screw_join_p2();
-    }
-  }
-
-  if (top_left_stabilizer != "none" && top_left_stabilizer_axis == "horizontal") {
-    translate([fan_size / 2 + x_spacing,fan_size / 2 + y_spacing + side / 2,side / 2]) {
-      rotate([180,0,0])
-      rotate([0,-90,0])
-          screw_join_p1();
-    }
-  }
-
-
-  if (top_right_stabilizer != "none" && top_right_stabilizer_axis == "horizontal") {
-    translate([-(fan_size + side) / 2 - depth + 1,(fan_size + side) / 2 + y_spacing, side / 2]) {
-      rotate([180,0,0])
-      rotate([0,-90,0])
-        screw_join_p2();
-
-    }
-  }
-
-  if (top_right_stabilizer != "none" && top_right_stabilizer_axis == "vertical") {
-    // translate([-fan_size / 2 - x_spacing - side /2 , fan_size / 2 + y_spacing, side / 2]) {
-    translate([-fan_size / 2 - x_spacing - side / 2, fan_size / 2 + y_spacing,side / 2]) {
-      rotate([-90,0,0])
-      rotate([0,0,-90])
-      rotate([0,180,0])
-            screw_join_p1();
-    }
-    // }
-  }
-
-  if (bottom_left_stabilizer != "none" && bottom_left_stabilizer_axis == "vertical") {
-    translate([fan_size / 2 + x_spacing + depth ,-fan_size/2 - y_spacing , side / 2]) {
-      rotate([0,0,90])
-      rotate([0,90,0])
-          screw_join_p1();
-    }
-  }
-
-  if (bottom_left_stabilizer != "none" && bottom_left_stabilizer_axis == "horizontal") {
-    translate([fan_size / 2 + x_spacing,-fan_size /2 - y_spacing - side / 2, side / 2]) {
-      rotate([0,90,0])
-          screw_join_p2();
-    }
-  }
 }
 
 module top_screw_and_nut(length, filter_z) {
@@ -330,23 +366,6 @@ module right_screw_and_nut(length, width, grid_z, threaded_height, filter_z) {
         filter_z=filter_z,
         depth=depth
         );
-  }
-}
-
-module cone(width=5, height=10, cone_top_radius=cone_top_radius) {
-  rotate_extrude(convexity=10, angle=360)
-    polygon([[0,0], [width,0], [cone_top_radius, height], [0,height]]);
-
-}
-
-module foot(fan_size=120, screw=false, height=10) {
-  if (screw) {
-    rotate([-90,0,0]) screw_with_nut(nut_type="none", threaded_height=10);
-  } else {
-    rotate([-90,0,0]) difference() {
-      cone(height=height);
-      screw_with_nut(nut_type="none", threaded_height=10);
-    }
   }
 }
 
