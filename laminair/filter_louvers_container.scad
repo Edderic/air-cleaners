@@ -5,7 +5,7 @@ use <../screw_with_nut.scad>
 $fn = 100;
 filter_x = get_filter_dim()[0];
 filter_y = get_filter_dim()[1];
-filter_z = get_filter_dim()[2];
+filter_z = 35;
 
 filter_effective_offset = 25.4 / 2;
 filter_x_effective = filter_x - filter_effective_offset;
@@ -17,7 +17,7 @@ function get_filter_effective_dim() = [
 
 filter_wall_depth = 2;
 horizontal_wall_depth = filter_x;
-filter_z_offset = 25.4 / 2;
+filter_z_offset = 0;
 front_cover_z = 15;
 
 louver_radius = 1.5;
@@ -67,62 +67,70 @@ module louvers(louver_z=louver_z, num_louvers = 30, radius=louver_radius) {
 }
 
 module filter_louvers_container() {
-
-  // left wall
-  translate([(-filter_x + filter_wall_depth) / 2 ,0,0]) {
-    cube([filter_wall_depth, filter_y, filter_z - filter_z_offset], center=true);
-  }
-
-  // right wall
-  translate([(-filter_wall_depth + filter_x) / 2 ,0,0]) {
-    cube([filter_wall_depth, filter_y, filter_z - filter_z_offset], center=true);
-  }
-
-  translate([0,(-filter_y + filter_wall_depth) / 2,0]) {
-    cube([filter_x, filter_wall_depth, filter_z - filter_z_offset], center=true);
-  }
+  translate([0,0,-filter_z_offset]) {
 
 
-  difference() {
-    translate([
-        -(get_wall_depth() * 2 + filter_x) / 2,
-        -(get_wall_depth() * 2 + filter_y) / 2,
-        front_cover_z]) {
-      color([1,0,0])
-        smoothed_cube(
-            x=get_wall_depth() * 2 + filter_x,
-            y=get_wall_depth() * 2 + filter_y,
-            z=front_cover_z,
-            radius_1=get_wall_depth(),
-            radius_4=get_wall_depth(),
-            radius_5=get_wall_depth(),
-            radius_8=get_wall_depth(),
-            edge_1_2_radius=get_wall_depth(),
-            edge_4_1_radius=get_wall_depth(),
-            edge_3_4_radius=get_wall_depth(),
-            edge_4_8_radius=get_wall_depth(),
-            edge_7_8_radius=get_wall_depth(),
-            edge_8_5_radius=get_wall_depth(),
-            edge_1_5_radius=get_wall_depth(),
-            edge_5_6_radius=get_wall_depth()
-            );
+    // left wall
+    translate([(-filter_x + filter_wall_depth) / 2 ,0, 0]) {
+      cube([filter_wall_depth, filter_y, filter_z - filter_z_offset], center=true);
     }
 
-    union() {
+    // right wall
+    translate([(-filter_wall_depth + filter_x) / 2 ,0,0]) {
+      cube([filter_wall_depth, filter_y, filter_z - filter_z_offset], center=true);
+    }
 
-      translate([0,0,front_cover_z + get_wall_depth() * 1.5]) {
-        color([0,0,1])
-          cube([filter_x_effective, filter_y_effective, front_cover_z + filter_wall_depth * 2], center=true);
+    // bottom wall
+    translate([0,(-filter_y + filter_wall_depth) / 2,0]) {
+      cube([filter_x, filter_wall_depth, filter_z - filter_z_offset], center=true);
+    }
+
+    // top wall
+    translate([0,filter_y / 2,0]) {
+      cube([filter_x, filter_wall_depth, filter_z - filter_z_offset], center=true);
+    }
+
+    difference() {
+      translate([
+          -(get_wall_depth() * 2 + filter_x) / 2,
+          -(get_wall_depth() * 2 + filter_y) / 2,
+          front_cover_z]) {
+        color([1,0,0])
+          smoothed_cube(
+              x=get_wall_depth() * 2 + filter_x,
+              y=get_wall_depth() * 2 + filter_y,
+              z=front_cover_z,
+              radius_1=get_wall_depth(),
+              radius_4=get_wall_depth(),
+              radius_5=get_wall_depth(),
+              radius_8=get_wall_depth(),
+              edge_1_2_radius=get_wall_depth(),
+              edge_4_1_radius=get_wall_depth(),
+              edge_3_4_radius=get_wall_depth(),
+              edge_4_8_radius=get_wall_depth(),
+              edge_7_8_radius=get_wall_depth(),
+              edge_8_5_radius=get_wall_depth(),
+              edge_1_5_radius=get_wall_depth(),
+              edge_5_6_radius=get_wall_depth()
+              );
       }
 
-      louvers(radius=louver_radius + 0.25);
-      rotate([0,0,90]) louvers(radius=louver_radius + 0.25);
+      union() {
 
-      for (x=[0:1:3]) {
-        rotate([0,0,90 * x])
-          top_bottom_mid_right_z_joins();
+        translate([0,0,front_cover_z + get_wall_depth() * 1.5]) {
+          color([0,0,1])
+            cube([filter_x_effective, filter_y_effective, front_cover_z + filter_wall_depth * 2], center=true);
+        }
+
+        louvers(radius=louver_radius + 0.25);
+        // rotate([0,0,90]) louvers(radius=louver_radius + 0.25);
+
+        for (x=[0:1:3]) {
+          rotate([0,0,90 * x])
+            top_bottom_mid_right_z_joins();
+        }
+
       }
-
     }
   }
 
@@ -131,7 +139,102 @@ module filter_louvers_container() {
   rotate([0,0,90])
     top_and_bottom_screw_join();
 
+  // screw_joins(
+    // bottom_right_stabilizer=bottom_right_stabilizer,
+    // bottom_right_stabilizer_axis=bottom_right_stabilizer_axis,
+    // top_right_stabilizer=top_right_stabilizer,
+    // top_right_stabilizer_axis=top_right_stabilizer_axis,
+    // bottom_left_stabilizer=bottom_left_stabilizer,
+    // bottom_left_stabilizer_axis=bottom_left_stabilizer_axis,
+    // top_left_stabilizer=top_left_stabilizer,
+    // top_left_stabilizer_axis=top_left_stabilizer_axis,
+    // depth=depth,
+    // x_spacing=x_spacing,
+    // y_spacing=y_spacing,
+    // side=side,
+    // fan_size=fan_size
+//
+  // );
+
 }
+
+module top_screw_and_nut(length, filter_z) {
+  screw_height = length / 2 + threaded_height -2.1;
+  translate([0, screw_height,  filter_z]) {
+    rotate([90,0,0])
+      color([0,0,1])
+      screw_with_nut(threaded_height=threaded_height);
+  }
+}
+
+module bottom_screw_and_nut(length, filter_z=filter_z) {
+  translate([0,-length,0]) {
+    top_screw_and_nut(length=length, filter_z=filter_z);
+  }
+}
+
+module left_screw_and_nut(length, width, grid_z, threaded_height, filter_z, depth=5) {
+  translate([0,0,-depth * 2]) {
+    rotate([0,0,90])
+    top_screw_and_nut(length=length, filter_z=filter_z);
+  }
+}
+
+module right_screw_and_nut(length, width, grid_z, threaded_height, filter_z) {
+  translate([width - 0.1,0,0]) {
+    left_screw_and_nut(
+        length=length,
+        width=width,
+        grid_z=grid_z,
+        threaded_height=threaded_height,
+        filter_z=filter_z,
+        depth=depth
+        );
+  }
+}
+
+module cone(width=5, height=10, cone_top_radius=cone_top_radius) {
+  rotate_extrude(convexity=10, angle=360)
+    polygon([[0,0], [width,0], [cone_top_radius, height], [0,height]]);
+
+}
+
+module foot(fan_size=120, screw=false, height=10) {
+  if (screw) {
+    rotate([-90,0,0]) screw_with_nut(nut_type="none", threaded_height=10);
+  } else {
+    rotate([-90,0,0]) difference() {
+      cone(height=height);
+      screw_with_nut(nut_type="none", threaded_height=10);
+    }
+  }
+}
+
+module southeast_foot(fan_size=120, y_spacing=y_spacing, height=10, cone_top_radius=8, screw=false) {
+  translate([-fan_size / 2 + depth / 2,-fan_size / 2 - y_spacing - (height), cone_top_radius]) {
+    foot(fan_size, screw=screw, height=height);
+  }
+}
+
+module southwest_foot(fan_size=120, y_spacing=y_spacing, height=10, cone_top_radius=8, screw=false) {
+  translate([fan_size - depth,0,0]) {
+    southeast_foot(fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw);
+  }
+}
+
+module northeast_foot(z, fan_size=120, y_spacing=y_spacing, height=10, cone_top_radius=8, screw=false, depth=5) {
+  translate([0,0,z - depth]) {
+    southeast_foot(fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw);
+  }
+}
+
+module northwest_foot(z, fan_size=120, x_spacing=x_spacing, y_spacing=y_spacing, height=10, cone_top_radius=8, screw=false, depth=5) {
+  translate([fan_size - depth,0,0]) {
+    northeast_foot(z, fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw, depth=depth);
+  }
+}
+
+
 
 // screw
 module screw(threaded_height=8) {
@@ -238,21 +341,33 @@ module screw_join(side=10, part="p1") {
 
 
 module top_screw_join(z_offset = 1, x_offset=-2, part="p1") {
-  translate(
-    [
-      (-threaded_height) / 2 + x_offset,
-      filter_y / 2 + square_side,
-      front_cover_z + square_side / 2 + z_offset
-    ]
-  ) {
-    screw_join(part=part);
+  // translate(
+    // [
+      // (-threaded_height) / 2 + x_offset,
+      // filter_y / 2 + square_side,
+      // front_cover_z + square_side / 2 + z_offset
+    // ]
+  // ) {
+
+  translate([0,filter_y / 2 + square_side + 2,2.5 * square_side - 1]) {
+    rotate([-90,0,0])
+    rotate([0,90,0])
+      screw_join(part="p1");
+  }
+
+  mirror([1,0,0])
+  translate([0,filter_y / 2 + square_side + 2,2.5 * square_side - 1]) {
+    rotate([-90,0,0])
+    rotate([0,-90,0])
+    rotate([0,0,90])
+        screw_join(part="p2");
   }
 
 }
 
-module top_and_bottom_screw_join() {
-  top_screw_join();
-  mirror([0,1,0]) top_screw_join();
+module top_and_bottom_screw_join(part="p1") {
+  top_screw_join(part=part);
+  mirror([0,1,0]) top_screw_join(part=part);
 }
 
 
