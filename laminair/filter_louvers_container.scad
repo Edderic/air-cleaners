@@ -349,14 +349,14 @@ module top_screw_join(z_offset = 1, x_offset=-2, part="p1") {
     // ]
   // ) {
 
-  translate([0,filter_y / 2 + square_side + 2,2.5 * square_side - 1]) {
+  translate([0,filter_y / 2 + square_side + 2,2.5 * square_side]) {
     rotate([-90,0,0])
     rotate([0,90,0])
       screw_join(part="p1");
   }
 
   mirror([1,0,0])
-  translate([0,filter_y / 2 + square_side + 2,2.5 * square_side - 1]) {
+  translate([0,filter_y / 2 + square_side + 2,2.5 * square_side]) {
     rotate([-90,0,0])
     rotate([0,-90,0])
     rotate([0,0,90])
@@ -384,3 +384,5 @@ module top_bottom_mid_right_z_joins() {
 
 
 filter_louvers_container();
+// top_and_bottom_screw_join(part="p1");
+
