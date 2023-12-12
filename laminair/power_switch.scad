@@ -5,6 +5,8 @@ use <fan_filter.scad>
 use <../switch.scad>
 use <shoulder_strap_half_ring_left.scad>
 use <../shoulder_strap_half_ring.scad>
+use <top_left.scad>
+use <bottom_left.scad>
 use <methods.scad>
 
 depth = get_wall_depth();
@@ -75,52 +77,84 @@ module power_switch(
 
   power_switch_screw_top(screw=false);
   power_switch_screw_bottom();
-  translate([0,-filter_y / 5,0]) {
+  difference() {
+    translate([0,-filter_y / 5,0]) {
 
-    difference() {
-      translate([-depth - power_switch_width - filter_x / 2, -filter_y / 4, side_length]) {
-        color([1,0,0])
-          smoothed_cube(
-              x=power_switch_width,
-              y=switch_length,
-              z=z,
-              radius_1=5,
-              edge_1_2_radius=5,
-              edge_4_1_radius=5,
-              radius_2=5,
-              edge_2_3_radius=5,
-              edge_2_6_radius=5,
-              edge_1_5_radius=5,
-              radius_5=5,
-              edge_5_6_radius=5,
-              edge_6_7_radius=5,
-              edge_8_5_radius=5,
-              radius_6=5
+      difference() {
+        translate([-depth - power_switch_width - filter_x / 2, -filter_y / 4, side_length]) {
+          color([1,0,0])
+            smoothed_cube(
+                x=power_switch_width,
+                y=switch_length,
+                z=z,
+                radius_1=5,
+                edge_1_2_radius=5,
+                edge_4_1_radius=5,
+                radius_2=5,
+                edge_2_3_radius=5,
+                edge_2_6_radius=5,
+                edge_1_5_radius=5,
+                radius_5=5,
+                edge_5_6_radius=5,
+                edge_6_7_radius=5,
+                edge_8_5_radius=5,
+                radius_6=5
 
-              );
+                );
+        }
+        union() {
+
+          translate([-filter_x / 2 - depth,depth * 2, get_square_side_length() + (z  - get_tcore_powerbank_x()) / 2]) {
+            rotate([0,-90,0])
+              rotate([0,0,-90])
+              tcore_powerbank();
+          }
+
+          // make some space for wires
+          translate([-filter_x / 2 - power_switch_width - 1,0,get_square_side_length() + (z - 74) / 2]) {
+            cube([power_switch_width - 4,68,74]);
+          }
+          // usbc hole
+          translate([-filter_x / 2 - 17 ,filter_y / 4, 5 + z / 2]) {
+            rotate([0,-90,0])
+              usbc_female();
+          }
+        }
+
+        local_switch(filter_x, power_switch_width=z);
+
       }
-      union() {
-
-        translate([-filter_x / 2 - depth,depth * 2, get_square_side_length() + (z  - get_tcore_powerbank_x()) / 2]) {
-          rotate([0,-90,0])
-            rotate([0,0,-90])
-            tcore_powerbank();
-        }
-
-        // make some space for wires
-        translate([-filter_x / 2 - power_switch_width - 1,0,get_square_side_length() + (z - 74) / 2]) {
-          cube([power_switch_width - 4,68,74]);
-        }
-        // usbc hole
-        translate([-filter_x / 2 - 17 ,filter_y / 4, 5 + z / 2]) {
-          rotate([0,-90,0])
-            usbc_female();
-        }
-      }
-
-      local_switch(filter_x, power_switch_width=z);
+      // local_switch(filter_x, power_switch_width=z);
     }
-    // local_switch(filter_x, power_switch_width=z);
+
+    union() {
+
+      top_left(
+        width,
+        length,
+        filter_x,
+        filter_y,
+        filter_z,
+        grid_z,
+        x_spacing,
+        y_spacing,
+        z_spacing,
+        fan_diameter
+      );
+
+      bottom_left(
+        width,
+        length,
+        filter_x,
+        filter_y,
+        filter_z,
+        grid_z,
+        x_spacing,
+        y_spacing,
+        z_spacing,
+        fan_size=fan_diameter
+      );
+    }
   }
 }
 
