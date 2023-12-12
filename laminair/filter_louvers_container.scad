@@ -127,7 +127,7 @@ module filter_louvers_container() {
             cube([filter_x_effective, filter_y_effective, front_cover_z + filter_wall_depth * 2], center=true);
         }
 
-        louvers(radius=louver_radius + 0.25);
+        louvers(radius=louver_radius + 0.125);
         // rotate([0,0,90]) louvers(radius=louver_radius + 0.25);
 
         for (x=[0:1:3]) {
