@@ -1,11 +1,15 @@
 use <methods.scad>
 use <../smoothed_cube.scad>
 use <../screw_with_nut.scad>
+use <../cone.scad>
 
 $fn = 100;
 filter_x = get_filter_dim()[0];
 filter_y = get_filter_dim()[1];
-filter_z = 35;
+filter_z = 10;
+
+filter_x_with_offset = filter_x - 0.5;
+filter_y_with_offset = filter_y - 0.5;
 
 filter_effective_offset = 25.4 / 2;
 filter_x_effective = filter_x - filter_effective_offset;
@@ -16,6 +20,8 @@ function get_filter_effective_dim() = [
 ];
 
 filter_wall_depth = 2;
+wall_offset = filter_wall_depth / 2;
+
 horizontal_wall_depth = filter_x;
 filter_z_offset = 0;
 front_cover_z = 15;
@@ -69,25 +75,24 @@ module louvers(louver_z=louver_z, num_louvers = 30, radius=louver_radius) {
 module filter_louvers_container() {
   translate([0,0,-filter_z_offset]) {
 
-
     // left wall
-    translate([(-filter_x + filter_wall_depth) / 2 ,0, 0]) {
-      cube([filter_wall_depth, filter_y, filter_z - filter_z_offset], center=true);
+    translate([-(filter_x_with_offset) /2 + wall_offset, 0, 10]) {
+      cube([filter_wall_depth, filter_y_with_offset, filter_z - filter_z_offset], center=true);
     }
 
     // right wall
-    translate([(-filter_wall_depth + filter_x) / 2 ,0,0]) {
-      cube([filter_wall_depth, filter_y, filter_z - filter_z_offset], center=true);
+    translate([-wall_offset + filter_x_with_offset / 2 ,0,10]) {
+      cube([filter_wall_depth, filter_y_with_offset, filter_z - filter_z_offset], center=true);
     }
 
     // bottom wall
-    translate([0,(-filter_y + filter_wall_depth) / 2,0]) {
-      cube([filter_x, filter_wall_depth, filter_z - filter_z_offset], center=true);
+    translate([0,-filter_y_with_offset / 2 + wall_offset,10]) {
+      cube([filter_x_with_offset, filter_wall_depth, filter_z - filter_z_offset], center=true);
     }
 
     // top wall
-    translate([0,filter_y / 2,0]) {
-      cube([filter_x, filter_wall_depth, filter_z - filter_z_offset], center=true);
+    translate([0,filter_y_with_offset / 2 - wall_offset,10]) {
+      cube([filter_x_with_offset, filter_wall_depth, filter_z - filter_z_offset], center=true);
     }
 
     difference() {
@@ -191,12 +196,6 @@ module right_screw_and_nut(length, width, grid_z, threaded_height, filter_z) {
         depth=depth
         );
   }
-}
-
-module cone(width=5, height=10, cone_top_radius=cone_top_radius) {
-  rotate_extrude(convexity=10, angle=360)
-    polygon([[0,0], [width,0], [cone_top_radius, height], [0,height]]);
-
 }
 
 module foot(fan_size=120, screw=false, height=10) {
