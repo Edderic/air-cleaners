@@ -12,6 +12,7 @@ use <../switch.scad>
 use <../usbc_female.scad>
 use <shoulder_strap_half_ring_left.scad>
 use <filter_louvers_container.scad>
+use <../flexible_handle.scad>
 use <methods.scad>
 
 
