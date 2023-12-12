@@ -2,6 +2,7 @@ use <../cr_boxes/three_by_three/fan_container.scad>
 use <../shoulder_strap_half_ring.scad>
 use <shoulder_strap_half_ring_left.scad>
 use <methods.scad>
+use <../flexible_handle.scad>
 
 
 
@@ -78,7 +79,10 @@ module top_right(
             );
     }
 
-    shoulder_strap_half_ring_left(filter_x, filter_y, filter_z, grid_z);
+    union() {
+      shoulder_strap_half_ring_left(filter_x, filter_y, filter_z, grid_z);
+      flexible_handle_for_laminair(fan_size, y_spacing, depth, filter_z, grid_z);
+    }
   }
 
 }

@@ -4,6 +4,7 @@ use <fan_filter.scad>
 use <filter_louvers_container.scad>
 use <methods.scad>
 use <power_switch.scad>
+use <../flexible_handle.scad>
 
 depth = get_wall_depth();
 
@@ -82,6 +83,7 @@ module top_left(
             grid_z
             );
       power_switch_screw_top();
+      flexible_handle_for_laminair(fan_size, y_spacing, depth, filter_z, grid_z);
     }
   }
 }
