@@ -31,6 +31,8 @@ function get_louver_radius() = louver_radius;
 louver_z = 7;
 louver_z_start = 3;
 
+height_offset = 8;
+function get_height_offset() = height_offset - 1;
 threaded_height = 8;
 square_side = 8;
 
@@ -59,20 +61,25 @@ module louver(radius, height_offset=4) {
   }
 }
 
-module louvers(louver_z=louver_z, num_louvers = 30, radius=louver_radius) {
+module louvers(
+    louver_z=louver_z,
+    num_louvers = 30,
+    radius=louver_radius,
+    height_offset=height_offset
+) {
   for (x=[0:1:num_louvers / 2]) {
     translate([0,(x) * (louver_z + 1),0]) {
-      louver(radius=radius);
+      louver(radius=radius, height_offset=height_offset);
     }
   }
   for (x=[0:1:num_louvers / 2]) {
     translate([0,-(x) * (louver_z + 1),0]) {
-      louver(radius=radius);
+      louver(radius=radius, height_offset=height_offset);
     }
   }
 }
 
-module filter_louvers_container() {
+module filter_louvers_container(height_offset=height_offset) {
   translate([0,0,-filter_z_offset]) {
 
     // left wall
@@ -127,7 +134,7 @@ module filter_louvers_container() {
             cube([filter_x_effective, filter_y_effective, front_cover_z + filter_wall_depth * 2], center=true);
         }
 
-        louvers(radius=louver_radius + 0.1875);
+        louvers(radius=louver_radius + 0.1875, height_offset=height_offset);
         // rotate([0,0,90]) louvers(radius=louver_radius + 0.25);
 
         for (x=[0:1:3]) {
