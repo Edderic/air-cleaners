@@ -67,14 +67,16 @@ module louvers(
     radius=louver_radius,
     height_offset=height_offset
 ) {
-  for (x=[0:1:num_louvers / 2]) {
-    translate([0,(x) * (louver_z + 1),0]) {
-      louver(radius=radius, height_offset=height_offset);
+  translate([0,0,-louver_z_start+3]) {
+    for (x=[0:1:num_louvers / 2]) {
+      translate([0,(x) * (louver_z + 1),0]) {
+        louver(radius=radius, height_offset=height_offset);
+      }
     }
-  }
-  for (x=[0:1:num_louvers / 2]) {
-    translate([0,-(x) * (louver_z + 1),0]) {
-      louver(radius=radius, height_offset=height_offset);
+    for (x=[0:1:num_louvers / 2]) {
+      translate([0,-(x) * (louver_z + 1),0]) {
+        louver(radius=radius, height_offset=height_offset);
+      }
     }
   }
 }
@@ -391,4 +393,4 @@ module top_bottom_mid_right_z_joins() {
 
 filter_louvers_container();
 // top_and_bottom_screw_join(part="p1");
-
+louvers();
