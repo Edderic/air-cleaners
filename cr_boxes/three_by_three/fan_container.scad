@@ -246,7 +246,7 @@ module fan_container(
 
         translate([0,0,filter_z + z - depth ]) {
           // Add 2 to make sure there is awkward spacing
-          finger_guard(fan_size=fan_size+3);
+          finger_guard(fan_size=fan_size+3, depth=depth);
         }
     }
     union() {

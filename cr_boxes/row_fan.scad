@@ -233,21 +233,21 @@ module row_fan(fan_hole=true) {
 }
 
 
-module finger_guard(fan_size=140) {
+module finger_guard(fan_size=140, depth=get_depth()) {
 
-  translate([0,0,0]) {
+  translate([0,0,depth/2]) {
     for (x=[fan_size / 2:-12:0]) {
       difference() {
-        cylinder(h=get_depth() / 2, r=x);
-        cylinder(h=get_depth() / 2, r=x - 3);
+        cylinder(h=depth / 2, r=x);
+        cylinder(h=depth / 2, r=x - 3);
       }
     }
   }
 
-  translate([0,0,2.5]) {
-    cube([fan_size, 3, get_depth() / 2], center=true);
+  translate([0,0,depth - 1.25]) {
+    cube([fan_size, 3, depth / 2], center=true);
     rotate([0,0,90])
-      cube([fan_size, 3, get_depth() / 2], center=true);
+      cube([fan_size, 3, depth / 2], center=true);
   }
 }
 
