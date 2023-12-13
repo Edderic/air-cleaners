@@ -29,7 +29,7 @@ front_cover_z = 15;
 louver_radius = 1.5;
 function get_louver_radius() = louver_radius;
 louver_z = 7;
-louver_z_start = 3;
+louver_z_start = -10;
 
 height_offset = 8;
 function get_height_offset() = height_offset - 1;
