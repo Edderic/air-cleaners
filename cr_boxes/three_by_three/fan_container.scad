@@ -244,7 +244,7 @@ module fan_container(
             fan_diameter=fan_size
             );
 
-        translate([0,0,filter_z + z - depth ]) {
+        translate([0.5,0.5,filter_z + z - depth ]) {
           // Add 2 to make sure there is awkward spacing
           finger_guard(fan_size=fan_size+3, depth=depth);
         }
