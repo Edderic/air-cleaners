@@ -6,13 +6,13 @@ module cone(width=5, height=10, cone_top_radius=8) {
     polygon([[0,0], [width,0], [cone_top_radius, height], [0,height]]);
 }
 
-module foot(fan_size=120, screw=false, height=10) {
+module foot(fan_size=120, screw=false, height=10, screw_head_height=5) {
   if (screw) {
-    rotate([-90,0,0]) screw_with_nut(nut_type="none", threaded_height=10);
+    rotate([-90,0,0]) screw_with_nut(nut_type="hex", threaded_height=10, screw_head_height=screw_head_height);
   } else {
     rotate([-90,0,0]) difference() {
       cone(height=height);
-      screw_with_nut(nut_type="none", threaded_height=10);
+      screw_with_nut(nut_type="hex", threaded_height=10, screw_head_height=screw_head_height);
     }
   }
 }
