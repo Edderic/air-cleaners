@@ -12,27 +12,28 @@ module fan(
     radius,
     depth,
     screw_radius,
-    distance_to_middle_of_circle_x = "None",
-    distance_to_middle_of_circle_y = "None",
     multiplier = 70 - 7.5
 ) {
-
-  _distance_to_middle_of_circle_x = (distance_to_middle_of_circle_x == "None" || distance_to_middle_of_circle_y == "None") ? multiplier / 70 * radius : distance_to_middle_of_circle_x;
-  _distance_to_middle_of_circle_y = (distance_to_middle_of_circle_x == "None" || distance_to_middle_of_circle_y == "None") ? multiplier / 70 * radius : distance_to_middle_of_circle_y;
+  _distance_to_middle_of_circle_x = radius == 60 ? 52.5 : multiplier / 70 * radius;
+  _distance_to_middle_of_circle_y = radius == 60 ? 52.5 : multiplier / 70 * radius;
 
   linear_extrude(height=depth) circle(radius);
+  // top right corner
   translate([_distance_to_middle_of_circle_x, _distance_to_middle_of_circle_y, 0]) {
     linear_extrude(height=depth) circle(screw_radius);
   }
 
+  // bottom left corner
   translate([-_distance_to_middle_of_circle_x, -_distance_to_middle_of_circle_y, 0]) {
     linear_extrude(height=depth) circle(screw_radius);
   }
 
+  // bottom right corner
   translate([_distance_to_middle_of_circle_x, -_distance_to_middle_of_circle_y, 0]) {
     linear_extrude(height=depth) circle(screw_radius);
   }
 
+  // top left corner
   translate([-_distance_to_middle_of_circle_x, _distance_to_middle_of_circle_y, 0]) {
     linear_extrude(height=depth) circle(screw_radius);
   }
