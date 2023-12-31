@@ -77,7 +77,7 @@ module bottom_left(
     union() {
 
       // hole for wiring
-      translate([-filter_x/2,-2, (filter_z + grid_z) / 2]) {
+      translate([-filter_x/2,-2, (filter_z + grid_z) / 2 + 8]) {
         rotate([0,-90,0])
           cylinder(h=depth * 2, r=2.5, center=true);
       }
