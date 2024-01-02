@@ -28,6 +28,8 @@ front_cover_z = 15;
 
 louver_radius = 1.5;
 function get_louver_radius() = louver_radius;
+louver_radius_offset = 0.234375;
+function get_louver_radius_offset() = louver_radius_offset;
 louver_z = 7;
 louver_z_start = -10;
 
@@ -140,7 +142,7 @@ module filter_louvers_container(height_offset=height_offset) {
             cube([filter_x_effective, filter_y_effective, front_cover_z + filter_wall_depth * 2], center=true);
         }
 
-        louvers(radius=louver_radius + 0.21875, height_offset=height_offset);
+        louvers(radius=louver_radius + louver_radius_offset, height_offset=height_offset);
         // rotate([0,0,90]) louvers(radius=louver_radius + 0.25);
 
         for (x=[0:1:3]) {
