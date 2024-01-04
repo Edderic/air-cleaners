@@ -28,13 +28,13 @@ front_cover_z = 15;
 
 louver_radius = 1.5;
 function get_louver_radius() = louver_radius;
-louver_radius_offset = 0.234375;
+louver_radius_offset = 0.2421875;
 function get_louver_radius_offset() = louver_radius_offset;
 louver_z = 7;
 louver_z_start = -10;
 
-height_offset = 13;
-function get_height_offset() = height_offset - 1;
+height_offset = 14;
+function get_height_offset() = height_offset;
 threaded_height = 8;
 square_side = 8;
 
