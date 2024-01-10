@@ -4,7 +4,7 @@ use <../common/smoothed_cube.scad>
 use <fan_filter.scad>
 use <../switch.scad>
 use <shoulder_strap_half_ring_left.scad>
-use <../shoulder_strap_half_ring.scad>
+use <../common/shoulder_strap_half_ring.scad>
 use <top_left.scad>
 use <bottom_left.scad>
 use <methods.scad>

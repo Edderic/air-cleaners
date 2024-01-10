@@ -6,7 +6,7 @@ use <../common/screw_with_nut.scad>
 use <../switch.scad>
 use <../common/noctua_speed_controller.scad>
 use <../back_cover.scad>
-use <../shoulder_strap_half_ring.scad>
+use <../common/shoulder_strap_half_ring.scad>
 use <../common/usbc_female.scad>
 
 $fn=100;

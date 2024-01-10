@@ -1,5 +1,5 @@
 use <../cr_boxes/three_by_three/fan_container.scad>
-use <../shoulder_strap_half_ring.scad>
+use <../common/shoulder_strap_half_ring.scad>
 use <top_right.scad>
 use <top_left.scad>
 use <bottom_left.scad>

@@ -5,7 +5,7 @@ use <../airgowear/fan.scad>
 use <../switch.scad>
 use <../common/usbc_female.scad>
 use <../common/smoothed_cube.scad>
-use <../shoulder_strap_half_ring.scad>
+use <../common/shoulder_strap_half_ring.scad>
 use <../common/screw_with_nut.scad>
 
 $fn=100;
