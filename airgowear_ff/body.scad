@@ -3,7 +3,7 @@ use <../tcore_powerbank.scad>
 use <../noctua_speed_controller.scad>
 use <../airgowear/fan.scad>
 use <../switch.scad>
-use <../usbc_female.scad>
+use <../common/usbc_female.scad>
 use <../smoothed_cube.scad>
 use <../shoulder_strap_half_ring.scad>
 use <../screw_with_nut.scad>

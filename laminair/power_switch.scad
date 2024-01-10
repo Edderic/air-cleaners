@@ -1,4 +1,4 @@
-use <../usbc_female.scad>
+use <../common/usbc_female.scad>
 use <../tcore_powerbank.scad>
 use <../smoothed_cube.scad>
 use <fan_filter.scad>
