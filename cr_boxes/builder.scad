@@ -1,6 +1,6 @@
 use <../common/smoothed_cube.scad>
 use <../common/screw_with_nut.scad>
-use <../fan.scad>
+use <../common/fan.scad>
 use <row_fan.scad>
 use <corner.scad>
 use <handle.scad>
