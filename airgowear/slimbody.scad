@@ -3,7 +3,7 @@ use <fan.scad>
 use <../common/smoothed_cube.scad>
 use <../tcore_powerbank.scad>
 use <../common/screw_with_nut.scad>
-use <../switch.scad>
+use <../common/switch.scad>
 use <../common/noctua_speed_controller.scad>
 use <../back_cover.scad>
 use <../common/shoulder_strap_half_ring.scad>

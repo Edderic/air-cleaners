@@ -2,7 +2,7 @@ use <filter.scad>
 use <../tcore_powerbank.scad>
 use <../common/noctua_speed_controller.scad>
 use <../airgowear/fan.scad>
-use <../switch.scad>
+use <../common/switch.scad>
 use <../common/usbc_female.scad>
 use <../common/smoothed_cube.scad>
 use <../common/shoulder_strap_half_ring.scad>

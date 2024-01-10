@@ -8,7 +8,7 @@ use <power_switch.scad>
 use <../common/screw_with_nut.scad>
 use <../tcore_powerbank.scad>
 use <../common/smoothed_cube.scad>
-use <../switch.scad>
+use <../common/switch.scad>
 use <../common/usbc_female.scad>
 use <shoulder_strap_half_ring_left.scad>
 use <filter_louvers_container.scad>
