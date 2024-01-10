@@ -29,3 +29,8 @@ module louver_sync_with_lever() {
 }
 
 louver_sync();
+
+translate([get_filter_effective_dim()[0] / 2 - 3,0,18 + 6]) {
+
+  cube([4,10, 8], center=true);
+}

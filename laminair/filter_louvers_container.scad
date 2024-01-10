@@ -355,13 +355,18 @@ module screw_join(side=10, part="p1") {
 
 
 module top_screw_join(z_offset = 1, x_offset=-2, part="p1") {
-  // translate(
-    // [
-      // (-threaded_height) / 2 + x_offset,
-      // filter_y / 2 + square_side,
-      // front_cover_z + square_side / 2 + z_offset
-    // ]
-  // ) {
+  // Permanent support so we don't need to add temporary support that needs to
+  // be removed.
+  d = 10;
+
+  rotate([0,0,90])
+  translate([filter_x / 2 + 1.5,0,25]) {
+    rotate([90,0,0])
+    translate([0,0,-d / 2]) {
+      linear_extrude(height=d)
+      polygon(points=[[0,0], [d,0], [0,d/2]]);
+    }
+  }
 
   translate([0,filter_y / 2 + square_side + 2,2.5 * square_side]) {
     rotate([-90,0,0])
@@ -378,6 +383,9 @@ module top_screw_join(z_offset = 1, x_offset=-2, part="p1") {
   }
 
 }
+
+  // rotate([0,0,0])
+// rotate([90,0,0])
 
 module top_and_bottom_screw_join(part="p1") {
   top_screw_join(part=part);
@@ -399,4 +407,4 @@ module top_bottom_mid_right_z_joins() {
 
 filter_louvers_container();
 // top_and_bottom_screw_join(part="p1");
-louvers();
+// louvers();
