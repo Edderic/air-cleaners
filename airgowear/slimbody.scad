@@ -2,7 +2,7 @@ use <filter.scad>
 use <fan.scad>
 use <../smoothed_cube.scad>
 use <../tcore_powerbank.scad>
-use <../screw_with_nut.scad>
+use <../common/screw_with_nut.scad>
 use <../switch.scad>
 use <../noctua_speed_controller.scad>
 use <../back_cover.scad>

@@ -1,6 +1,6 @@
 use <builder.scad>
 use <../smoothed_cube.scad>
-use <../screw_with_nut.scad>
+use <../common/screw_with_nut.scad>
 
 $fn = 100;
 

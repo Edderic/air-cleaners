@@ -1,6 +1,6 @@
 use <methods.scad>
 use <../smoothed_cube.scad>
-use <../screw_with_nut.scad>
+use <../common/screw_with_nut.scad>
 use <../cone.scad>
 
 $fn = 100;

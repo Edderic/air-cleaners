@@ -1,4 +1,4 @@
-use <../screw_with_nut.scad>
+use <../common/screw_with_nut.scad>
 
 $fn=100;
 width = 165 + 10;

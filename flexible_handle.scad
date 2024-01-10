@@ -1,4 +1,4 @@
-use <screw_with_nut.scad>
+use <common/screw_with_nut.scad>
 
 module left_screw_nut() {
   translate([-93,0,5.5]) {

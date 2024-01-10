@@ -1,4 +1,4 @@
-use <../screw_with_nut.scad>
+use <../common/screw_with_nut.scad>
 $fn = 100;
 
 module cone(width=5, height=10, cone_top_radius=8) {

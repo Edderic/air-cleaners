@@ -6,7 +6,7 @@ use <../switch.scad>
 use <../common/usbc_female.scad>
 use <../smoothed_cube.scad>
 use <../shoulder_strap_half_ring.scad>
-use <../screw_with_nut.scad>
+use <../common/screw_with_nut.scad>
 
 $fn=100;
 scale_value = 1.2;

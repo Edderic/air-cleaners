@@ -5,7 +5,7 @@ use <top_left.scad>
 use <bottom_left.scad>
 use <bottom_right.scad>
 use <power_switch.scad>
-use <../screw_with_nut.scad>
+use <../common/screw_with_nut.scad>
 use <../tcore_powerbank.scad>
 use <../smoothed_cube.scad>
 use <../switch.scad>
