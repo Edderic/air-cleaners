@@ -1,4 +1,4 @@
-use <../smoothed_cube.scad>
+use <../common/smoothed_cube.scad>
 
 
 module filter(x=209, y=101, z=35) {

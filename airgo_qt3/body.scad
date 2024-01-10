@@ -1,6 +1,6 @@
 use <../airgowear_ff/body.scad>
 use <../airgowear/fan.scad>
-use <../smoothed_cube.scad>
+use <../common/smoothed_cube.scad>
 use <../common/screw_with_nut.scad>
 
 $fn=200;

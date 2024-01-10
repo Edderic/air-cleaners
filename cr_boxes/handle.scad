@@ -1,4 +1,4 @@
-use <../smoothed_cube.scad>
+use <../common/smoothed_cube.scad>
 use <../common/screw_with_nut.scad>
 
 $fn = 100;

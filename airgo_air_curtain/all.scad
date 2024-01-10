@@ -1,6 +1,6 @@
 use <../airgowear/fan.scad>
 use <../airgo_qt3/body.scad>
-use <../cone.scad>
+use <../common/cone.scad.scad>
 
 $fn = 100;
 

@@ -1,6 +1,6 @@
 use <filter.scad>
 use <fan.scad>
-use <../smoothed_cube.scad>
+use <../common/smoothed_cube.scad>
 use <../tcore_powerbank.scad>
 use <../common/screw_with_nut.scad>
 use <../switch.scad>

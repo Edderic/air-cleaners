@@ -1,7 +1,7 @@
 use <methods.scad>
-use <../smoothed_cube.scad>
+use <../common/smoothed_cube.scad>
 use <../common/screw_with_nut.scad>
-use <../cone.scad>
+use <../common/cone.scad>
 
 $fn = 100;
 filter_x = get_filter_dim()[0];
