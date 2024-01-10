@@ -4,7 +4,7 @@ use <../smoothed_cube.scad>
 use <../tcore_powerbank.scad>
 use <../common/screw_with_nut.scad>
 use <../switch.scad>
-use <../noctua_speed_controller.scad>
+use <../common/noctua_speed_controller.scad>
 use <../back_cover.scad>
 
 $fn=100;
