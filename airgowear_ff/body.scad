@@ -1,5 +1,5 @@
 use <filter.scad>
-use <../tcore_powerbank.scad>
+use <../common/tcore_powerbank.scad>
 use <../common/noctua_speed_controller.scad>
 use <../airgowear/fan.scad>
 use <../common/switch.scad>

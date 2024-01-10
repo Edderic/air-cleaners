@@ -1,5 +1,5 @@
 use <../common/usbc_female.scad>
-use <../tcore_powerbank.scad>
+use <../common/tcore_powerbank.scad>
 use <../common/smoothed_cube.scad>
 use <fan_filter.scad>
 use <../common/switch.scad>

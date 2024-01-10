@@ -1,7 +1,7 @@
 use <filter.scad>
 use <fan.scad>
 use <../common/smoothed_cube.scad>
-use <../tcore_powerbank.scad>
+use <../common/tcore_powerbank.scad>
 use <../common/screw_with_nut.scad>
 use <../common/switch.scad>
 use <../common/noctua_speed_controller.scad>
