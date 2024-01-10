@@ -2,7 +2,7 @@ use <../cr_boxes/three_by_three/fan_container.scad>
 use <../common/shoulder_strap_half_ring.scad>
 use <shoulder_strap_half_ring_left.scad>
 use <methods.scad>
-use <../flexible_handle.scad>
+use <../common/flexible_handle.scad>
 
 
 

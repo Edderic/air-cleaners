@@ -4,7 +4,7 @@ use <fan_filter.scad>
 use <filter_louvers_container.scad>
 use <methods.scad>
 use <power_switch.scad>
-use <../flexible_handle.scad>
+use <../common/flexible_handle.scad>
 
 depth = get_wall_depth();
 
