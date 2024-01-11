@@ -2,6 +2,9 @@
 
 Highly effective personal air cleaning. Uses Laminar flow to create concentrated clean air in front of the user. Meant to be used relatively close to the face.
 
+## License
+- [See License](https://github.com/Edderic/air-cleaners/blob/main/LICENSE.md)
+
 ## Theoretical and Experimental Results on Efficacy
 
 - [Twitter announcement](https://x.com/eddericu/status/1738041192049266939)
