@@ -3,9 +3,10 @@
 Highly effective personal air cleaning. Uses Laminar flow to create concentrated clean air in front of the user. Meant to be used relatively close to the face.
 
 ## Theoretical and Experimental Results on Efficacy
-[Twitter announcement](https://x.com/eddericu/status/1738041192049266939)
-[Threader App](https://threadreaderapp.com/thread/1738041192049266939.html)
-[Research](https://github.com/Edderic/iaq/blob/main/notebooks/milestone-eoy-2023.ipynb)
+
+- [Twitter announcement](https://x.com/eddericu/status/1738041192049266939)
+- [Threader App](https://threadreaderapp.com/thread/1738041192049266939.html)
+- [Research](https://github.com/Edderic/iaq/blob/main/notebooks/milestone-eoy-2023.ipynb)
 
 ## DIY
 
