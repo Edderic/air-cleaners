@@ -23,6 +23,10 @@ The rest of the pieces are listed
 
 Once you've printed all the parts, you can start assemble the parts together. Watch the [Assembly walkthrough on YouTube](https://youtu.be/tnxe13Jcs5g).
 
+### Modifying the pieces
+
+[OpenSCAD](https://openscad.org/) is a tool for programmers to programmatically create 3D-printable designs. See [OpenSCAD tutorials](https://openscad.org/documentation.html) to learn how to use the tool. OpenSCAD lets someone edit `.scad` files. The 3D printable models then get exported from there as STL files, which essentially contain information about shapes and curves. Finally, these STL files are then transformed into G-Code, which contains all the steps for a 3D printer to print the objects. I use [PrusaSlicer](https://www.prusa3d.com/page/prusaslicer_424/) to convert STL files to G-Code. Once that is done, the G-Code is then exported to an SD card, which is then finally inserted to a 3D printer. A fine choice is Prusa's MK3S+.
+
 
 ## Buying devices
 
