@@ -49,9 +49,9 @@ You can import the STL files to your slicer of choice (e.g. [PrusaSlicer](https:
 
 ### Putting things together
 
-Once you've printed all the parts, you can start assemble the parts together. Watch the [Assembly walkthrough on YouTube](https://youtu.be/tnxe13Jcs5g).
+Once you've printed all the parts, you can start assemble the parts together.
 
-[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://www.youtube.com/watch?v=tnxe13Jcs5g)
+[![Watch the video](https://breathesafe-airgo.s3.us-east-2.amazonaws.com/images/laminair/laminair-assembly-thumbnail.png)](https://www.youtube.com/watch?v=tnxe13Jcs5g)
 
 ### Modifying the pieces
 
