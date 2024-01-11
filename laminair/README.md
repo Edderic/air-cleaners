@@ -2,6 +2,8 @@
 
 Highly effective personal air cleaning. Uses Laminar flow to create concentrated clean air in front of the user. Meant to be used relatively close to the face.
 
+![front](https://breathesafe-airgo.s3.us-east-2.amazonaws.com/images/laminair/front.png)
+
 ## License
 - [See License](https://github.com/Edderic/air-cleaners/blob/main/LICENSE.md)
 
