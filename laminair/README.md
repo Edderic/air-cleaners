@@ -46,6 +46,8 @@ You can import the STL files to your slicer of choice (e.g. [PrusaSlicer](https:
 | filter_louvers_container_p3.stl | Widest flat side should be on the heatbed. | None needed | 20% |
 | filter_louvers_container_p4.stl | Widest flat side should be on the heatbed. | None needed | 20% |
 
+### Purchasing other parts
+[Here is a google spreadsheet that describes parts, cost, and links to Amazon.](https://docs.google.com/spreadsheets/d/1wJ6nfeIdMQBHosVignK3vL9RzcDbh2oNCUtzVA7f1og/edit#gid=1259436206)
 
 ### Putting things together
 
