@@ -13,7 +13,7 @@ module louver_sync(radius_offset=0.3) {
   color([0,1,0])
     difference() {
       translate([get_filter_effective_dim()[0] / 2 - 3,0,20]) {
-        cube([4, get_filter_effective_dim()[1] - 8,5], center=true);
+        cube([4, get_filter_effective_dim()[1] - 8,6], center=true);
       }
       louvers(radius=get_louver_radius() + radius_offset);
     }
@@ -34,9 +34,9 @@ module louver_sync_with_lever() {
 
 }
 
-louver_sync();
+louver_sync(radius_offset=get_louver_radius_offset() + 0.5);
 
-translate([get_filter_effective_dim()[0] / 2 - 3,0,18 + 6 + 2]) {
+translate([get_filter_effective_dim()[0] / 2 - 3,0,18 + 6 + 3]) {
   translate([-pushable_x / 2,-pushable_y / 2, -pushable_z / 2]) {
 
     smoothed_cube(
