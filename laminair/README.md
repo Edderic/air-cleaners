@@ -31,20 +31,20 @@ If you do, you can create G-Code files using the 3mf files included here.
 
 You can import the STL files to your slicer of choice (e.g. [PrusaSlicer](https://www.prusa3d.com/page/prusaslicer_424/)). See details below.
 
-| Name | Printing Orientation | Supports | Infill |
+| Name | Printing Orientation | Supports | Infill | Number of vertical walls |
 | - | - | - |-  |
-| top_left.stl | Fan-grill side is on the heatbed. | Add custom supports to the hanging sections. | 20% |
-| top_right.stl | Fan-grill side is on the heatbed. | Add custom supports to the hanging sections. | 20% |
-| bottom_left.stl | Fan-grill side is on the heatbed. | Add custom supports to the hanging sections. | 20% |
-| bottom_right.stl | Fan-grill side is on the heatbed. | Add custom supports to the hanging sections. | 20% |
-| shoulder_strap_half_ring.stl | The flat parts of the screwable section should be on the heatbed. | Support on build plate only | 100% |
-| louver.stl | Flat side should be on heatbed. For Prusa MK3S+ printer, will need to rotate so that the longest side is on a diagonal to fit on the heatbed. | Support on build plate only | 100% |
-| foot.stl | Widest flat side should be on the heatbed. Need 4 of these. | None needed | 20% |
-| battery_fan_enclosure.stl | Widest flat side should be on the heatbed. Need 4 of these. | Custom supports for the hanging sections (screwables) | 20% |
-| filter_louvers_container_p1.stl | Widest flat side should be on the heatbed. | None needed | 20% |
-| filter_louvers_container_p2.stl | Widest flat side should be on the heatbed. | None needed | 20% |
-| filter_louvers_container_p3.stl | Widest flat side should be on the heatbed. | None needed | 20% |
-| filter_louvers_container_p4.stl | Widest flat side should be on the heatbed. | None needed | 20% |
+| top_left.stl | Fan-grill side is on the heatbed. | Add custom supports to the hanging sections. | 60% | 3 |
+| top_right.stl | Fan-grill side is on the heatbed. | Add custom supports to the hanging sections. | 60% | 3 |
+| bottom_left.stl | Fan-grill side is on the heatbed. | Add custom supports to the hanging sections. | 60% | 3 |
+| bottom_right.stl | Fan-grill side is on the heatbed. | Add custom supports to the hanging sections. | 60% | 3 |
+| shoulder_strap_half_ring.stl | The flat parts of the screwable section should be on the heatbed. | Support on build plate only | 100% | 2 |
+| louver.stl | Flat side should be on heatbed. For Prusa MK3S+ printer, will need to rotate so that the longest side is on a diagonal to fit on the heatbed. | Support on build plate only | 100% | 2 |
+| foot.stl | Widest flat side should be on the heatbed. Need 4 of these. | None needed | 20% | 2 |
+| battery_fan_enclosure.stl | Widest flat side should be on the heatbed. Need 4 of these. | Custom supports for the hanging sections (screwables) | 20% | 2 |
+| filter_louvers_container_p1.stl | Widest flat side should be on the heatbed. | None needed | 20% | 2 |
+| filter_louvers_container_p2.stl | Widest flat side should be on the heatbed. | None needed | 20% | 2 |
+| filter_louvers_container_p3.stl | Widest flat side should be on the heatbed. | None needed | 20% | 2 |
+| filter_louvers_container_p4.stl | Widest flat side should be on the heatbed. | None needed | 20% | 2 |
 
 ### Purchasing other parts
 [Here is a google spreadsheet that describes parts, cost, and links to Amazon.](https://docs.google.com/spreadsheets/d/1wJ6nfeIdMQBHosVignK3vL9RzcDbh2oNCUtzVA7f1og/edit#gid=1259436206)
