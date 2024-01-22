@@ -32,7 +32,7 @@ If you do, you can create G-Code files using the 3mf files included here.
 You can import the STL files to your slicer of choice (e.g. [PrusaSlicer](https://www.prusa3d.com/page/prusaslicer_424/)). See details below.
 
 | Name | Printing Orientation | Supports | Infill | Number of vertical walls |
-| - | - | - |-  |
+| - | - | - |-  | - |
 | top_left.stl | Fan-grill side is on the heatbed. | Add custom supports to the hanging sections. | 60% | 3 |
 | top_right.stl | Fan-grill side is on the heatbed. | Add custom supports to the hanging sections. | 60% | 3 |
 | bottom_left.stl | Fan-grill side is on the heatbed. | Add custom supports to the hanging sections. | 60% | 3 |
