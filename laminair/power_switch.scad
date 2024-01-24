@@ -9,6 +9,20 @@ use <top_left.scad>
 use <bottom_left.scad>
 use <methods.scad>
 
+module horizontal_text(characters, width_offsets, width=8,  height=2) {
+  for (i=[0:1:len(characters)]) {
+    translate([i * width + width_offsets[i],0,0]) {
+      linear_extrude(height=height)
+      text(characters[i]);
+    }
+  }
+}
+
+module logo() {
+  horizontal_text(characters="LaminAir", width_offsets=[0,0,0,4,0,0,2,-2]);
+}
+
+
 depth = get_wall_depth();
 // filter_x = 366; // millimeters
 // filter_y = 286 + depth * 2; // millimeters
@@ -128,6 +142,11 @@ module power_switch(
     }
 
     union() {
+      translate([-filter_x / 2 - depth - get_tcore_powerbank_z() - 2,-switch_length + 35,20]) {
+        rotate([0,-90,0]) {
+          logo();
+        }
+      }
 
       top_left(
         width,
@@ -157,6 +176,7 @@ module power_switch(
     }
   }
 }
+
 
 module local_switch(
   filter_x,
