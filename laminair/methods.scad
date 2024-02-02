@@ -27,7 +27,7 @@ function get_fan_enclosure_length() = get_length(
 function get_grid_z() = 15;
 
 // function get_fan_diameter() = 120;
-function get_fan_diameter() = 140;
+function get_fan_diameter() = 120;
 
 function get_fan_to_wall_spacing_dim() = [
   get_x_spacing(get_fan_enclosure_width(), get_fan_diameter()),
