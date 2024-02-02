@@ -1,6 +1,7 @@
 use <builder.scad>
 use <../common/smoothed_cube.scad>
 use <../common/screw_with_nut.scad>
+use <../common/fan.scad>
 
 $fn = 100;
 
@@ -172,22 +173,16 @@ module top_spaced(
 
         }
         if (fan_hole) {
-          translate([-width / 2, -length / 2,z_spacing]) {
-            local_fan(
-              z_offset=z_offset,
-              size=fan_diameter,
-              depth = _depth + 5
-            );
+          translate([0,0,z - depth]) {
+            fan(
+                radius=fan_diameter / 2,
+                depth=10,
+                screw_radius=2.5,
+                multiplier = 70 - 7.5
+               );
           }
         }
       }
-      // translate([-width / 2, -length / 2,z_spacing]) {
-        // local_fan(
-          // z_offset=z_offset,
-          // size=fan_diameter,
-          // depth = _depth + 5
-        // );
-      // }
     }
 
 module row_fan(fan_hole=true) {
