@@ -37,9 +37,9 @@ module local_fan(z_offset="None", size=140, z=27, _color=[1,1,1], depth=10) {
   }
 
   // main cylinder plus screws
-  translate([fan_size / 2, fan_size / 2,_z_offset + fan_z  + 10]) {
+  translate([size / 2, size / 2,_z_offset + fan_z  + 10]) {
     rotate([180,0,0])
-    fan(size / 2, depth, screw_radius=2.5);
+    fan(radius=size / 2, depth=depth, screw_radius=2.5);
     // color(_color)
     // cylinder(h=depth, r=size / 2);
   }
