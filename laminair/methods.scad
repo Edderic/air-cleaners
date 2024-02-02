@@ -2,7 +2,8 @@ use <../cr_boxes/three_by_three/fan_container.scad>
 
 // SmartAir S filter dimensions
 // in millimeters
-function get_filter_dim() = [10.5 * 25.4, 10.5 * 25.4, 96 - get_grid_z()];
+// function get_filter_dim() = [10.5 * 25.4, 10.5 * 25.4, 96 - get_grid_z()];
+function get_filter_dim() = [14.5 * 25.4, 11.25 * 25.4, 96 - get_grid_z()];
 
 // Number of rows and number columns
 function get_num_fan_enclosure_dim() = [2,2];
@@ -25,7 +26,8 @@ function get_fan_enclosure_length() = get_length(
 // there is between the fans and the filter.
 function get_grid_z() = 15;
 
-function get_fan_diameter() = 120;
+// function get_fan_diameter() = 120;
+function get_fan_diameter() = 140;
 
 function get_fan_to_wall_spacing_dim() = [
   get_x_spacing(get_fan_enclosure_width(), get_fan_diameter()),
