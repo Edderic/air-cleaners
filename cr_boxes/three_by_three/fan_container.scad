@@ -216,9 +216,10 @@ module fan_container(
   threaded_height = 8;
   stabilizer_height = threaded_height + 2;
 
-
   difference() {
     union() {
+
+      difference() {
 
         top_spaced(
             z=z + filter_z,
@@ -242,7 +243,9 @@ module fan_container(
             bottom_left_corner_smoothed=bottom_left_corner_smoothed,
             bottom_right_corner_smoothed=bottom_right_corner_smoothed,
             fan_diameter=fan_size
-            );
+          );
+          wall_remover(long_wall, width, length, filter_z, z);
+      }
 
         translate([0.5,0.5,filter_z + z - depth ]) {
           // Add 2 to make sure there is awkward spacing
@@ -307,7 +310,6 @@ module fan_container(
         southwest_foot(fan_size=fan_size, y_spacing=y_spacing, cone_top_radius=cone_top_radius, screw=true, height=height);
       }
 
-      wall_remover(long_wall, width, length, filter_z, z);
     }
   }
   // top_left_zip_tie_hole(fan_size=fan_size, z_offset=filter_z, depth=depth);
