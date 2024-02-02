@@ -161,14 +161,14 @@ flexible_handle_for_laminair(fan_diameter, y_spacing, depth, filter_z, grid_z);
 rotate([0,180,0]) {
   filter_louvers_container();
 }
-color([0,1,1])
-power_switch(
-  depth,
-  filter_x,
-  filter_y,
-  filter_z,
-  grid_z
-);
+// color([0,1,1])
+// power_switch(
+  // depth,
+  // filter_x,
+  // filter_y,
+  // filter_z,
+  // grid_z
+// );
 
 // }
 // translate([0,-52,-2]) {
