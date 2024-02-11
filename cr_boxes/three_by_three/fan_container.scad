@@ -98,10 +98,6 @@ module screw_joins(
    }
 
   if (bottom_right_stabilizer != "none" && bottom_right_stabilizer_axis == "vertical") {
-    echo("y_spacing: ", y_spacing);
-    echo("filter_y: ", filter_y);
-    echo("filter_x: ", filter_x);
-    // translate([-fan_size / 2 - x_spacing - side/2,-fan_size / 2 - y_spacing + 20, side / 2]) {
     translate([-(filter_x + 2 * depth) / 4  -depth, -(filter_y + 2 * depth) / 4, side / 2]) {
 
         rotate([90,0,0])
@@ -136,14 +132,12 @@ module screw_joins(
   }
 
   if (top_right_stabilizer != "none" && top_right_stabilizer_axis == "vertical") {
-    // translate([-fan_size / 2 - x_spacing - side /2 , fan_size / 2 + y_spacing, side / 2]) {
-    translate([-fan_size / 2 - x_spacing - side / 2, fan_size / 2 + y_spacing,side / 2]) {
+    translate([-(filter_x + 2 * depth) / 4 - depth, (filter_y + 2 * depth) / 4,side / 2]) {
       rotate([-90,0,0])
       rotate([0,0,-90])
       rotate([0,180,0])
             screw_join_p1();
     }
-    // }
   }
 
   if (bottom_left_stabilizer != "none" && bottom_left_stabilizer_axis == "vertical") {
@@ -155,7 +149,7 @@ module screw_joins(
   }
 
   if (bottom_left_stabilizer != "none" && bottom_left_stabilizer_axis == "horizontal") {
-    translate([fan_size / 2 + x_spacing,-fan_size /2 - y_spacing - side / 2, side / 2]) {
+    translate([(filter_x + 2 * depth) / 4, -(filter_y + 2 * depth) / 4 - depth, side / 2]) {
       rotate([0,90,0])
           screw_join_p2();
     }
