@@ -86,8 +86,6 @@ module top_right(
       flexible_handle_for_laminair(fan_size, filter_y, depth, filter_z, grid_z);
     }
   }
-      flexible_handle_for_laminair(fan_size, filter_y, depth, filter_z, grid_z);
-
 }
 
 top_right(
