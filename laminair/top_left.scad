@@ -40,6 +40,8 @@ module top_left(
     translate([-width / 2, length / 2,0]) {
       fan_container(
           fan_size=120,
+          filter_x=filter_x,
+          filter_y=filter_y,
           filter_z=filter_z,
           z=grid_z,
           grid_z=grid_z,
