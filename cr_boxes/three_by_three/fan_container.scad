@@ -82,7 +82,9 @@ module screw_joins(
     x_spacing,
     y_spacing,
     side,
-    fan_size
+    fan_size,
+    filter_x,
+    filter_y
 ) {
   if (bottom_right_stabilizer != "none" && bottom_right_stabilizer_axis == "horizontal") {
     translate([-fan_size / 2 - x_spacing,-fan_size / 2 - depth - y_spacing, side / 2]) {
@@ -96,7 +98,11 @@ module screw_joins(
    }
 
   if (bottom_right_stabilizer != "none" && bottom_right_stabilizer_axis == "vertical") {
-    translate([-fan_size / 2 - x_spacing - side/2,-fan_size / 2 - y_spacing, side / 2]) {
+    echo("y_spacing: ", y_spacing);
+    echo("filter_y: ", filter_y);
+    echo("filter_x: ", filter_x);
+    // translate([-fan_size / 2 - x_spacing - side/2,-fan_size / 2 - y_spacing + 20, side / 2]) {
+    translate([-(filter_x + 2 * depth) / 4  -depth, -(filter_y + 2 * depth) / 4, side / 2]) {
 
         rotate([90,0,0])
         rotate([0,0,-90])
@@ -330,8 +336,9 @@ module fan_container(
     x_spacing=x_spacing,
     y_spacing=y_spacing,
     side=side,
-    fan_size=fan_size
-
+    fan_size=fan_size,
+    filter_x=filter_x,
+    filter_y=filter_y
   );
 
 }
