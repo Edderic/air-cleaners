@@ -45,6 +45,8 @@ module top_right(
     translate([width / 2, length / 2,0]) {
       fan_container(
           fan_size=fan_size,
+          filter_x=filter_x,
+          filter_y=filter_y,
           filter_z=filter_z,
           z=grid_z,
           x_spacing=x_spacing,

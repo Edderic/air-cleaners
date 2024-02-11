@@ -86,6 +86,8 @@ module screw_joins(
     filter_x,
     filter_y
 ) {
+  // TODO: The code currently assumes depth (wall depth) is the same as the
+  // screw_join depth. Might be good to decouple them at some point.
   if (bottom_right_stabilizer != "none" && bottom_right_stabilizer_axis == "horizontal") {
     translate([-(filter_x + 2 * depth) / 4, -(filter_y + 2 * depth) / 4 - depth, side / 2]) {
       if (bottom_right_stabilizer == "p1") {
@@ -123,7 +125,7 @@ module screw_joins(
 
 
   if (top_right_stabilizer != "none" && top_right_stabilizer_axis == "horizontal") {
-    translate([-(fan_size + side) / 2 - depth + 1,(fan_size + side) / 2 + y_spacing, side / 2]) {
+    translate([-(filter_x + 2 * depth) / 4,(filter_y + 2 * depth) / 4 + depth, side / 2]) {
       rotate([180,0,0])
       rotate([0,-90,0])
         screw_join_p2();
@@ -141,7 +143,7 @@ module screw_joins(
   }
 
   if (bottom_left_stabilizer != "none" && bottom_left_stabilizer_axis == "vertical") {
-    translate([fan_size / 2 + x_spacing + depth ,-fan_size/2 - y_spacing , side / 2]) {
+    translate([(filter_x + 2 * depth) / 4 + depth,-(filter_y + 2 * depth) / 4, side / 2]) {
       rotate([0,0,90])
       rotate([0,90,0])
           screw_join_p1();
