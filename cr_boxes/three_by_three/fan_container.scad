@@ -118,7 +118,7 @@ module screw_joins(
   }
 
   if (top_left_stabilizer != "none" && top_left_stabilizer_axis == "horizontal") {
-    translate([fan_size / 2 + x_spacing,fan_size / 2 + y_spacing + side / 2,side / 2]) {
+    translate([(filter_x + 2 * depth) / 4,(filter_y + 2 * depth) / 4 + depth,side / 2]) {
       rotate([180,0,0])
       rotate([0,-90,0])
           screw_join_p1();
