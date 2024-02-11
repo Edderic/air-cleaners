@@ -83,9 +83,10 @@ module top_right(
 
     union() {
       shoulder_strap_half_ring_left(filter_x, filter_y, filter_z, grid_z);
-      flexible_handle_for_laminair(fan_size, y_spacing, depth, filter_z, grid_z);
+      flexible_handle_for_laminair(fan_size, filter_y, depth, filter_z, grid_z);
     }
   }
+      flexible_handle_for_laminair(fan_size, filter_y, depth, filter_z, grid_z);
 
 }
 
