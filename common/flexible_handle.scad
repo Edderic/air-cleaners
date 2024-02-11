@@ -16,8 +16,8 @@ module flexible_handle(screw) {
     left_screw_nut();
 }
 
-module flexible_handle_for_laminair(fan_diameter, y_spacing, depth, filter_z, grid_z, screw=true) {
-  translate([0,fan_diameter + y_spacing + depth + 6,(filter_z + grid_z)/ 2]) {
+module flexible_handle_for_laminair(fan_diameter, filter_y, depth, filter_z, grid_z, screw=true) {
+  translate([0,filter_y / 2 + depth + 2.5,(filter_z + grid_z)/ 2]) {
     rotate([-90,0,0])
       flexible_handle(screw=screw);
   }
