@@ -87,7 +87,7 @@ module screw_joins(
     filter_y
 ) {
   if (bottom_right_stabilizer != "none" && bottom_right_stabilizer_axis == "horizontal") {
-    translate([-fan_size / 2 - x_spacing,-fan_size / 2 - depth - y_spacing, side / 2]) {
+    translate([-(filter_x + 2 * depth) / 4, -(filter_y + 2 * depth) / 4 - depth, side / 2]) {
       if (bottom_right_stabilizer == "p1") {
         rotate([0,90,0])
           screw_join_p1();
@@ -106,7 +106,7 @@ module screw_joins(
     }
    }
   if (top_left_stabilizer != "none" && top_left_stabilizer_axis == "vertical") {
-    translate([fan_size / 2 + x_spacing + side / 2 ,fan_size / 2 + side / 2- depth + y_spacing,side / 2]) {
+    translate([(filter_x + 2 * depth) / 4 + depth,(filter_y + 2 * depth) / 4,side / 2]) {
       rotate([0,0,90])
       rotate([0,90,0])
           screw_join_p2();
