@@ -285,6 +285,7 @@ module fan_container(
             width=width,
             grid_z=grid_z,
             threaded_height=threaded_height,
+            filter_x=filter_x,
             filter_z=z + filter_z
             );
       }
@@ -354,10 +355,12 @@ module bottom_screw_and_nut(length, filter_z=filter_z) {
   }
 }
 
-module left_screw_and_nut(length, width, grid_z, threaded_height, filter_z, depth=5) {
-  translate([0,0,-depth * 2]) {
+module left_screw_and_nut(length, width, grid_z, threaded_height, filter_x, filter_y, filter_z, depth=5) {
+  translate([-(filter_x + 2 * depth) / 4 - depth ,0,filter_z - depth * 2]) {
     rotate([0,0,90])
-    top_screw_and_nut(length=length, filter_z=filter_z);
+    rotate([90,0,0])
+      color([0,0,1])
+      screw_with_nut(threaded_height=threaded_height);
   }
 }
 
