@@ -85,7 +85,7 @@ module top_left(
             grid_z
             );
       power_switch_screw_top();
-      flexible_handle_for_laminair(fan_size, y_spacing, depth, filter_z, grid_z);
+      flexible_handle_for_laminair(fan_size, filter_y, depth, filter_z, grid_z);
     }
   }
 }

@@ -295,30 +295,28 @@ module fan_container(
             width=width,
             grid_z=grid_z,
             threaded_height=threaded_height,
-            filter_z=z + filter_z
+            filter_x=filter_x,
+            filter_z=z + filter_z,
+            depth=depth
             );
 
       }
 
       if (northeast_foot) {
-        northeast_foot(z=filter_z, fan_size=fan_size, y_spacing=y_spacing, cone_top_radius=cone_top_radius, screw=true, height=height);
+        northeast_foot(filter_x=filter_x, filter_y=filter_y, z=filter_z, cone_top_radius=cone_top_radius, screw=true, height=height);
       }
       if (northwest_foot) {
-        northwest_foot(z=filter_z, fan_size=fan_size, y_spacing=y_spacing, cone_top_radius=cone_top_radius, screw=true, height=height);
+        northwest_foot(filter_x=filter_x, filter_y=filter_y, z=filter_z, cone_top_radius=cone_top_radius, screw=true, height=height);
       }
       if (southeast_foot) {
-        southeast_foot(fan_size=fan_size, y_spacing=y_spacing, cone_top_radius=cone_top_radius, screw=true, height=height);
+        southeast_foot(filter_x=filter_x, filter_y=filter_y, z=filter_z, cone_top_radius=cone_top_radius, screw=true, height=height);
       }
       if (southwest_foot) {
-        southwest_foot(fan_size=fan_size, y_spacing=y_spacing, cone_top_radius=cone_top_radius, screw=true, height=height);
+        southwest_foot(filter_x=filter_x, filter_y=filter_y, z=filter_z, cone_top_radius=cone_top_radius, screw=true, height=height);
       }
 
     }
   }
-  // top_left_zip_tie_hole(fan_size=fan_size, z_offset=filter_z, depth=depth);
-  // top_right_zip_tie_hole(fan_size=fan_size, z_offset=filter_z, depth=depth);
-  // bottom_left_zip_tie_hole(fan_size=fan_size, z_offset=filter_z, depth=depth);
-  // bottom_right_zip_tie_hole(fan_size=fan_size, z_offset=filter_z, depth=depth);
 
   screw_joins(
     bottom_right_stabilizer=bottom_right_stabilizer,
@@ -355,7 +353,7 @@ module bottom_screw_and_nut(length, filter_z=filter_z) {
   }
 }
 
-module left_screw_and_nut(length, width, grid_z, threaded_height, filter_x, filter_y, filter_z, depth=5) {
+module left_screw_and_nut(length, width, grid_z, threaded_height, filter_x, filter_z, depth=5) {
   translate([-(filter_x + 2 * depth) / 4 - depth ,0,filter_z - depth * 2]) {
     rotate([0,0,90])
     rotate([90,0,0])
@@ -364,40 +362,47 @@ module left_screw_and_nut(length, width, grid_z, threaded_height, filter_x, filt
   }
 }
 
-module right_screw_and_nut(length, width, grid_z, threaded_height, filter_z) {
+module right_screw_and_nut(length, width, grid_z, threaded_height, filter_x, filter_z, depth) {
   translate([width - 0.1,0,0]) {
     left_screw_and_nut(
         length=length,
         width=width,
         grid_z=grid_z,
         threaded_height=threaded_height,
+        filter_x=filter_x,
         filter_z=filter_z,
         depth=depth
-        );
+    );
   }
 }
 
-module southeast_foot(fan_size=120, y_spacing=y_spacing, height=10, cone_top_radius=8, screw=false) {
-  translate([-fan_size / 2 + depth / 2,-fan_size / 2 - y_spacing - (height), cone_top_radius]) {
-    foot(fan_size, screw=screw, height=height);
+module southeast_foot(filter_x, filter_y, z=0, height=10, cone_top_radius=8, screw=false, num_rows=2, num_cols=2) {
+  translate([
+  -(filter_x + 2 * depth) / num_rows / 2 + cone_top_radius + depth / 2,
+  -(filter_y + 2 * depth) / num_cols / 2 - cone_top_radius,
+  cone_top_radius - depth / 2]) {
+    foot(screw=screw, height=height);
   }
 }
 
-module southwest_foot(fan_size=120, y_spacing=y_spacing, height=10, cone_top_radius=8, screw=false) {
-  translate([fan_size - depth,0,0]) {
-    southeast_foot(fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw);
+module southwest_foot(filter_x, filter_y, z=0, height=10, cone_top_radius=8, screw=false, num_rows=2, num_cols=2) {
+  translate([
+      (filter_x + 2 * depth) / num_rows / 2 - cone_top_radius - depth / 2,
+      -(filter_y + 2 * depth) / num_cols / 2 - cone_top_radius,
+      cone_top_radius - depth / 2]) {
+    foot(screw=screw, height=height);
   }
 }
 
-module northeast_foot(z, fan_size=120, y_spacing=y_spacing, height=10, cone_top_radius=8, screw=false, depth=5) {
+module northeast_foot(filter_x, filter_y, z=0, cone_top_radius=8, screw=true, height=10, num_rows=2, num_cols=2) {
   translate([0,0,z - depth]) {
-    southeast_foot(fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw);
+    southeast_foot(filter_x, filter_y, z=z, height=height, cone_top_radius=cone_top_radius, screw=screw, num_rows=num_rows, num_cols=num_cols);
   }
 }
 
-module northwest_foot(z, fan_size=120, x_spacing=x_spacing, y_spacing=y_spacing, height=10, cone_top_radius=8, screw=false, depth=5) {
-  translate([fan_size - depth,0,0]) {
-    northeast_foot(z, fan_size=fan_size, y_spacing=y_spacing, height=height, cone_top_radius=cone_top_radius, screw=screw, depth=depth);
+module northwest_foot(filter_x, filter_y, z=0, height=10, cone_top_radius=8, screw=false, num_rows=2, num_cols=2) {
+  translate([0,0,z - depth]) {
+    southwest_foot(filter_x, filter_y, z=z, height=height, cone_top_radius=cone_top_radius, screw=screw, num_rows=num_rows, num_cols=num_cols);
   }
 }
 

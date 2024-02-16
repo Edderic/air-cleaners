@@ -162,13 +162,13 @@ rotate([0,180,0]) {
   filter_louvers_container();
 }
 // color([0,1,1])
-// power_switch(
-  // depth,
-  // filter_x,
-  // filter_y,
-  // filter_z,
-  // grid_z
-// );
+power_switch(
+  depth,
+  filter_x,
+  filter_y,
+  filter_z,
+  grid_z
+);
 
 // }
 // translate([0,-52,-2]) {
