@@ -91,7 +91,10 @@ module screw_joins(
   if (bottom_right_stabilizer != "none" && bottom_right_stabilizer_axis == "horizontal") {
     translate([-(filter_x + 2 * depth) / 4, -(filter_y + 2 * depth) / 4 - depth, side / 2]) {
       if (bottom_right_stabilizer == "p1") {
-        rotate([0,90,0])
+
+        mirror([1,0,0])
+        rotate([0,-90,0])
+        rotate([0,0,90])
           screw_join_p1();
       } else {
         screw_join_p2();
@@ -118,8 +121,9 @@ module screw_joins(
 
   if (top_left_stabilizer != "none" && top_left_stabilizer_axis == "horizontal") {
     translate([(filter_x + 2 * depth) / 4,(filter_y + 2 * depth) / 4 + depth,side / 2]) {
-      rotate([180,0,0])
-      rotate([0,-90,0])
+      mirror([1,0,0])
+      rotate([0,0,-90])
+      rotate([-90,0,0])
           screw_join_p1();
     }
   }
@@ -136,17 +140,20 @@ module screw_joins(
 
   if (top_right_stabilizer != "none" && top_right_stabilizer_axis == "vertical") {
     translate([-(filter_x + 2 * depth) / 4 - depth, (filter_y + 2 * depth) / 4,side / 2]) {
+      // rotate([-90,0,0])
+      // rotate([0,0,-90])
+      // rotate([0,180,0])
+      mirror([0,1,0])
       rotate([-90,0,0])
-      rotate([0,0,-90])
-      rotate([0,180,0])
             screw_join_p1();
     }
   }
 
   if (bottom_left_stabilizer != "none" && bottom_left_stabilizer_axis == "vertical") {
     translate([(filter_x + 2 * depth) / 4 + depth,-(filter_y + 2 * depth) / 4, side / 2]) {
-      rotate([0,0,90])
-      rotate([0,90,0])
+      mirror([0,1,0])
+      rotate([0,180,0])
+      rotate([90,0,0])
           screw_join_p1();
     }
   }
