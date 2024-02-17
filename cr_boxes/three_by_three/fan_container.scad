@@ -99,6 +99,7 @@ module screw_joins(
     }
    }
 
+  // TODO: use num_rows and num_cols to do the proper division
   if (bottom_right_stabilizer != "none" && bottom_right_stabilizer_axis == "vertical") {
     translate([-(filter_x + 2 * depth) / 4  -depth, -(filter_y + 2 * depth) / 4, side / 2]) {
 

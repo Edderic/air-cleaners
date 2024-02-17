@@ -143,21 +143,15 @@ module filter_louvers_container(height_offset=height_offset) {
         }
 
         louvers(radius=louver_radius + louver_radius_offset, height_offset=height_offset);
-        // rotate([0,0,90]) louvers(radius=louver_radius + 0.25);
-
-        for (x=[0:1:3]) {
-          rotate([0,0,90 * x])
-            top_bottom_mid_right_z_joins();
-        }
-
       }
     }
   }
 
   top_and_bottom_screw_join();
+  right_screw_join();
+  mirror([1,0,0]) right_screw_join();
 
-  rotate([0,0,90])
-    top_and_bottom_screw_join();
+    // top_and_bottom_screw_join();
 
   // screw_joins(
     // bottom_right_stabilizer=bottom_right_stabilizer,
@@ -284,9 +278,20 @@ module top_right_screw() {
 // mirror([1,1,0]) top_right_screw();
 
 
+module gradient_for_screw_join(d=10) {
+  translate([d - 3,-4,-d/2]) {
+    // rotate([0,270,0])
+    rotate([0,0,180])
+    // translate([0,0,-d / 2]) {
+      linear_extrude(height=d)
+      polygon(points=[[0,0], [d,0], [0,d/2]]);
+    // }
+  }
+}
 module screw_join_p1(side=10, threaded_height=10, screw_head_height = 0) {
   height = threaded_height + screw_head_height;
 
+  gradient_for_screw_join();
   // difference() {
       difference() {
         translate([-side / 2,-side / 2,-height / 2]) {
@@ -317,6 +322,7 @@ module screw_join_p1(side=10, threaded_height=10, screw_head_height = 0) {
 module screw_join_p2(side=10, threaded_height=10, screw_head_height = 0) {
   height = threaded_height + screw_head_height;
 
+  // gradient_for_screw_join();
   // difference() {
       difference() {
         translate([-side / 2,-side / 2,-height / 2]) {
@@ -354,28 +360,23 @@ module screw_join(side=10, part="p1") {
 }
 
 
-module top_screw_join(z_offset = 1, x_offset=-2, part="p1") {
+
+
+
+module top_screw_join(z_offset = 1, x_offset=-2, part="p1", num_cols=2, square_side = 8) {
   // Permanent support so we don't need to add temporary support that needs to
   // be removed.
   d = 10;
 
-  rotate([0,0,90])
-  translate([filter_x / 2 + 1.5,0,25]) {
-    rotate([90,0,0])
-    translate([0,0,-d / 2]) {
-      linear_extrude(height=d)
-      polygon(points=[[0,0], [d,0], [0,d/2]]);
-    }
-  }
 
-  translate([0,filter_y / 2 + square_side + 2,2.5 * square_side]) {
+  translate([0,filter_y / num_cols + square_side + 2,2.5 * square_side]) {
     rotate([-90,0,0])
     rotate([0,90,0])
       screw_join(part="p1");
   }
 
   mirror([1,0,0])
-  translate([0,filter_y / 2 + square_side + 2,2.5 * square_side]) {
+  translate([0,filter_y / num_cols + square_side + 2,2.5 * square_side]) {
     rotate([-90,0,0])
     rotate([0,-90,0])
     rotate([0,0,90])
@@ -392,6 +393,22 @@ module top_and_bottom_screw_join(part="p1") {
   mirror([0,1,0]) top_screw_join(part=part);
 }
 
+module right_screw_join(
+    num_cols=2,
+    square_side=8,
+    ) {
+  translate([-filter_x / num_cols - square_side - 2,0,2.5 * square_side]) {
+    rotate([-90,0,0])
+      screw_join(part="p1");
+  }
+
+  translate([-filter_x / num_cols - square_side - 2,0,2.5 * square_side]) {
+    rotate([-90,0,0])
+      screw_join(part="p2");
+  }
+}
+
+  // rotate([0,0,90])
 
 module mid_right_z_joins() {
   translate([filter_x / 2 - 2, filter_y / 4,filter_z - filter_z_offset - threaded_height + 2]) {
