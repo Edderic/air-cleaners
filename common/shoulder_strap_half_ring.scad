@@ -36,8 +36,8 @@ module screwable(x=15, support=false) {
       edge_4_8_radius=2,
       radius_3=2,
       radius_4=2
-      // edge_4_1_radius=2,
     );
+  }
 }
 
 module to_remove(r, remove_radius=4) {
