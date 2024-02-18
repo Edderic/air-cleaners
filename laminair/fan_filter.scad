@@ -91,15 +91,17 @@ module battery_attachment(
 
 module screwable_and_screw(screw=true, screwable=true, threaded_height=8) {
   if (screw) {
-    rotate([0,90,0])
-    color([0,1,0])
-    screw_with_nut(threaded_height=threaded_height);
+    translate([-3,0,0]) {
+      rotate([0,90,0])
+      color([0,1,0])
+      screw_with_nut(threaded_height=threaded_height, screw_head_height=5);
+    }
   }
 
   if (screwable) {
-    translate([0,6,-5]) {
+    translate([2,6,-5]) {
       rotate([0,0,-90])
-        screwable();
+        screwable(support=true, x=13);
     }
   }
 }

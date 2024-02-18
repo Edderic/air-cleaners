@@ -193,10 +193,15 @@ module local_switch(
 }
 
 
-// power_switch(
-  // depth,
-  // filter_x,
-  // filter_y,
-  // filter_z,
-  // grid_z
-// );
+power_switch(
+  depth,
+  filter_x,
+  filter_y,
+  filter_z,
+  grid_z
+);
+
+// difference() {
+  // battery_attachment(screw=false);
+  // battery_attachment(screw=true);
+// }
