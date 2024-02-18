@@ -200,8 +200,3 @@ power_switch(
   filter_z,
   grid_z
 );
-
-// difference() {
-  // battery_attachment(screw=false);
-  // battery_attachment(screw=true);
-// }
