@@ -87,69 +87,93 @@ module louvers(
   }
 }
 
+module corner_to_remove() {
+  color([0,1,0])
+    cube([get_wall_depth(), get_wall_depth(), front_cover_z], center=true);
+}
+
 module filter_louvers_container(height_offset=height_offset) {
-  translate([0,0,-filter_z_offset]) {
+  difference() {
+    translate([0,0,-filter_z_offset]) {
 
-    // left wall
-    translate([-(filter_x_with_offset) /2 + wall_offset, 0, 10]) {
-      cube([filter_wall_depth, filter_y_with_offset, filter_z - filter_z_offset], center=true);
-    }
-
-    // right wall
-    translate([-wall_offset + filter_x_with_offset / 2 ,0,10]) {
-      cube([filter_wall_depth, filter_y_with_offset, filter_z - filter_z_offset], center=true);
-    }
-
-    // bottom wall
-    translate([0,-filter_y_with_offset / 2 + wall_offset,10]) {
-      cube([filter_x_with_offset, filter_wall_depth, filter_z - filter_z_offset], center=true);
-    }
-
-    // top wall
-    translate([0,filter_y_with_offset / 2 - wall_offset,10]) {
-      cube([filter_x_with_offset, filter_wall_depth, filter_z - filter_z_offset], center=true);
-    }
-
-    difference() {
-      translate([
-          -(get_wall_depth() * 2 + filter_x) / 2,
-          -(get_wall_depth() * 2 + filter_y) / 2,
-          front_cover_z]) {
-        color([1,0,0])
-          smoothed_cube(
-              x=get_wall_depth() * 2 + filter_x,
-              y=get_wall_depth() * 2 + filter_y,
-              z=front_cover_z,
-              radius_1=get_wall_depth(),
-              radius_4=get_wall_depth(),
-              radius_5=get_wall_depth(),
-              radius_8=get_wall_depth(),
-              edge_1_2_radius=get_wall_depth(),
-              edge_4_1_radius=get_wall_depth(),
-              edge_3_4_radius=get_wall_depth(),
-              edge_4_8_radius=get_wall_depth(),
-              edge_7_8_radius=get_wall_depth(),
-              edge_8_5_radius=get_wall_depth(),
-              edge_1_5_radius=get_wall_depth(),
-              edge_5_6_radius=get_wall_depth()
-              );
+      // left wall
+      translate([-(filter_x_with_offset) /2 + wall_offset, 0, 10]) {
+        cube([filter_wall_depth, filter_y_with_offset, filter_z - filter_z_offset], center=true);
       }
 
-      union() {
+      // right wall
+      translate([-wall_offset + filter_x_with_offset / 2 ,0,10]) {
+        cube([filter_wall_depth, filter_y_with_offset, filter_z - filter_z_offset], center=true);
+      }
 
-        translate([0,0,front_cover_z + get_wall_depth() * 1.5]) {
-          color([0,0,1])
-            cube([filter_x_effective, filter_y_effective, front_cover_z + filter_wall_depth * 2], center=true);
+      // bottom wall
+      translate([0,-filter_y_with_offset / 2 + wall_offset,10]) {
+        cube([filter_x_with_offset, filter_wall_depth, filter_z - filter_z_offset], center=true);
+      }
+
+      // top wall
+      translate([0,filter_y_with_offset / 2 - wall_offset,10]) {
+        cube([filter_x_with_offset, filter_wall_depth, filter_z - filter_z_offset], center=true);
+      }
+
+      difference() {
+        translate([
+            -(get_wall_depth() * 2 + filter_x) / 2,
+            -(get_wall_depth() * 2 + filter_y) / 2,
+            front_cover_z]) {
+          color([1,0,0])
+            smoothed_cube(
+                x=get_wall_depth() * 2 + filter_x,
+                y=get_wall_depth() * 2 + filter_y,
+                z=front_cover_z,
+                radius_1=get_wall_depth(),
+                radius_4=get_wall_depth(),
+                radius_5=get_wall_depth(),
+                radius_8=get_wall_depth(),
+                edge_1_2_radius=get_wall_depth(),
+                edge_4_1_radius=get_wall_depth(),
+                edge_3_4_radius=get_wall_depth(),
+                edge_4_8_radius=get_wall_depth(),
+                edge_7_8_radius=get_wall_depth(),
+                edge_8_5_radius=get_wall_depth(),
+                edge_1_5_radius=get_wall_depth(),
+                edge_5_6_radius=get_wall_depth()
+                );
         }
 
-        louvers(radius=louver_radius + louver_radius_offset, height_offset=height_offset);
-        // rotate([0,0,90]) louvers(radius=louver_radius + 0.25);
+        union() {
 
-        for (x=[0:1:3]) {
-          rotate([0,0,90 * x])
-            top_bottom_mid_right_z_joins();
+          translate([0,0,front_cover_z + get_wall_depth() * 1.5]) {
+            color([0,0,1])
+              cube([filter_x_effective, filter_y_effective, front_cover_z + filter_wall_depth * 2], center=true);
+          }
+
+          louvers(radius=louver_radius + louver_radius_offset, height_offset=height_offset);
+          // rotate([0,0,90]) louvers(radius=louver_radius + 0.25);
+
+          for (x=[0:1:3]) {
+            rotate([0,0,90 * x])
+              top_bottom_mid_right_z_joins();
+          }
         }
+      }
+    }
 
+    union() {
+      translate([-filter_x / 2, filter_y / 2, filter_z - filter_z_offset - 2.5]) {
+        corner_to_remove();
+      }
+
+      translate([filter_x / 2, filter_y / 2, filter_z - filter_z_offset - 2.5]) {
+        corner_to_remove();
+      }
+
+      translate([filter_x / 2, -filter_y / 2, filter_z - filter_z_offset - 2.5]) {
+        corner_to_remove();
+      }
+
+      translate([-filter_x / 2, -filter_y / 2, filter_z - filter_z_offset - 2.5]) {
+        corner_to_remove();
       }
     }
   }
