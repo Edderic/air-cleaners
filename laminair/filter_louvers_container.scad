@@ -8,8 +8,8 @@ filter_x = get_filter_dim()[0];
 filter_y = get_filter_dim()[1];
 filter_z = 10;
 
-filter_x_with_offset = filter_x - 0.5;
-filter_y_with_offset = filter_y - 0.5;
+// how deep the walls are for the part that actually encloses the filter
+filter_wall_depth = 1;
 
 filter_effective_offset = 25.4 / 2;
 filter_x_effective = filter_x - filter_effective_offset;
@@ -18,9 +18,6 @@ function get_filter_effective_dim() = [
   filter_x_effective,
   filter_y_effective
 ];
-
-filter_wall_depth = 2;
-wall_offset = filter_wall_depth / 2;
 
 horizontal_wall_depth = filter_x;
 filter_z_offset = 0;
@@ -97,23 +94,23 @@ module filter_louvers_container(height_offset=height_offset) {
     translate([0,0,-filter_z_offset]) {
 
       // left wall
-      translate([-(filter_x_with_offset) /2 + wall_offset, 0, 10]) {
-        cube([filter_wall_depth, filter_y_with_offset, filter_z - filter_z_offset], center=true);
+      translate([-(filter_x) /2 + filter_wall_depth, 0, 10]) {
+        cube([filter_wall_depth, filter_y - 2 * filter_wall_depth, filter_z - filter_z_offset], center=true);
       }
 
       // right wall
-      translate([-wall_offset + filter_x_with_offset / 2 ,0,10]) {
-        cube([filter_wall_depth, filter_y_with_offset, filter_z - filter_z_offset], center=true);
+      translate([-filter_wall_depth + filter_x / 2 ,0,10]) {
+        cube([filter_wall_depth, filter_y - 2 * filter_wall_depth, filter_z - filter_z_offset], center=true);
       }
 
       // bottom wall
-      translate([0,-filter_y_with_offset / 2 + wall_offset,10]) {
-        cube([filter_x_with_offset, filter_wall_depth, filter_z - filter_z_offset], center=true);
+      translate([0,filter_y / 2 - filter_wall_depth,10]) {
+        cube([filter_x - 2 * filter_wall_depth, filter_wall_depth,  filter_z - filter_z_offset], center=true);
       }
 
       // top wall
-      translate([0,filter_y_with_offset / 2 - wall_offset,10]) {
-        cube([filter_x_with_offset, filter_wall_depth, filter_z - filter_z_offset], center=true);
+      translate([0,-filter_y / 2 + filter_wall_depth,10]) {
+        cube([filter_x - 2 * filter_wall_depth, filter_wall_depth, filter_z - filter_z_offset], center=true);
       }
 
       difference() {
