@@ -9,7 +9,7 @@ filter_y = get_filter_dim()[1];
 filter_z = 10;
 
 // how deep the walls are for the part that actually encloses the filter
-filter_wall_depth = 1;
+filter_wall_depth = 1.5;
 
 filter_effective_offset = 25.4 / 2;
 filter_x_effective = filter_x - filter_effective_offset;
