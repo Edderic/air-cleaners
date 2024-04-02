@@ -8,7 +8,7 @@ pushable_x = 4;
 pushable_y = 10;
 pushable_z = 8;
 
-x_dim = 5;
+x_dim = 5.125;
 x_offset = x_dim - 5;
 
 
