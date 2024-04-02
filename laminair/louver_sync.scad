@@ -8,11 +8,11 @@ pushable_x = 4;
 pushable_y = 10;
 pushable_z = 8;
 
-x_dim = 5.125;
+x_dim = 5.0;
 x_offset = x_dim - 5;
 
 
-module louver_sync(radius_offset=0.4) {
+module louver_sync(radius_offset=0.35) {
   color([0,1,0])
     difference() {
       translate([get_filter_effective_dim()[0] / 2 - x_offset,0,20]) {
