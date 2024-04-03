@@ -12,7 +12,7 @@ x_dim = 4.875;
 x_offset = x_dim - 5;
 
 
-module louver_sync(radius_offset=0.35) {
+module louver_sync(radius_offset=0.325) {
   color([0,1,0])
     difference() {
       translate([get_filter_effective_dim()[0] / 2 - x_offset,0,20]) {
