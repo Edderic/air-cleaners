@@ -4,11 +4,11 @@ use <../common/usbc_female.scad>
 use <../common/smoothed_cube.scad>
 
 filter_y = get_filter_dim()[1];
-pushable_x = 4;
 pushable_y = 10;
 pushable_z = 8;
 
 x_dim = 4.875;
+pushable_x = x_dim;
 x_offset = x_dim - 5;
 
 
@@ -26,11 +26,11 @@ module louver_sync(radius_offset=0.25) {
 module louver_sync_with_lever() {
   louver_sync();
 
-  translate([get_filter_effective_dim()[0] / 2 - 3,0,18 + 6 + 3]) {
+  translate([get_filter_effective_dim()[0] / 2 ,0,18 + 6 + 3]) {
     translate([-pushable_x / 2,-pushable_y / 2, -pushable_z / 2]) {
 
       smoothed_cube(
-        x=4,
+        x=x_dim,
         y=10,
         z=8,
         edge_1_2_radius=2,
