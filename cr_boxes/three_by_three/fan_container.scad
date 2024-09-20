@@ -104,11 +104,13 @@ module screw_joins(
 
   // TODO: use num_rows and num_cols to do the proper division
   if (bottom_right_stabilizer != "none" && bottom_right_stabilizer_axis == "vertical") {
-    translate([-(filter_x + 2 * depth) / 4  -depth, -(filter_y + 2 * depth) / 4, side / 2]) {
+    translate([-(filter_x + 2 * depth) / 4  + 2 * depth, -(filter_y + 2 * depth) / 4, side / 2]) {
 
         rotate([90,0,0])
-        rotate([0,0,-90])
-          screw_join_p2();
+
+        mirror([0,0,1])
+        rotate([0,0,-180])
+          screw_join_p1();
     }
    }
   if (top_left_stabilizer != "none" && top_left_stabilizer_axis == "vertical") {
