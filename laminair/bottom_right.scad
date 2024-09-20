@@ -63,7 +63,7 @@ module bottom_right(
           bottom_screw_hole=false,
           right_screw_hole=false,
           long_wall="bottom-right",
-          bottom_right_stabilizer="p1",
+          bottom_right_stabilizer="p2",
           bottom_right_stabilizer_axis="horizontal",
           top_left_stabilizer="p2",
           top_left_stabilizer_axis="vertical",

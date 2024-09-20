@@ -89,17 +89,21 @@ module screw_joins(
   // TODO: The code currently assumes depth (wall depth) is the same as the
   // screw_join depth. Might be good to decouple them at some point.
   if (bottom_right_stabilizer != "none" && bottom_right_stabilizer_axis == "horizontal") {
-    translate([-(filter_x + 2 * depth) / 4, -(filter_y + 2 * depth) / 4 - depth, side / 2]) {
       if (bottom_right_stabilizer == "p1") {
 
-        mirror([1,0,0])
-        rotate([0,-90,0])
-        rotate([0,0,90])
-          screw_join_p1();
+        translate([-(filter_x + 2 * depth) / 4, -(filter_y + 2 * depth) / 4 - depth, side / 2]) {
+          mirror([1,0,0])
+            rotate([0,-90,0])
+            rotate([0,0,90])
+            screw_join_p1();
+        }
       } else {
-        screw_join_p2();
+        translate([-(filter_x + 2 * depth) / 4 + depth,-(filter_y + 2 * depth) / 4 + 2 * depth,side / 2]) {
+          rotate([0,-90,0])
+          rotate([0,0,-180])
+          screw_join_p2();
+        }
       }
-    }
    }
 
   // TODO: use num_rows and num_cols to do the proper division
