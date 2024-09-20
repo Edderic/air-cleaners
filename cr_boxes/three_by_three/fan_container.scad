@@ -222,7 +222,7 @@ module fan_container(
 
 ) {
   height = 10;
-  side = 10;
+  side = 35 * 2 + 10;
   threaded_height = 8;
   stabilizer_height = threaded_height + 2;
 
