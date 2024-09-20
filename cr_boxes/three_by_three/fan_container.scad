@@ -98,7 +98,7 @@ module screw_joins(
             screw_join_p1();
         }
       } else {
-        translate([-(filter_x + 2 * depth) / 4 + depth,-(filter_y + 2 * depth) / 4 + 2 * depth,side / 2]) {
+        translate([-(filter_x + 2 * depth) / 4,-(filter_y + 2 * depth) / 4 + 2 * depth,side / 2]) {
           rotate([0,-90,0])
           rotate([0,0,-180])
           screw_join_p2();
@@ -118,10 +118,11 @@ module screw_joins(
     }
    }
   if (top_left_stabilizer != "none" && top_left_stabilizer_axis == "vertical") {
-    translate([(filter_x + 2 * depth) / 4 + depth,(filter_y + 2 * depth) / 4,side / 2]) {
-      rotate([0,0,90])
-      rotate([0,90,0])
-          screw_join_p2();
+    translate([(filter_x + 2 * depth) / 4 - depth * 2,(filter_y + 2 * depth) / 4,side / 2]) {
+      // rotate([0,0,90])
+      rotate([-90,0,0])
+        mirror([0,0,1])
+          screw_join_p1();
     }
   }
 
