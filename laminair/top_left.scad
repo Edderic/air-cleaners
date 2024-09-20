@@ -8,7 +8,6 @@ use <../common/flexible_handle.scad>
 
 depth = get_wall_depth();
 
-// SmartAir S
 filter_x = get_filter_dim()[0];
 filter_y = get_filter_dim()[1];
 filter_z = get_filter_dim()[2];
