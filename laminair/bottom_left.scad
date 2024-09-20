@@ -71,9 +71,7 @@ module bottom_left(
           top_right_stabilizer="p2",
           top_right_stabilizer_axis="vertical",
           bottom_left_stabilizer="p2",
-          bottom_left_stabilizer_axis="horizontal",
-          northeast_foot=true,
-          southeast_foot=true
+          bottom_left_stabilizer_axis="horizontal"
             );
     }
     union() {

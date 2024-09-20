@@ -157,9 +157,11 @@ module screw_joins(
   }
 
   if (bottom_left_stabilizer != "none" && bottom_left_stabilizer_axis == "horizontal") {
-    translate([(filter_x + 2 * depth) / 4, -(filter_y + 2 * depth) / 4 - depth, side / 2]) {
+    translate([(filter_x + 2 * depth) / 4, -(filter_y + 2 * depth) / 4 + depth * 2, side / 2]) {
+      rotate([-90,0,0])
       rotate([0,90,0])
-          screw_join_p2();
+        mirror([0,0,1])
+          screw_join_p1();
     }
   }
 
