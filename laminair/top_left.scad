@@ -1,5 +1,4 @@
 use <../cr_boxes/three_by_three/fan_container.scad>
-use <shoulder_strap_half_ring_left.scad>
 use <fan_filter.scad>
 use <filter_louvers_container.scad>
 use <methods.scad>
@@ -76,13 +75,6 @@ module top_left(
         );
     }
     union() {
-      mirror([1,0,0])
-        shoulder_strap_half_ring_left(
-            filter_x,
-            filter_y,
-            filter_z,
-            grid_z
-            );
       power_switch_screw_top();
       flexible_handle_for_laminair(fan_size, filter_y, depth, filter_z, grid_z);
     }
