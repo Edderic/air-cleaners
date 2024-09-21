@@ -119,31 +119,31 @@ bottom_left(
   fan_size=fan_diameter
 );
 
-bottom_right(
-  width,
-  length,
-  filter_x,
-  filter_y,
-  filter_z,
-  grid_z,
-  x_spacing,
-  y_spacing,
-  z_spacing,
-  fan_diameter
-);
-
-top_right(
-  width,
-  length,
-  filter_x,
-  filter_y,
-  filter_z,
-  grid_z,
-  x_spacing,
-  y_spacing,
-  z_spacing,
-  fan_diameter
-);
+// bottom_right(
+//   width,
+//   length,
+//   filter_x,
+//   filter_y,
+//   filter_z,
+//   grid_z,
+//   x_spacing,
+//   y_spacing,
+//   z_spacing,
+//   fan_diameter
+// );
+//
+// top_right(
+//   width,
+//   length,
+//   filter_x,
+//   filter_y,
+//   filter_z,
+//   grid_z,
+//   x_spacing,
+//   y_spacing,
+//   z_spacing,
+//   fan_diameter
+// );
 top_left(
   width,
   length,

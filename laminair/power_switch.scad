@@ -11,7 +11,7 @@ use <methods.scad>
 
 module horizontal_text(characters, width_offsets, width=8,  height=2) {
   for (i=[0:1:len(characters)]) {
-    translate([i * width + width_offsets[i],0,0]) {
+    translate([i * width + width_offsets[i] - 3,0,0]) {
       linear_extrude(height=height)
       text(characters[i]);
     }
@@ -49,7 +49,7 @@ switch_length = power_switch_length(filter_y, depth);
 function power_switch_length(filter_y, depth) = filter_y / 2 + depth;
 
 module power_switch_screw_bottom(screw=false) {
-  translate([0,16 - switch_length, (screwable_width() + 2) / 2 + ps_width / 2 + depth - 1.6]) {
+  translate([1,10 - switch_length, (screwable_width() + 2) / 2 + ps_width / 2 + depth - 1.6]) {
     mirror([0,1,0])
     translate([0,-72,0]) {
       battery_attachment_compound(screw=screw);
@@ -69,7 +69,7 @@ module battery_attachment_compound(screw) {
 }
 
 module power_switch_screw_top(screw=true) {
-  translate([0,-filter_y / 5,0]) {
+  translate([1,-filter_y / 5,0]) {
     z_offset = 8;
     translate([0, 2.5, z_offset + power_switch_width(filter_z, grid_z, depth, side_length) / 2]) {
       battery_attachment_compound(screw);
@@ -125,9 +125,10 @@ module power_switch(
           }
 
           // make some space for wires
-          translate([-filter_x / 2 - power_switch_width - 1,0,get_square_side_length() + (z - 74) / 2]) {
+          translate([-filter_x / 2 - power_switch_width - 1,-depth,get_square_side_length() + (z - 74) / 2]) {
             cube([power_switch_width - 4,68,74]);
           }
+
           // usbc hole
           translate([-filter_x / 2 - 17 ,filter_y / 4, 5 + z / 2]) {
             rotate([0,-90,0])
