@@ -86,7 +86,8 @@ module top(x, y, z, depth, corners_smoothed=false, x_edges_smoothed=false,
         edge_2_6_radius=right_front_edge_radius,
         radius_2=bottom_right_front_corner_radius,
         radius_6=top_right_front_corner_radius,
-        radius_7=top_left_front_corner_radius
+        radius_7=top_left_front_corner_radius,
+        edge_3_7_radius=left_front_edge_radius
 
         );
     translate([depth, depth,0]) {
@@ -166,6 +167,7 @@ module top_spaced(
     bottom_right_corner_smoothed=false,
     bottom_right_front_corner_smoothed=false,
     bottom_front_edge_smoothed=false,
+    left_front_edge_smoothed=false,
     right_front_edge_smoothed=false,
     fan_diameter=140
     ) {
@@ -200,7 +202,8 @@ module top_spaced(
                 bottom_right_corner_smoothed=bottom_right_corner_smoothed,
                 bottom_right_front_corner_smoothed=bottom_right_front_corner_smoothed,
                 bottom_front_edge_smoothed=bottom_front_edge_smoothed,
-                right_front_edge_smoothed=right_front_edge_smoothed
+                right_front_edge_smoothed=right_front_edge_smoothed,
+                left_front_edge_smoothed=left_front_edge_smoothed
                );
 
         }
