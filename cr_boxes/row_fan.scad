@@ -77,11 +77,11 @@ module top(x, y, z, depth, corners_smoothed=false, x_edges_smoothed=false,
         edge_7_8_radius=top_right_edge_radius,
         edge_3_4_radius=bottom_right_edge_radius,
         edge_1_2_radius=bottom_left_edge_radius,
-        edge_6_7_radius=top_front_edge_radius,
+        edge_6_7_radius=5,
         edge_2_3_radius=bottom_front_edge_radius,
         edge_2_6_radius=right_front_edge_radius,
         radius_2=bottom_right_front_corner_radius,
-        radius_3=top_right_front_corner_radius
+        radius_6=top_right_front_corner_radius
 
         );
     translate([depth, depth,0]) {
