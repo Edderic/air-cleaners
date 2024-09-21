@@ -199,10 +199,12 @@ module fan_container(
   right_front_edge_smoothed=false,
   top_left_corner_smoothed=false,
   top_right_corner_smoothed=false,
+  top_right_front_corner_smoothed=false,
   bottom_left_corner_smoothed=false,
   bottom_right_corner_smoothed=false,
   bottom_right_front_corner_smoothed=false,
   bottom_front_edge_smoothed=false,
+  top_front_edge_smoothed=false,
   bottom_right_zip_tie_hole=false,
   bottom_left_zip_tie_hole=false,
   top_right_zip_tie_hole=false,
@@ -263,6 +265,8 @@ module fan_container(
             bottom_right_corner_smoothed=bottom_right_corner_smoothed,
             bottom_right_front_corner_smoothed=bottom_right_front_corner_smoothed,
             right_front_edge_smoothed=right_front_edge_smoothed,
+            top_front_edge_smoothed=top_front_edge_smoothed,
+            top_right_front_corner_smoothed=top_right_front_corner_smoothed,
 
             fan_diameter=fan_size
           );
