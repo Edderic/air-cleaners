@@ -65,7 +65,11 @@ module top(x, y, z, depth, corners_smoothed=false, x_edges_smoothed=false,
         edge_5_6_radius=top_left_edge_radius,
         edge_7_8_radius=top_right_edge_radius,
         edge_3_4_radius=bottom_right_edge_radius,
-        edge_1_2_radius=bottom_left_edge_radius
+        edge_1_2_radius=bottom_left_edge_radius,
+
+        edge_2_3_radius=5,
+        edge_2_6_radius=5,
+        radius_2=5
 
         );
     translate([depth, depth,0]) {
