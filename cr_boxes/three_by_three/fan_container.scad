@@ -196,10 +196,13 @@ module fan_container(
   edge_top_right_smoothed=false,
   edge_bottom_left_smoothed=false,
   edge_bottom_right_smoothed=false,
+  right_front_edge_smoothed=false,
   top_left_corner_smoothed=false,
   top_right_corner_smoothed=false,
   bottom_left_corner_smoothed=false,
   bottom_right_corner_smoothed=false,
+  bottom_right_front_corner_smoothed=false,
+  bottom_front_edge_smoothed=false,
   bottom_right_zip_tie_hole=false,
   bottom_left_zip_tie_hole=false,
   top_right_zip_tie_hole=false,
@@ -245,6 +248,7 @@ module fan_container(
             y_spacing=y_spacing,
             z_spacing=z_spacing,
             z_offset=z_offset,
+            bottom_front_edge_smoothed=bottom_front_edge_smoothed,
             edge_fan_top_smoothed=edge_fan_top_smoothed,
             edge_fan_bottom_smoothed=edge_fan_bottom_smoothed,
             edge_fan_left_smoothed=edge_fan_left_smoothed,
@@ -257,6 +261,9 @@ module fan_container(
             top_right_corner_smoothed=top_right_corner_smoothed,
             bottom_left_corner_smoothed=bottom_left_corner_smoothed,
             bottom_right_corner_smoothed=bottom_right_corner_smoothed,
+            bottom_right_front_corner_smoothed=bottom_right_front_corner_smoothed,
+            right_front_edge_smoothed=right_front_edge_smoothed,
+
             fan_diameter=fan_size
           );
           wall_remover(long_wall, width, length, filter_z, z);

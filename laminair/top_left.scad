@@ -50,6 +50,7 @@ module top_left(
           top_left_corner_smoothed=true,
           bottom_left_corner_smoothed=false,
           bottom_right_corner_smoothed=false,
+          bottom_right_front_corner_smoothed=false,
           top_right_corner_smoothed=false,
           edge_fan_top_smoothed=true,
           edge_fan_bottom_smoothed=false,

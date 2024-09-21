@@ -28,7 +28,10 @@ module top(x, y, z, depth, corners_smoothed=false, x_edges_smoothed=false,
     top_left_corner_smoothed=false,
     top_right_corner_smoothed=false,
     bottom_left_corner_smoothed=false,
-    bottom_right_corner_smoothed=false
+    bottom_right_corner_smoothed=false,
+    bottom_right_front_corner_smoothed=false,
+    bottom_front_edge_smoothed=false,
+    right_front_edge_smoothed=false
 ) {
   corner_radius = corners_smoothed ? depth : 0;
   x_edge_radius = x_edges_smoothed ? depth : 0;
@@ -47,6 +50,10 @@ module top(x, y, z, depth, corners_smoothed=false, x_edges_smoothed=false,
   bottom_left_corner_radius = bottom_left_corner_smoothed ? depth : 0;
   top_right_corner_radius = top_right_corner_smoothed ? depth : 0;
   bottom_right_corner_radius = bottom_right_corner_smoothed ? depth : 0;
+  bottom_right_front_corner_radius = bottom_right_front_corner_smoothed ? depth : 0;
+
+  bottom_front_edge_radius = bottom_front_edge_smoothed ? depth : 0;
+  right_front_edge_radius = right_front_edge_smoothed ? depth : 0;
 
 
   difference() {
@@ -66,10 +73,10 @@ module top(x, y, z, depth, corners_smoothed=false, x_edges_smoothed=false,
         edge_7_8_radius=top_right_edge_radius,
         edge_3_4_radius=bottom_right_edge_radius,
         edge_1_2_radius=bottom_left_edge_radius,
-
-        edge_2_3_radius=5,
-        edge_2_6_radius=5,
-        radius_2=5
+        // edge_3_7_radius=right_front_edge_radius,
+        edge_2_3_radius=bottom_front_edge_radius,
+        edge_2_6_radius=right_front_edge_radius,
+        radius_2=bottom_right_front_corner_radius
 
         );
     translate([depth, depth,0]) {
@@ -144,6 +151,9 @@ module top_spaced(
     top_right_corner_smoothed=false,
     bottom_left_corner_smoothed=false,
     bottom_right_corner_smoothed=false,
+    bottom_right_front_corner_smoothed=false,
+    bottom_front_edge_smoothed=false,
+    right_front_edge_smoothed=false,
     fan_diameter=140
     ) {
       // x_spacing: the space in the x direction between the edge of a fan and edge
@@ -172,7 +182,10 @@ module top_spaced(
                 top_left_corner_smoothed=top_left_corner_smoothed,
                 top_right_corner_smoothed=top_right_corner_smoothed,
                 bottom_left_corner_smoothed=bottom_left_corner_smoothed,
-                bottom_right_corner_smoothed=bottom_right_corner_smoothed
+                bottom_right_corner_smoothed=bottom_right_corner_smoothed,
+                bottom_right_front_corner_smoothed=bottom_right_front_corner_smoothed,
+                bottom_front_edge_smoothed=bottom_front_edge_smoothed,
+                right_front_edge_smoothed=right_front_edge_smoothed
                );
 
         }
