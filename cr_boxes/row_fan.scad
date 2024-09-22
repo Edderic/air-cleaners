@@ -21,6 +21,7 @@ module top(x, y, z, depth, corners_smoothed=false, x_edges_smoothed=false,
     edge_fan_bottom_smoothed=false,
     edge_fan_left_smoothed=false,
     edge_fan_right_smoothed=false,
+
     edge_top_left_smoothed=false,
     edge_top_right_smoothed=false,
     edge_bottom_left_smoothed=false,
@@ -28,6 +29,7 @@ module top(x, y, z, depth, corners_smoothed=false, x_edges_smoothed=false,
     top_left_corner_smoothed=false,
     top_right_corner_smoothed=false,
     bottom_left_corner_smoothed=false,
+    bottom_left_front_corner_smoothed=false,
     bottom_right_corner_smoothed=false,
     bottom_right_front_corner_smoothed=false,
     top_front_edge_smoothed=false,
@@ -52,6 +54,8 @@ module top(x, y, z, depth, corners_smoothed=false, x_edges_smoothed=false,
 
   top_left_corner_radius = top_left_corner_smoothed ? depth : 0;
   bottom_left_corner_radius = bottom_left_corner_smoothed ? depth : 0;
+  bottom_left_front_corner_radius = bottom_left_front_corner_smoothed ? depth : 0;
+
   top_right_corner_radius = top_right_corner_smoothed ? depth : 0;
   bottom_right_corner_radius = bottom_right_corner_smoothed ? depth : 0;
   bottom_right_front_corner_radius = bottom_right_front_corner_smoothed ? depth : 0;
@@ -87,8 +91,8 @@ module top(x, y, z, depth, corners_smoothed=false, x_edges_smoothed=false,
         radius_2=bottom_right_front_corner_radius,
         radius_6=top_right_front_corner_radius,
         radius_7=top_left_front_corner_radius,
+        radius_3=bottom_left_front_corner_radius,
         edge_3_7_radius=left_front_edge_radius
-
         );
     translate([depth, depth,0]) {
       cube([x - 2 * depth , y - 2 * depth , z - depth]);
@@ -165,6 +169,7 @@ module top_spaced(
     top_front_edge_smoothed=false,
     bottom_left_corner_smoothed=false,
     bottom_right_corner_smoothed=false,
+    bottom_left_front_corner_smoothed=false,
     bottom_right_front_corner_smoothed=false,
     bottom_front_edge_smoothed=false,
     left_front_edge_smoothed=false,
@@ -200,6 +205,7 @@ module top_spaced(
                 top_right_front_corner_smoothed=top_right_front_corner_smoothed,
                 bottom_left_corner_smoothed=bottom_left_corner_smoothed,
                 bottom_right_corner_smoothed=bottom_right_corner_smoothed,
+                bottom_left_front_corner_smoothed=bottom_left_front_corner_smoothed,
                 bottom_right_front_corner_smoothed=bottom_right_front_corner_smoothed,
                 bottom_front_edge_smoothed=bottom_front_edge_smoothed,
                 right_front_edge_smoothed=right_front_edge_smoothed,
