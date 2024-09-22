@@ -4,7 +4,9 @@ use <../cr_boxes/three_by_three/fan_container.scad>
 // SmartAir S filter dimensions
 // function get_filter_dim() = [10.5 * 25.4, 10.5 * 25.4, 96 - get_grid_z()];
 //
-function get_filter_dim() = [250, 250, 88 - get_grid_z()];
+//
+// Honeywell 2x filter
+function get_filter_dim() = [254, 252, 88 - get_grid_z()];
 
 // Starkvind filter dimensions in millimeters
 // function get_filter_dim() = [14.5 * 25.4, 11.25 * 25.4, 96 - get_grid_z()];
