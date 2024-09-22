@@ -196,7 +196,7 @@ module fan_container(
   edge_top_right_smoothed=false,
   edge_bottom_left_smoothed=false,
   edge_bottom_right_smoothed=false,
-  left_front_edge_smoothed=true,
+  left_front_edge_smoothed=false,
   right_front_edge_smoothed=false,
   top_left_corner_smoothed=false,
   top_right_corner_smoothed=false,
