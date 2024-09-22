@@ -1,10 +1,12 @@
 use <smoothed_corner.scad>
 use <smoothed_edge.scad>
 $fn=100;
-//    5   8
-// 1   4
-//    6   7
-// 2   3
+//    5 - 8
+//   /|  /
+// 1 - 4  |
+// |  6|- 7
+// | / | /
+// 2 - 3
 // Create a cube
 // Remove the edges
 // Add smoothed edges
