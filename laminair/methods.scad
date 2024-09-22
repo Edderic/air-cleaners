@@ -6,7 +6,7 @@ use <../cr_boxes/three_by_three/fan_container.scad>
 //
 //
 // Honeywell 2x filter
-function get_filter_dim() = [254, 252, 88 - get_grid_z()];
+function get_filter_dim() = [257, 252, 88 - get_grid_z()];
 
 // Starkvind filter dimensions in millimeters
 // function get_filter_dim() = [14.5 * 25.4, 11.25 * 25.4, 96 - get_grid_z()];
