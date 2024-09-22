@@ -1,4 +1,4 @@
-name: 3d-modelling
+name: 3d-modeling
 
 dependencies:
   - python=3.11
@@ -7,3 +7,8 @@ dependencies:
   - toolz
   - matplotlib
   - seaborn
+  - jupyterlab
+  - cadquery
+  - pip
+  - pip:
+    - jupyter-cadquery
