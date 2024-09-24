@@ -33,11 +33,11 @@ screw_hole_radius = 2.5;
 
 translate_fan_hole_y = 67;
 
-module swivel_joint() {
+module swivel_joint(cylinder_scaler = 0.55) {
   difference() {
     union() {
       // cylinder to attach the stand to
-      scale([1,1,0.55]) {
+      scale([1,1, cylinder_scaler]) {
         translate([0,get_blah() / 2,0]) {
           rotate([90,0,0])
             rotate([0,0,90])
