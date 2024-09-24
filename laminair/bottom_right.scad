@@ -46,6 +46,7 @@ module bottom_right(
           filter_x=filter_x,
           filter_y=filter_y,
           z=grid_z,
+          left_front_edge_smoothed=true,
           bottom_left_front_corner_smoothed=true,
           bottom_right_corner_smoothed=true,
           bottom_front_edge_smoothed=true,
