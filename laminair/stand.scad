@@ -14,6 +14,10 @@ screw_knob_radius = get_screw_knob_radius();
 screw_knob_head_height = get_screw_knob_head_height();
 threaded_knob_center_to_wall_distance = get_threaded_knob_center_to_wall_distance();
 
+    // translate([0,screw_knob_head_height + screw_knob_threaded_height / 2, threaded_knob_center_to_wall_distance]) {
+      // rotate([90,0,0])
+        // screw_knob();
+    // }
 
 // will handle the screw
 difference() {
