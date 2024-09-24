@@ -1,6 +1,6 @@
 use <elbow.scad>
 use <methods.scad>
-use <../common/screw.scad>
+use <screw_knob.scad>
 $fn = 100;
 
 wall_depth = get_wall_depth();
@@ -56,5 +56,5 @@ translate([-support_height - wall_depth, 0, wall_depth]) {
     circle(50);
 }
 
-
-
+//
+// hex_nut

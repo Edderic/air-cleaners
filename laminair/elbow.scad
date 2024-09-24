@@ -1,5 +1,5 @@
 use <../common/smoothed_cube.scad>
-use <../common/screw.scad>
+use <screw_knob.scad>
 use <methods.scad>
 $fn = 100;
 
