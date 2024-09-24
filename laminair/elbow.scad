@@ -8,9 +8,8 @@ wall_depth = get_wall_depth();
 screw_distance = 103;
 
 // 1/4 inch screw knob
-screw_knob_diameter = 25;
-screw_length = 28;
-screw_diameter = 6.3;
+screw_knob_radius = get_screw_knob_radius();
+screw_knob_threaded_height = get_screw_knob_threaded_height();
 
 // 1/4 inch nut
 
@@ -36,12 +35,12 @@ module swivel_joint() {
   difference() {
     union() {
       scale([1,1,0.55]) {
-        translate([0,screw_length * support_thickness / 2,0]) {
+        translate([0,screw_knob_threaded_height * support_thickness / 2,0]) {
           rotate([90,0,0])
             rotate([0,0,90])
 
             difference() {
-              linear_extrude(height=screw_length * support_thickness)
+              linear_extrude(height=screw_knob_threaded_height * support_thickness)
                 circle(screw_distance / 2);
 
 
@@ -84,7 +83,7 @@ module swivel_joint() {
         fan_hole();
       }
 
-      translate([0,20,screw_knob_diameter - 3]) {
+      translate([0,20,screw_knob_radius * 2 - 3]) {
         rotate([90,0,0])
           color([1,0,0])
           screw_knob();
