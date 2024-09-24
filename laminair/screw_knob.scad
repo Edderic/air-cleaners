@@ -1,4 +1,4 @@
-use <../common/screw.scad>
+use <../common/screw_with_nut.scad>
 
 function get_screw_knob_radius() = 25 / 2;
 function get_screw_knob_threaded_height() = 28;
@@ -13,7 +13,10 @@ module screw_knob(
   screw_diameter=6.3 / 2,
   screw_head_height=10.8
 ) {
-  screw(
+  screw_with_nut(
+    nut_type="hex",
+    hex_nut_height=5,
+    hex_nut_side_length=6.2,
     screw_head_radius=screw_knob_diameter,
     screw_head_height=screw_head_height,
     threaded_height=screw_length,
