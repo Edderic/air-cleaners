@@ -16,7 +16,7 @@ screw_knob_threaded_height = get_screw_knob_threaded_height();
 // fan_diameter = get_fan_diameter();
 fan_size = 120;
 
-x = fan_size - 5;
+x = fan_size;
 
 small_screw_distance_width = 27.25;
 y = small_screw_distance_width + 3 * 5;
@@ -28,6 +28,8 @@ module fan_hole(fan_size=120) {
   linear_extrude(wall_depth)
   circle(fan_size / 2);
 }
+
+screw_hole_radius = 2.5;
 
 translate_fan_hole_y = 67;
 
@@ -88,22 +90,22 @@ module swivel_joint() {
       }
 
       // screw hole
-      translate([-fan_size / 2 + 2 * wall_depth, small_screw_distance_width / 2,0]) {
+      translate([-x / 2 + wall_depth + screw_hole_radius, small_screw_distance_width / 2,0]) {
         cylinder(h=20, r=2.5);
       }
 
       // screw hole
-      translate([fan_size / 2 - 2 * wall_depth, small_screw_distance_width / 2,0]) {
+      translate([x / 2 - wall_depth - screw_hole_radius, small_screw_distance_width / 2,0]) {
         cylinder(h=20, r=2.5);
       }
 
       // screw hole
-      translate([-fan_size / 2 + 2 * wall_depth, -small_screw_distance_width / 2,0]) {
+      translate([-x / 2 + wall_depth + screw_hole_radius, -small_screw_distance_width / 2,0]) {
         cylinder(h=20, r=2.5);
       }
 
       // screw hole
-      translate([fan_size / 2 - 2 * wall_depth, -small_screw_distance_width / 2,0]) {
+      translate([x / 2 - wall_depth - screw_hole_radius, -small_screw_distance_width / 2,0]) {
         cylinder(h=20, r=2.5);
       }
 
