@@ -34,13 +34,14 @@ translate_fan_hole_y = 67;
 module swivel_joint() {
   difference() {
     union() {
+      // cylinder to attach the stand to
       scale([1,1,0.55]) {
-        translate([0,screw_knob_threaded_height * support_thickness / 2,0]) {
+        translate([0,get_blah() / 2,0]) {
           rotate([90,0,0])
             rotate([0,0,90])
 
             difference() {
-              linear_extrude(height=screw_knob_threaded_height * support_thickness)
+              linear_extrude(height=get_blah())
                 circle(screw_distance / 2);
 
 
@@ -51,10 +52,7 @@ module swivel_joint() {
         }
       }
 
-      //                        screw distance
-      //           X---------------------|---------------------X
-      //           X-------------------------------------------X
-      // -----------------------------------------------------------------
+      // wall plate
       translate([-x/2,-y/2,0]) {
         smoothed_cube(
             x = x,
@@ -83,7 +81,7 @@ module swivel_joint() {
         fan_hole();
       }
 
-      translate([0,20,screw_knob_radius * 2 - 3]) {
+      translate([0,20,get_threaded_knob_center_to_wall_distance()]) {
         rotate([90,0,0])
           color([1,0,0])
           screw_knob();
