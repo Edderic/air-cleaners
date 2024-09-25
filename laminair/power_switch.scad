@@ -46,6 +46,7 @@ z_spacing = get_fan_to_wall_spacing_dim()[2];
 power_switch_width = get_tcore_powerbank_z() + 3;
 ps_width = power_switch_width(filter_z, grid_z, depth, side_length);
 switch_length = power_switch_length(filter_y, depth);
+z_offset = 70;
 function power_switch_length(filter_y, depth) = filter_y / 2 + depth;
 
 module power_switch_screw_bottom(screw=false) {
@@ -124,9 +125,10 @@ module power_switch(
               tcore_powerbank();
           }
 
+
           // make some space for wires
-          translate([-filter_x / 2 - power_switch_width - 1,-depth,get_square_side_length() + (z - 74) / 2]) {
-            cube([power_switch_width - 4,68,74]);
+          translate([-filter_x / 2 - power_switch_width - 1,-depth,get_square_side_length() + (z - z_offset) / 2]) {
+            cube([power_switch_width - 4,68,z_offset]);
           }
 
           // usbc hole
