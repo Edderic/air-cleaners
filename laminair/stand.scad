@@ -1,6 +1,7 @@
 use <elbow.scad>
 use <methods.scad>
 use <screw_knob.scad>
+use <../common/nut.scad>
 $fn = 100;
 
 wall_depth = get_wall_depth();
@@ -14,10 +15,8 @@ screw_knob_radius = get_screw_knob_radius();
 screw_knob_head_height = get_screw_knob_head_height();
 threaded_knob_center_to_wall_distance = get_threaded_knob_center_to_wall_distance();
 
-    // translate([0,screw_knob_head_height + screw_knob_threaded_height / 2, threaded_knob_center_to_wall_distance]) {
-      // rotate([90,0,0])
-        // screw_knob();
-    // }
+hex_nut_height = get_hex_nut_height();
+hex_nut_side_length = get_hex_nut_side_length();
 
 // will handle the screw
 difference() {
@@ -54,11 +53,18 @@ difference() {
   }
 }
 
-translate([-support_height - wall_depth, 0, wall_depth]) {
-  rotate([0,90,0])
-  linear_extrude(wall_depth)
-    circle(50);
+difference() {
+  // base
+  translate([-support_height - wall_depth, 0, wall_depth]) {
+    rotate([0,90,0])
+      linear_extrude(wall_depth)
+      circle(50);
+  }
+  // hex nut for tripod extension
+  translate([-support_height - wall_depth -4, 0, -3]) {
+    rotate([30,0,0])
+    rotate([0,90,0])
+      color([1,0,0])
+      screw_knob(screw_head_height=0, screw_length=10);
+  }
 }
-
-//
-// hex_nut
