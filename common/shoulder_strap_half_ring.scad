@@ -8,13 +8,13 @@ function screwable_width() = 5;
 
 module screwable(x=15, support=false) {
   if (support) {
-    translate([13,0,0]) {
+    translate([14,0,0]) {
       rotate([0,0,180])
         linear_extrude(height=10)
-        polygon(points=[[0,0], [11,0], [0,5.75]]);
+        polygon(points=[[0,0], [12,0], [0,5.75]]);
     }
     translate([2,0,0]) {
-      cube([11, 3, 10]);
+      cube([12, 2, 10]);
     }
   } else {
 
