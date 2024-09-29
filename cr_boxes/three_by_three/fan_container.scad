@@ -137,7 +137,7 @@ module screw_joins(
 
 
   if (top_right_stabilizer != "none" && top_right_stabilizer_axis == "horizontal") {
-    translate([-(filter_x + 2 * depth) / 4, filter_y / 4 - depth - 2, side / 2]) {
+    translate([-(filter_x + 2 * depth) / 4, filter_y / 4 - depth - 2.5, side / 2]) {
       rotate([0,-90,0])
       rotate([0,0,90])
       mirror([0,0,1])
