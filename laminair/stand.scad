@@ -22,13 +22,15 @@ hex_nut_side_length = get_hex_nut_side_length();
 // will handle the screw
 difference() {
   union() {
+    // screw cylinder
     translate([0, screw_knob_threaded_height / 2, threaded_knob_center_to_wall_distance]) {
       color([0,0,1])
       rotate([90,0,0])
       linear_extrude(screw_knob_threaded_height)
-      circle(washer_outer_diameter / 2);
+      circle(washer_outer_diameter / 2 + 5);
     }
 
+    // neck
     translate([0,screw_knob_threaded_height / 2,  threaded_knob_center_to_wall_distance]) {
       rotate([0,90,0])
         rotate([90,0,0])
@@ -45,7 +47,7 @@ difference() {
   }
 
   union() {
-    swivel_joint(cylinder_scaler=0.6);
+    swivel_joint(cylinder_scaler=0.68250);
 
     translate([0,screw_knob_head_height + screw_knob_threaded_height / 2, threaded_knob_center_to_wall_distance]) {
       rotate([90,0,0])
@@ -54,19 +56,31 @@ difference() {
   }
 }
 
+hex_nut_support_height = 3;
+
 difference() {
   // base
-  translate([-support_height - wall_depth, 0, -10]) {
-    scale([1,1,0.6])
-    rotate([0,90,0])
-      linear_extrude(wall_depth)
-      circle(base_radius);
+  union() {
+    translate([-support_height - wall_depth, 0, -10]) {
+      scale([1,1,0.6])
+        rotate([0,90,0])
+        linear_extrude(wall_depth)
+        circle(base_radius);
+    }
+    // extra support for the hex nut that will interface with the tripod
+    translate([-support_height, 33, -5]) {
+      rotate([0,90,0]) {
+        cylinder(r=10, h=hex_nut_support_height);
+      }
+    }
+
   }
   // hex nut for tripod extension
-  translate([-support_height - wall_depth -4, 33, -5]) {
+  translate([-support_height - wall_depth -2, 33, -5]) {
     rotate([30,0,0])
-    rotate([0,90,0])
+      rotate([0,90,0])
       color([1,0,0])
       screw_knob(screw_head_height=0, screw_length=10);
   }
 }
+
