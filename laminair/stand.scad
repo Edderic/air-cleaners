@@ -56,7 +56,7 @@ difference() {
   }
 }
 
-hex_nut_support_height = 3;
+hex_nut_support_height = 1;
 
 difference() {
   // base
@@ -76,7 +76,7 @@ difference() {
 
   }
   // hex nut for tripod extension
-  translate([-support_height - wall_depth -2, 33, -5]) {
+  translate([-support_height - wall_depth -3.5, 33, -5]) {
     rotate([30,0,0])
       rotate([0,90,0])
       color([1,0,0])
