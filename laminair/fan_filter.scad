@@ -106,18 +106,18 @@ module screwable_and_screw(screw=true, screwable=true, threaded_height=8) {
 }
 
 //
-bottom_left(
-  width,
-  length,
-  filter_x,
-  filter_y,
-  filter_z,
-  grid_z,
-  x_spacing,
-  y_spacing,
-  z_spacing,
-  fan_size=fan_diameter
-);
+// bottom_left(
+  // width,
+  // length,
+  // filter_x,
+  // filter_y,
+  // filter_z,
+  // grid_z,
+  // x_spacing,
+  // y_spacing,
+  // z_spacing,
+  // fan_size=fan_diameter
+// );
 
 // bottom_right(
 //   width,
@@ -132,18 +132,18 @@ bottom_left(
 //   fan_diameter
 // );
 //
-// top_right(
-//   width,
-//   length,
-//   filter_x,
-//   filter_y,
-//   filter_z,
-//   grid_z,
-//   x_spacing,
-//   y_spacing,
-//   z_spacing,
-//   fan_diameter
-// );
+top_right(
+  width,
+  length,
+  filter_x,
+  filter_y,
+  filter_z,
+  grid_z,
+  x_spacing,
+  y_spacing,
+  z_spacing,
+  fan_diameter
+);
 top_left(
   width,
   length,
@@ -157,16 +157,16 @@ top_left(
   fan_diameter
 );
 
-flexible_handle_for_laminair(fan_diameter, y_spacing, depth, filter_z, grid_z);
+// flexible_handle_for_laminair(fan_diameter, y_spacing, depth, filter_z, grid_z);
 //
 // color([0,1,1])
-power_switch(
-  depth,
-  filter_x,
-  filter_y,
-  filter_z,
-  grid_z
-);
+// power_switch(
+  // depth,
+  // filter_x,
+  // filter_y,
+  // filter_z,
+  // grid_z
+// );
 
 // }
 // translate([0,-52,-2]) {
