@@ -20,6 +20,8 @@ If you are interested in printing out the pieces, please take a look at [Printab
 The rest of the pieces are listed
 [here](https://docs.google.com/spreadsheets/d/1wJ6nfeIdMQBHosVignK3vL9RzcDbh2oNCUtzVA7f1og/edit#gid=1259436206), which shows the name of the parts, the amount needed per part, and where you can buy them via Amazon.
 
+Installation instructions are [here](./diy.md).
+
 
 ### Printing Instructions
 
