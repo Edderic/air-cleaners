@@ -1,3 +1,0 @@
-use <slimbody.scad>
-
-exterior();
