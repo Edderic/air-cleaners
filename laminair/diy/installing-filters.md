@@ -32,3 +32,4 @@ Insert the two combined filters, with the white side facing out:
 ![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0467.jpeg)
 
 Push them in so that they fit snugly with the main body.
+![image](https://breathesafe-llc.myshopify.com/cdn/shop/files/F7F347BD-2015-495D-94B2-4AA1C5B36874_1_105_c.jpg?v=1728439005&width=1426)
