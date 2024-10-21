@@ -39,7 +39,13 @@ Screw as tight as possible:
 Now do the same steps for the other side:
 ![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0406.jpeg)
 
-The challenging part here is aligning the **M3x8mm** screw so that it is perpendicular with the top of the main body.
-You will have to push the loose end of the handle to make a curve so that the screw is perpendicular to the main body.Then hold that position while screwing the **M3x8mm** screw:
+You will have to push the loose end of the handle to make a curve so that the screw is perpendicular to the main body.This might be a little challenging. You will have to hold this position while also screwing the **M3x8mm** screw:
 ![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0407.jpeg)
+![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0408.jpeg)
+
+Add the **M3 hex** to the remaining hole and then continue screwing to tighten the connection between the handle and the main body:
+![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0410.jpeg)
+
+Tighten as much as possible:
+![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0409.jpeg)
 
