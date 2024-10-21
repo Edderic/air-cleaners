@@ -19,6 +19,22 @@ Do the same thing for this section next:
 
 ![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0384.jpeg)
 
-Add the **M3 hex nut** at the end:
+Next, we work on connecting the bottom pieces togetherc
 
 ![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0385.jpeg)
+
+Insert the **M3 hex nut** before fully tightening:
+
+![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0388.jpeg)
+
+The power switch has a **male** end and a **female** end. The **female** end should be in the main body, while the **male** end along with the **power switch** should be outside the main body. Insert the wire between the **female** end and the power switch into the groove of the bottom right part:
+
+![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0389.jpeg)
+
+A more close-up view:
+
+![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0390.jpeg)
+
+Complete the main body:
+
+![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0391.jpeg)
