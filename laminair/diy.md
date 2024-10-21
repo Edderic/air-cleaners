@@ -2,6 +2,17 @@
 
 ## Assembling the main body
 
+### What's needed
+
+| Item | Amount | Link | Notes |
+| - | - | - |- |
+| M3x8mm hex head screw | 8 | [link](https://www.amazon.com/gp/product/B01MCW5GM3/ref=ewc_pr_img_1?smid=A30WUG2ZDGM0XM&psc=1) |
+| M3x8mm hex nut | 8 |  [link](https://www.amazon.com/gp/product/B08N68W9SP/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1) |
+| top_left.stl | 1 | [link](./laminair/top_left.stl) |
+| top_right.stl | 1 | [link](./laminair/top_right.stl) |
+| bottom_left.stl | 1 | [link](./laminair/bottom_left.stl) |
+| bottom_right.stl | 1 | [link](./laminair/bottom_right.stl) |
+
 Arrange the 4 main parts like so:
 ![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0380.jpeg)
 
