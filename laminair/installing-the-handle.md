@@ -36,3 +36,10 @@ When half-way done, insert the **M3 hex nut** on the other side:
 Screw as tight as possible:
 ![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0405.jpeg)
 
+Now do the same steps for the other side:
+![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0406.jpeg)
+
+The challenging part here is aligning the **M3x8mm** screw so that it is perpendicular with the top of the main body.
+You will have to push the loose end of the handle to make a curve so that the screw is perpendicular to the main body.Then hold that position while screwing the **M3x8mm** screw:
+![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0407.jpeg)
+
