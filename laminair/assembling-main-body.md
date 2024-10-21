@@ -56,3 +56,4 @@ Use **M3x8mm** screws and nuts to secure the main body:
 ![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0394.jpeg)
 ![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0395.jpeg)
 ![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0396.jpeg)
+![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0397.jpeg)
