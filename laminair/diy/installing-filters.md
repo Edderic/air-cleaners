@@ -7,7 +7,7 @@
 | Item | Amount | Link |
 | - | - | - |
 | Assembled main body with handle, fans, power bank, stand from the previous step | 1 | [link](./installing-stand.md) |
-| Honeywell HHT270 HEPA| 1 | [link](https://www.amazon.com/gp/product/B00KQGTORS/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) |
+| Honeywell HHT270 HEPA| 2 | [link](https://www.amazon.com/gp/product/B00KQGTORS/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) |
 | thin double-sided tape|  | [link](https://www.amazon.com/Adhesive-Transparent-Scrapbook-Woodworker-Clothing/dp/B09796HRLR/ref=sr_1_11_sspa?dib=eyJ2IjoiMSJ9.ChRJ-DzuZ44Nub3Wnawv7xipe5AWc5Fs_ifR8EM2JRSAlMgyAnDpRA4HMtXnGFgdaLWS5rexf_2Xggrp2AZTPmFS2wkt9jy8gQi6I4-LhdrhCyR3xnc8jucDv6xlbXgwwTdnuI-yevwHc-ArrRRdLCx-WpNOm9hfcBxyziIDam5zcdGGIBCIMdaU7os1egdYQ_MAraH46PXvXhK6OZTPGg0Pxgiz79AahdcsJ9R5nhVZVfLkgWtS94jWJEMT5n7I22Ts351B-RlQA0iFhtb6rTh1FQEbtAO3WCrSekGN83U.3IdmkyZmjZ_AwizVU5xmHhffJ6IjU2S6j4IACtbWQ4Y&dib_tag=se&keywords=thin+double+sided+tape&qid=1729480508&sr=8-11-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9tdGY&psc=1) |
 
 ### Steps
