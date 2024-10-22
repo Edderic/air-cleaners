@@ -36,6 +36,8 @@ Have to eat indoors with a bunch of people? Reduce your risk of getting sick fro
 Designed and Built in the U.S.
 
 ## Experimental Results on Efficacy
+
+### Grid of exposure reduction factors
 80-92% reduction (5-13 exposure reduction factors) in particles between 0.02 and 1 micron when used close to the face.
 
 Look at a birds-eye view of exposure reduction factors:
@@ -53,8 +55,12 @@ The graph above was produced by using a PortaCount 8020A. Ambient air was being 
 
 Edderic moved the PortaCount sampling probe inch by inch to get the grid. Each position is a minute's worth of samples. So in total, Edderic spent more than two hours testing the device.
 
-## License
-- [See License](https://github.com/Edderic/air-cleaners/blob/main/LICENSE.md)
+### Using a respirator with and without the LaminAir V2
+
+<figure>
+    <img src="https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/edderic_with_makrite_9601_n95.jpg" alt="Edderic using an N95 without the LaminAir V2">
+<figcaption>Edderic using an N95 without the LaminAir V2</figcaption>
+</figure>
 
 
 ## DIY
@@ -73,5 +79,8 @@ If you'd rather buy a pre-assembled device, you can purchase [here](https://brea
 ### Modifying the pieces
 
 [OpenSCAD](https://openscad.org/) is a tool for programmers to programmatically create 3D-printable designs. See [OpenSCAD tutorials](https://openscad.org/documentation.html) to learn how to use the tool. OpenSCAD lets someone edit `.scad` files. The 3D printable models then get exported from there as STL files, which essentially contain information about shapes and curves. Finally, these STL files are then transformed into G-Code, which contains all the steps for a 3D printer to print the objects. I use [PrusaSlicer](https://www.prusa3d.com/page/prusaslicer_424/) to convert STL files to G-Code. Once that is done, the G-Code is then exported to an SD card, which is then finally inserted to a 3D printer. A fine choice is Prusa's MK3S+.
+
+## License
+- [See License](https://github.com/Edderic/air-cleaners/blob/main/LICENSE.md)
 
 
