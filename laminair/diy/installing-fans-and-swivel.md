@@ -60,3 +60,7 @@ Daisy chain the fans to each other, and have one of the fans connect to the **CR
 Use velcro or cable ties to tidy up the wiring:
 ![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0428.jpeg)
 ![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0429.jpeg)
+
+[Go back to DIY page](./diy.md)
+[Next up: Installing the power bank](./installing-power-bank.md)
+

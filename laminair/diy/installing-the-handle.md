@@ -49,3 +49,5 @@ Add the **M3 hex** to the remaining hole and then continue screwing to tighten t
 Tighten as much as possible:
 ![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0409.jpeg)
 
+[Go back to DIY page](./diy.md)
+[Next up: Installing the fans and the swivel](./installing-fans-and-swivel.md)

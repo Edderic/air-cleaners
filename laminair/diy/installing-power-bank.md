@@ -65,3 +65,5 @@ adding **M3 hex nuts** for a more secure connection.
 Tighten:
 ![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0453.jpeg)
 
+[Go back to DIY page](./diy.md)
+[Next up: Installing the stand](./installing-stand.md)

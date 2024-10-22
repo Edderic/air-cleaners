@@ -1,21 +1,24 @@
-# LaminAir
+# LaminAir V2
 
-Highly effective personal air cleaning. Uses Laminar flow to create concentrated clean air in front of the user. Meant to be used relatively close to the face.
+## Experimental Results on Efficacy
+80-92% reduction in particles between 0.02 and 1 micron when used close to the face.
 
-![front](https://breathesafe-airgo.s3.us-east-2.amazonaws.com/images/laminair/front.png)
+Look at a birds-eye view of exposure reduction factors:
+![exposure reduction factors grid](https://breathesafe-llc.myshopify.com/cdn/shop/files/GZVDrBeW0AANzxP.png?v=1728439786)
+
+X corresponds to left and right movement of the head when facing the LaminAir V2.
+Y corresponds to moving closer or farther away from the LaminAir.
+Z is the height from the ground, kept constant in the middle.
 
 ## License
 - [See License](https://github.com/Edderic/air-cleaners/blob/main/LICENSE.md)
 
-## Theoretical and Experimental Results on Efficacy
-
-- [Twitter announcement](https://x.com/eddericu/status/1738041192049266939)
-- [Threader App](https://threadreaderapp.com/thread/1738041192049266939.html)
-- [Research](https://github.com/Edderic/iaq/blob/main/notebooks/milestone-eoy-2023.ipynb)
 
 ## DIY
 
-If you are interested in printing out the pieces, please take a look at [Printables](https://www.printables.com/model/716902-laminair/), which shows the 3D-printable parts in STL format.
+If you have access to a 3D printer, and you are interested in printing out the pieces yourself to save on labor, please take a look at [the instructions](./diy/diy.md), which shows the 3D-printable parts in STL format.
+
+If you already have the 3D printed parts and would like to assemble the pieces together, you can also take a look at [the instructions](./diy/diy.md).
 
 The rest of the pieces are listed
 [here](https://docs.google.com/spreadsheets/d/1wJ6nfeIdMQBHosVignK3vL9RzcDbh2oNCUtzVA7f1og/edit#gid=1259436206), which shows the name of the parts, the amount needed per part, and where you can buy them via Amazon.

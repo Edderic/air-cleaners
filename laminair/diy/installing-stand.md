@@ -31,3 +31,6 @@ Using your thumb, hold down the **flange nut** while tigtening via the **stud kn
 
 Other side should look something like this:
 ![image](https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0459.jpeg)
+
+[Go back to DIY page](./diy.md)
+[Next up: Installing the filters](./installing-filters.md)
