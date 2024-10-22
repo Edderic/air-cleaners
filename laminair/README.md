@@ -7,6 +7,9 @@ Open source personal air cleaning
 <div style='display: grid; grid-template-columns: 50% 50%; grid-template-rows: auto;'>
     <img width='500' src="https://breathesafe-llc.myshopify.com/cdn/shop/files/F7F347BD-2015-495D-94B2-4AA1C5B36874_1_105_c.jpg?v=1728439005" alt="front">
     <img width='500' src="https://breathesafe-llc.myshopify.com/cdn/shop/files/B3418CC7-9A49-4E87-8E3C-5162F355BAFB_1_105_c.jpg?v=1728444456" alt="back">
+    <img width='500' src="https://breathesafe-llc.myshopify.com/cdn/shop/files/D1AA6A1A-E37F-4572-B699-C1E7BAB34F1D_1_105_c.jpg?v=1728439046" alt="laminair on stand">
+    <img width='500' src="https://breathesafe-llc.myshopify.com/cdn/shop/files/FFFDCA4A-86AA-42AB-A5FA-6049E354336B_1_105_c.jpg?v=1728439095" alt="laminair on stand at the dentist">
+    <img width='500' src="https://breathesafe-llc.myshopify.com/cdn/shop/files/4263F86A-0201-4A02-9D70-98288BE1BE8D_1_105_c.jpg?v=1728439056" alt="laminair at the dentist">
 </div>
 
 ## Experimental Results on Efficacy
