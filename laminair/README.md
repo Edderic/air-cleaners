@@ -71,6 +71,22 @@ Edderic moved the PortaCount sampling probe inch by inch to get the grid. Each p
         <img src="https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/fit_factor_edderic_makrite_9601_n95.jpg" alt="Exposure reduction factor of 14 when only using the N95 with leaks" width="500">
     </td>
 </tr>
+<tr>
+    <td>Edderic using Makrite 9601 N95</td>
+    <td>Edderic getting an exposure reduction factor of 14</td>
+</tr>
+<tr>
+    <td>
+        <img src="https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/makrite_9601_with_laminair_v2.jpg" alt="Edderic using an N95 with the LaminAir V2" width="500">
+    </td>
+    <td>
+        <img src="https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/fit_factor_makrite_9601_with_laminair_v2.jpg" alt="Exposure reduction factor of 14 when using the N95 with leaks + LaminAir V2" width="500">
+    </td>
+</tr>
+<tr>
+    <td>Edderic using Makrite 9601 N95 and LaminAir V2</td>
+    <td>Edderic getting an exposure reduction factor of 211</td>
+</tr>
 </table>
 
 
