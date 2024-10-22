@@ -9,6 +9,7 @@ Effective personal air cleaning via laminar flow, meant to be used close to the 
     <img width='500' src="https://breathesafe-llc.myshopify.com/cdn/shop/files/FFFDCA4A-86AA-42AB-A5FA-6049E354336B_1_105_c.jpg?v=1728439095" alt="laminair on stand at the dentist">
     <img width='500' src="https://breathesafe-llc.myshopify.com/cdn/shop/files/4263F86A-0201-4A02-9D70-98288BE1BE8D_1_105_c.jpg?v=1728439056" alt="laminair at the dentist">
 </div>
+
 ## Use cases
 
 **Safer dental visits as a patient**
