@@ -57,10 +57,21 @@ Edderic moved the PortaCount sampling probe inch by inch to get the grid. Each p
 
 ### Using a respirator with and without the LaminAir V2
 
-<figure>
-    <img src="https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/edderic_with_makrite_9601_n95.jpg" alt="Edderic using an N95 without the LaminAir V2" width="500">
-    <figcaption>Edderic using an N95 without the LaminAir V2</figcaption>
-</figure>
+<table>
+    <tr>
+        <th>Experiment</th>
+        <th>Exposure Reduction Factor</th>
+    </tr>
+
+    <tr>
+        <td>
+            <img src="https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/edderic_with_makrite_9601_n95.jpg" alt="Edderic using an N95 without the LaminAir V2" width="500">
+        </td>
+        <td>
+            <img src="https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/fit_factor_edderic_makrite_9601_n95.jpg" alt="Exposure reduction factor of 14 when only using the N95 with leaks" width="500">
+        </td>
+    </tr>
+</table>
 
 
 ## DIY
