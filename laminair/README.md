@@ -1,8 +1,6 @@
 # LaminAir V2
-Open source personal air cleaning
-* Effective
-* Versatile
-* Repairable
+
+Effective personal air cleaning via laminar flow, meant to be used close to the face. In a matter of seconds, can give 5-to-13 exposure reduction factors (i.e. 80-93% reduction of aerosols) when breathing near the middle, 15-inches-or-less away from the face. Another effective tool to add to your arsenal of multilayer protections.
 
 <div style='display: grid; grid-template-columns: 50% 50%; grid-template-rows: auto;'>
     <img width='500' src="https://breathesafe-llc.myshopify.com/cdn/shop/files/F7F347BD-2015-495D-94B2-4AA1C5B36874_1_105_c.jpg?v=1728439005" alt="front">
@@ -23,6 +21,12 @@ Look at a birds-eye view of exposure reduction factors:
 |X| corresponds to left and right movement of the head when facing the LaminAir V2. |
 |Y| corresponds to moving closer or farther away from the LaminAir.|
 |Z| is the height from the ground, kept constant in the middle. |
+
+The graph above was produced by using a PortaCount 8020A. Ambient air was being sampled right in the intake of the device at the back and then compared to the cleaner air in the front:
+
+<img src="https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/IMG_0264.jpeg" width='500' alt="PortaCount validation">
+
+Edderic moved the PortaCount sampling probe inch by inch to get the grid. Each position is a minute's worth of samples. So in total, Edderic spent more than two hours testing the device.
 
 ## License
 - [See License](https://github.com/Edderic/air-cleaners/blob/main/LICENSE.md)
