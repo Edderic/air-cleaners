@@ -1,11 +1,13 @@
 # LaminAir V2
 Open source personal air cleaning
-* Repairable
 * Effective
 * Versatile
+* Repairable
 
-<img width='500' src="https://breathesafe-llc.myshopify.com/cdn/shop/files/F7F347BD-2015-495D-94B2-4AA1C5B36874_1_105_c.jpg?v=1728439005" alt="front">
-<img width='500' src="https://breathesafe-llc.myshopify.com/cdn/shop/files/B3418CC7-9A49-4E87-8E3C-5162F355BAFB_1_105_c.jpg?v=1728444456" alt="back">
+<div style='display: grid; grid-template-columns: 50% 50%; grid-template-rows: auto;'>
+    <img width='500' src="https://breathesafe-llc.myshopify.com/cdn/shop/files/F7F347BD-2015-495D-94B2-4AA1C5B36874_1_105_c.jpg?v=1728439005" alt="front">
+    <img width='500' src="https://breathesafe-llc.myshopify.com/cdn/shop/files/B3418CC7-9A49-4E87-8E3C-5162F355BAFB_1_105_c.jpg?v=1728444456" alt="back">
+</div>
 
 ## Experimental Results on Efficacy
 80-92% reduction (5-13 exposure reduction factors) in particles between 0.02 and 1 micron when used close to the face.
