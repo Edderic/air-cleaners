@@ -12,13 +12,13 @@ Effective personal air cleaning via laminar flow, meant to be used close to the 
 
 ## Use cases
 
-**Safer dental visits as a patient**
-The LaminAir V2 can be connected to a tripod to so you can breathe in concentrated clean air at the dentist. Get cleaner air wherever you go. LaminAir V2 can boost the protection of the Readimask Nose hack.
+**Safer dental visits as a patient.**
+The LaminAir V2 can be connected to a tripod to so you can breathe in concentrated clean air at the dentist or in the hospital. Get cleaner air wherever you go. LaminAir V2 can boost the protection of the [Readimask Nose hack](https://x.com/findmeabluebird/status/1517896018188197891).
 
-**Safer working in the office**
+**Safer working in the office.**
 Sitting in a cubicle, or working at a desk while wearing a mask? LaminAir V2 can boost the effectiveness of respirators. The effect is multiplicative. For example, if you have a fit tested respirator that has a fit factor of 20, using a LaminAir in conjunction with a mask can gives a combined exposure reduction factor somewhere between 100 (20 x 5) and 260 (20 x 13). In other words, you will be breathing 100 to 260 times lower concentration of aerosols between 0.02 - 1 micron, when combining a mask with a fit factor of 20 with the LaminAir.
 
-**Safer indoor dining**
+**Safer indoor dining.**
 Have to eat indoors with a bunch of people? Reduce your risk of getting sick from airborne pathogens and get sick less often using the LaminAir V2.
 
 ## Features
