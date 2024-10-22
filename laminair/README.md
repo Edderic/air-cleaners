@@ -1,7 +1,8 @@
 # LaminAir V2
 
 <div>
-<img src="https://breathesafe-llc.myshopify.com/cdn/shop/files/6AE22608-55E2-4A32-B833-B735234F54C2_1_105_c.jpg?v=1728439010" alt="front">
+<img width='500' src="https://breathesafe-llc.myshopify.com/cdn/shop/files/F7F347BD-2015-495D-94B2-4AA1C5B36874_1_105_c.jpg?v=1728439005" alt="front">
+<img width='500' src="https://breathesafe-llc.myshopify.com/cdn/shop/files/6AE22608-55E2-4A32-B833-B735234F54C2_1_105_c.jpg?v=1728439010" alt="side">
 </div>
 
 ## Experimental Results on Efficacy
