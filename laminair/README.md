@@ -58,8 +58,8 @@ Edderic moved the PortaCount sampling probe inch by inch to get the grid. Each p
 ### Using a respirator with and without the LaminAir V2
 
 <figure>
-    <img src="https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/edderic_with_makrite_9601_n95.jpg" alt="Edderic using an N95 without the LaminAir V2">
-<figcaption>Edderic using an N95 without the LaminAir V2</figcaption>
+    <img src="https://breathesafe.s3.us-east-2.amazonaws.com/images/laminair/images/edderic_with_makrite_9601_n95.jpg" alt="Edderic using an N95 without the LaminAir V2" width="500">
+    <figcaption>Edderic using an N95 without the LaminAir V2</figcaption>
 </figure>
 
 
