@@ -23,13 +23,13 @@ Have to eat indoors with a bunch of people? Reduce your risk of getting sick fro
 
 ## Features
 
-**Modular**: If a part breaks, that part can be easily replaced, without having the need to buy a whole new device.
-
 **Easily adjustable**: Swivel design lets you easily point the device to your face.
 
 **Versatile**: Can be used with a tripod to get cleaner air at the dentist.
 
 **Rechargeable**: Powerbank included, USB-C rechargeable.
+
+**Modular**: If a part breaks, that part can be easily replaced, without having the need to buy a whole new device.
 
 3D-printed with PETG / PLA plastic.
 
