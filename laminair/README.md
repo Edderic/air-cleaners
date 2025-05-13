@@ -97,7 +97,7 @@ If you have access to a 3D printer, and you are interested in printing out the p
 If you already have the 3D printed parts and would like to assemble the pieces together, you can also take a look at [the instructions](./diy/diy.md).
 
 The rest of the pieces are listed
-[here](https://docs.google.com/spreadsheets/d/1wJ6nfeIdMQBHosVignK3vL9RzcDbh2oNCUtzVA7f1og/edit#gid=1259436206), which shows the name of the parts, the amount needed per part, and where you can buy them via Amazon.
+[here](https://docs.google.com/spreadsheets/d/1wJ6nfeIdMQBHosVignK3vL9RzcDbh2oNCUtzVA7f1og/edit?gid=1310411609#gid=1310411609), which shows the name of the parts, the amount needed per part, and where you can buy them via Amazon.
 
 ## Buying devices
 
